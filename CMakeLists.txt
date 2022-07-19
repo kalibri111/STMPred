@@ -49,13 +49,13 @@ else ()
     add_compile_options(-Og -g)
 endif ()
 
-include_directories(Core/Inc STM32_WPAN/App Drivers/STM32WBxx_HAL_Driver/Inc Drivers/STM32WBxx_HAL_Driver/Inc/Legacy Utilities/lpm/tiny_lpm Middlewares/ST/STM32_WPAN Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/shci Middlewares/ST/STM32_WPAN/utilities Middlewares/ST/STM32_WPAN/ble/core Middlewares/ST/STM32_WPAN/ble/core/auto Middlewares/ST/STM32_WPAN/ble/core/template Middlewares/ST/STM32_WPAN/ble/svc/Inc Middlewares/ST/STM32_WPAN/ble/svc/Src Drivers/CMSIS/Device/ST/STM32WBxx/Include Utilities/sequencer Middlewares/ST/STM32_WPAN/ble Drivers/CMSIS/Include)
+include_directories(cubemx/Core/Inc cubemx/STM32_WPAN/App cubemx/Drivers/STM32WBxx_HAL_Driver/Inc cubemx/Drivers/STM32WBxx_HAL_Driver/Inc/Legacy cubemx/Utilities/lpm/tiny_lpm cubemx/Middlewares/ST/STM32_WPAN cubemx/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread cubemx/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl cubemx/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/shci cubemx/Middlewares/ST/STM32_WPAN/utilities cubemx/Middlewares/ST/STM32_WPAN/ble/core cubemx/Middlewares/ST/STM32_WPAN/ble/core/auto cubemx/Middlewares/ST/STM32_WPAN/ble/core/template cubemx/Middlewares/ST/STM32_WPAN/ble/svc/Inc cubemx/Middlewares/ST/STM32_WPAN/ble/svc/Src cubemx/Drivers/CMSIS/Device/ST/STM32WBxx/Include cubemx/Utilities/sequencer cubemx/Middlewares/ST/STM32_WPAN/ble cubemx/Drivers/CMSIS/Include)
 
 add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32WB55xx)
 
-file(GLOB_RECURSE SOURCES "STM32_WPAN/*.*" "Core/*.*" "Utilities/*.*" "Middlewares/*.*" "Drivers/*.*")
+file(GLOB_RECURSE SOURCES "cubemx/STM32_WPAN/*.*" "Core/*.*" "cubemx/Utilities/*.*" "cubemx/Middlewares/*.*" "cubemx/Drivers/*.*")
 
-set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32WB55RGVX_FLASH.ld)
+set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/cubemx/resources/STM32WB55RGVX_FLASH.ld)
 
 add_link_options(-Wl,-gc-sections,--print-memory-usage,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map)
 add_link_options(-mcpu=cortex-m4 -mthumb -mthumb-interwork)
