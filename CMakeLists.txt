@@ -49,11 +49,35 @@ else ()
     add_compile_options(-Og -g)
 endif ()
 
-include_directories(cubemx/Core/Inc cubemx/STM32_WPAN/App cubemx/Drivers/STM32WBxx_HAL_Driver/Inc cubemx/Drivers/STM32WBxx_HAL_Driver/Inc/Legacy cubemx/Utilities/lpm/tiny_lpm cubemx/Middlewares/ST/STM32_WPAN cubemx/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread cubemx/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl cubemx/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/shci cubemx/Middlewares/ST/STM32_WPAN/utilities cubemx/Middlewares/ST/STM32_WPAN/ble/core cubemx/Middlewares/ST/STM32_WPAN/ble/core/auto cubemx/Middlewares/ST/STM32_WPAN/ble/core/template cubemx/Middlewares/ST/STM32_WPAN/ble/svc/Inc cubemx/Middlewares/ST/STM32_WPAN/ble/svc/Src cubemx/Drivers/CMSIS/Device/ST/STM32WBxx/Include cubemx/Utilities/sequencer cubemx/Middlewares/ST/STM32_WPAN/ble cubemx/Drivers/CMSIS/Include)
+include_directories(
+        cubemx/Core/Inc
+        cubemx/Core/Src
+        cubemx/STM32_WPAN/App
+        cubemx/Drivers/STM32WBxx_HAL_Driver/Inc
+        cubemx/Drivers/STM32WBxx_HAL_Driver/Inc/Legacy
+        cubemx/Utilities/lpm/tiny_lpm
+        cubemx/Middlewares/ST/STM32_WPAN
+        cubemx/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread
+        cubemx/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl
+        cubemx/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/shci
+        cubemx/Middlewares/ST/STM32_WPAN/utilities
+        cubemx/Middlewares/ST/STM32_WPAN/ble/core
+        cubemx/Middlewares/ST/STM32_WPAN/ble/core/auto
+        cubemx/Middlewares/ST/STM32_WPAN/ble/core/template
+        cubemx/Middlewares/ST/STM32_WPAN/ble/svc/Inc
+        cubemx/Middlewares/ST/STM32_WPAN/ble/svc/Src
+        cubemx/Drivers/CMSIS/Device/ST/STM32WBxx/Include
+        cubemx/Utilities/sequencer
+        cubemx/Middlewares/ST/STM32_WPAN/ble
+        cubemx/Drivers/CMSIS/Include
+        indicating
+        interface/mpu5060
+        predict
+)
 
 add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32WB55xx)
 
-file(GLOB_RECURSE SOURCES "cubemx/STM32_WPAN/*.*" "Core/*.*" "cubemx/Utilities/*.*" "cubemx/Middlewares/*.*" "cubemx/Drivers/*.*")
+file(GLOB_RECURSE SOURCES "cubemx/STM32_WPAN/*.*" "cubemx/Core/*.*" "cubemx/Utilities/*.*" "cubemx/Middlewares/*.*" "cubemx/Drivers/*.*" "interface/mpu5060/*.*")
 
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/cubemx/resources/STM32WB55RGVX_FLASH.ld)
 

@@ -27,7 +27,6 @@
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32wbxx.h"
 #include "Legacy/stm32_hal_legacy.h"   /* Aliases file for old names compatibility */
 #include <stddef.h>
 
@@ -53,6 +52,7 @@ typedef enum
   HAL_LOCKED   = 0x01
 } HAL_LockTypeDef;
 
+#include "stm32wbxx.h"
 /* Exported macros -----------------------------------------------------------*/
 #ifndef UNUSED
 #define UNUSED(X) (void)(X)      /* To avoid gcc/g++ warnings */
