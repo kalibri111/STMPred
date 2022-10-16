@@ -29,46 +29,44 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 
-  
+
 /* Exported types ------------------------------------------------------------*/
-typedef enum
-{
-  EDS_STM_NOTIFY_DISABLED_EVT,
-  EDS_STM_NOTIFY_ENABLED_EVT,
+typedef enum {
+    EDS_STM_NOTIFY_DISABLED_EVT,
+    EDS_STM_NOTIFY_ENABLED_EVT,
 } EDS_STM_Opcode_evt_t;
 
 typedef struct
 {
-    uint8_t     Device1_Status;
-    uint8_t     Device2_Status;
-    uint8_t     Device3_Status;
-    uint8_t     Device4_Status;
-    uint8_t     Device5_Status;
-    uint8_t     Device6_Status;
- }EDS_STM_Status_t;
- 
-typedef struct
-{
-  uint8_t * pPayload;
-  uint8_t     Length;
-}EDS_STM_Data_t;  
+    uint8_t Device1_Status;
+    uint8_t Device2_Status;
+    uint8_t Device3_Status;
+    uint8_t Device4_Status;
+    uint8_t Device5_Status;
+    uint8_t Device6_Status;
+} EDS_STM_Status_t;
 
 typedef struct
 {
-  EDS_STM_Opcode_evt_t  EDS_Evt_Opcode;
-  EDS_STM_Data_t        DataTransfered;
-  uint16_t              ConnectionHandle;
- }EDS_STM_App_Notification_evt_t;
+    uint8_t *pPayload;
+    uint8_t Length;
+} EDS_STM_Data_t;
 
+typedef struct
+{
+    EDS_STM_Opcode_evt_t EDS_Evt_Opcode;
+    EDS_STM_Data_t DataTransfered;
+    uint16_t ConnectionHandle;
+} EDS_STM_App_Notification_evt_t;
 
 
 /* Exported constants --------------------------------------------------------*/
 /* External variables --------------------------------------------------------*/
 /* Exported macros -----------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
-void EDS_STM_Init( void );
-void EDS_STM_App_Notification(EDS_STM_App_Notification_evt_t * pNotification);
-tBleStatus EDS_STM_Update_Char(uint16_t UUID,  uint8_t *pPayload);
+void EDS_STM_Init(void);
+void EDS_STM_App_Notification(EDS_STM_App_Notification_evt_t *pNotification);
+tBleStatus EDS_STM_Update_Char(uint16_t UUID, uint8_t *pPayload);
 
 
 #ifdef __cplusplus

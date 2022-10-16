@@ -29,40 +29,38 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 
- 
-  
+
 /* Exported types ------------------------------------------------------------*/
-typedef enum
-{
-  P2PS_STM__NOTIFY_ENABLED_EVT,
-  P2PS_STM_NOTIFY_DISABLED_EVT,
-  P2PS_STM_READ_EVT,
-  P2PS_STM_WRITE_EVT,
-  P2PS_STM_BOOT_REQUEST_EVT,
+typedef enum {
+    P2PS_STM__NOTIFY_ENABLED_EVT,
+    P2PS_STM_NOTIFY_DISABLED_EVT,
+    P2PS_STM_READ_EVT,
+    P2PS_STM_WRITE_EVT,
+    P2PS_STM_BOOT_REQUEST_EVT,
 } P2PS_STM_Opcode_evt_t;
 
 typedef struct
 {
-  uint8_t * pPayload;
-  uint8_t     Length;
-}P2PS_STM_Data_t;  
+    uint8_t *pPayload;
+    uint8_t Length;
+} P2PS_STM_Data_t;
 
 typedef struct
 {
-  P2PS_STM_Opcode_evt_t     P2P_Evt_Opcode;
-  P2PS_STM_Data_t           DataTransfered;
-  uint16_t                  ConnectionHandle;
-  uint8_t                   ServiceInstance;
-}P2PS_STM_App_Notification_evt_t;
+    P2PS_STM_Opcode_evt_t P2P_Evt_Opcode;
+    P2PS_STM_Data_t DataTransfered;
+    uint16_t ConnectionHandle;
+    uint8_t ServiceInstance;
+} P2PS_STM_App_Notification_evt_t;
 
 
 /* Exported constants --------------------------------------------------------*/
 /* External variables --------------------------------------------------------*/
 /* Exported macros -----------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
-void P2PS_STM_Init( void );
+void P2PS_STM_Init(void);
 void P2PS_STM_App_Notification(P2PS_STM_App_Notification_evt_t *pNotification);
-tBleStatus P2PS_STM_App_Update_Char(uint16_t UUID,  uint8_t *pPayload);
+tBleStatus P2PS_STM_App_Update_Char(uint16_t UUID, uint8_t *pPayload);
 
 
 #ifdef __cplusplus

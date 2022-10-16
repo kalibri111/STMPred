@@ -53,10 +53,10 @@ extern "C" {
 /** @defgroup HSEM_LL_EC_COREID COREID Defines
   * @{
   */
-#define LL_HSEM_COREID_NONE             0U
-#define LL_HSEM_COREID_CPU1             HSEM_CR_COREID_CPU1
-#define LL_HSEM_COREID_CPU2             HSEM_CR_COREID_CPU2
-#define LL_HSEM_COREID                  HSEM_CR_COREID_CURRENT
+#define LL_HSEM_COREID_NONE 0U
+#define LL_HSEM_COREID_CPU1 HSEM_CR_COREID_CPU1
+#define LL_HSEM_COREID_CPU2 HSEM_CR_COREID_CPU2
+#define LL_HSEM_COREID HSEM_CR_COREID_CURRENT
 /**
   * @}
   */
@@ -66,39 +66,39 @@ extern "C" {
   * @{
   */
 
-#define LL_HSEM_SEMAPHORE_0                HSEM_C1IER_ISE0
-#define LL_HSEM_SEMAPHORE_1                HSEM_C1IER_ISE1
-#define LL_HSEM_SEMAPHORE_2                HSEM_C1IER_ISE2
-#define LL_HSEM_SEMAPHORE_3                HSEM_C1IER_ISE3
-#define LL_HSEM_SEMAPHORE_4                HSEM_C1IER_ISE4
-#define LL_HSEM_SEMAPHORE_5                HSEM_C1IER_ISE5
-#define LL_HSEM_SEMAPHORE_6                HSEM_C1IER_ISE6
-#define LL_HSEM_SEMAPHORE_7                HSEM_C1IER_ISE7
-#define LL_HSEM_SEMAPHORE_8                HSEM_C1IER_ISE8
-#define LL_HSEM_SEMAPHORE_9                HSEM_C1IER_ISE9
-#define LL_HSEM_SEMAPHORE_10               HSEM_C1IER_ISE10
-#define LL_HSEM_SEMAPHORE_11               HSEM_C1IER_ISE11
-#define LL_HSEM_SEMAPHORE_12               HSEM_C1IER_ISE12
-#define LL_HSEM_SEMAPHORE_13               HSEM_C1IER_ISE13
-#define LL_HSEM_SEMAPHORE_14               HSEM_C1IER_ISE14
-#define LL_HSEM_SEMAPHORE_15               HSEM_C1IER_ISE15
-#define LL_HSEM_SEMAPHORE_16               HSEM_C1IER_ISE16
-#define LL_HSEM_SEMAPHORE_17               HSEM_C1IER_ISE17
-#define LL_HSEM_SEMAPHORE_18               HSEM_C1IER_ISE18
-#define LL_HSEM_SEMAPHORE_19               HSEM_C1IER_ISE19
-#define LL_HSEM_SEMAPHORE_20               HSEM_C1IER_ISE20
-#define LL_HSEM_SEMAPHORE_21               HSEM_C1IER_ISE21
-#define LL_HSEM_SEMAPHORE_22               HSEM_C1IER_ISE22
-#define LL_HSEM_SEMAPHORE_23               HSEM_C1IER_ISE23
-#define LL_HSEM_SEMAPHORE_24               HSEM_C1IER_ISE24
-#define LL_HSEM_SEMAPHORE_25               HSEM_C1IER_ISE25
-#define LL_HSEM_SEMAPHORE_26               HSEM_C1IER_ISE26
-#define LL_HSEM_SEMAPHORE_27               HSEM_C1IER_ISE27
-#define LL_HSEM_SEMAPHORE_28               HSEM_C1IER_ISE28
-#define LL_HSEM_SEMAPHORE_29               HSEM_C1IER_ISE29
-#define LL_HSEM_SEMAPHORE_30               HSEM_C1IER_ISE30
-#define LL_HSEM_SEMAPHORE_31               HSEM_C1IER_ISE31
-#define LL_HSEM_SEMAPHORE_ALL              0xFFFFFFFFU
+#define LL_HSEM_SEMAPHORE_0 HSEM_C1IER_ISE0
+#define LL_HSEM_SEMAPHORE_1 HSEM_C1IER_ISE1
+#define LL_HSEM_SEMAPHORE_2 HSEM_C1IER_ISE2
+#define LL_HSEM_SEMAPHORE_3 HSEM_C1IER_ISE3
+#define LL_HSEM_SEMAPHORE_4 HSEM_C1IER_ISE4
+#define LL_HSEM_SEMAPHORE_5 HSEM_C1IER_ISE5
+#define LL_HSEM_SEMAPHORE_6 HSEM_C1IER_ISE6
+#define LL_HSEM_SEMAPHORE_7 HSEM_C1IER_ISE7
+#define LL_HSEM_SEMAPHORE_8 HSEM_C1IER_ISE8
+#define LL_HSEM_SEMAPHORE_9 HSEM_C1IER_ISE9
+#define LL_HSEM_SEMAPHORE_10 HSEM_C1IER_ISE10
+#define LL_HSEM_SEMAPHORE_11 HSEM_C1IER_ISE11
+#define LL_HSEM_SEMAPHORE_12 HSEM_C1IER_ISE12
+#define LL_HSEM_SEMAPHORE_13 HSEM_C1IER_ISE13
+#define LL_HSEM_SEMAPHORE_14 HSEM_C1IER_ISE14
+#define LL_HSEM_SEMAPHORE_15 HSEM_C1IER_ISE15
+#define LL_HSEM_SEMAPHORE_16 HSEM_C1IER_ISE16
+#define LL_HSEM_SEMAPHORE_17 HSEM_C1IER_ISE17
+#define LL_HSEM_SEMAPHORE_18 HSEM_C1IER_ISE18
+#define LL_HSEM_SEMAPHORE_19 HSEM_C1IER_ISE19
+#define LL_HSEM_SEMAPHORE_20 HSEM_C1IER_ISE20
+#define LL_HSEM_SEMAPHORE_21 HSEM_C1IER_ISE21
+#define LL_HSEM_SEMAPHORE_22 HSEM_C1IER_ISE22
+#define LL_HSEM_SEMAPHORE_23 HSEM_C1IER_ISE23
+#define LL_HSEM_SEMAPHORE_24 HSEM_C1IER_ISE24
+#define LL_HSEM_SEMAPHORE_25 HSEM_C1IER_ISE25
+#define LL_HSEM_SEMAPHORE_26 HSEM_C1IER_ISE26
+#define LL_HSEM_SEMAPHORE_27 HSEM_C1IER_ISE27
+#define LL_HSEM_SEMAPHORE_28 HSEM_C1IER_ISE28
+#define LL_HSEM_SEMAPHORE_29 HSEM_C1IER_ISE29
+#define LL_HSEM_SEMAPHORE_30 HSEM_C1IER_ISE30
+#define LL_HSEM_SEMAPHORE_31 HSEM_C1IER_ISE31
+#define LL_HSEM_SEMAPHORE_ALL 0xFFFFFFFFU
 /**
   * @}
   */
@@ -157,9 +157,8 @@ extern "C" {
   * @param  Semaphore Semaphore number. Value between Min_Data=0 and Max_Data=31
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_HSEM_IsSemaphoreLocked(HSEM_TypeDef *HSEMx, uint32_t Semaphore)
-{
-  return ((READ_BIT(HSEMx->R[Semaphore], HSEM_R_LOCK) == (HSEM_R_LOCK_Msk)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_HSEM_IsSemaphoreLocked(HSEM_TypeDef *HSEMx, uint32_t Semaphore) {
+    return ((READ_BIT(HSEMx->R[Semaphore], HSEM_R_LOCK) == (HSEM_R_LOCK_Msk)) ? 1UL : 0UL);
 }
 
 /**
@@ -172,9 +171,8 @@ __STATIC_INLINE uint32_t LL_HSEM_IsSemaphoreLocked(HSEM_TypeDef *HSEMx, uint32_t
   *         @arg @ref LL_HSEM_COREID_CPU1
   *         @arg @ref LL_HSEM_COREID_CPU2
   */
-__STATIC_INLINE uint32_t LL_HSEM_GetCoreId(HSEM_TypeDef *HSEMx, uint32_t Semaphore)
-{
-  return (uint32_t)(READ_BIT(HSEMx->R[Semaphore], HSEM_R_COREID_Msk));
+__STATIC_INLINE uint32_t LL_HSEM_GetCoreId(HSEM_TypeDef *HSEMx, uint32_t Semaphore) {
+    return (uint32_t) (READ_BIT(HSEMx->R[Semaphore], HSEM_R_COREID_Msk));
 }
 
 /**
@@ -184,9 +182,8 @@ __STATIC_INLINE uint32_t LL_HSEM_GetCoreId(HSEM_TypeDef *HSEMx, uint32_t Semapho
   * @param  Semaphore Semaphore number. Value between Min_Data=0 and Max_Data=31
   * @retval Process number. Value between Min_Data=0 and Max_Data=255
   */
-__STATIC_INLINE uint32_t LL_HSEM_GetProcessId(HSEM_TypeDef *HSEMx, uint32_t Semaphore)
-{
-  return (uint32_t)(READ_BIT(HSEMx->R[Semaphore], HSEM_R_PROCID_Msk));
+__STATIC_INLINE uint32_t LL_HSEM_GetProcessId(HSEM_TypeDef *HSEMx, uint32_t Semaphore) {
+    return (uint32_t) (READ_BIT(HSEMx->R[Semaphore], HSEM_R_PROCID_Msk));
 }
 
 /**
@@ -200,9 +197,8 @@ __STATIC_INLINE uint32_t LL_HSEM_GetProcessId(HSEM_TypeDef *HSEMx, uint32_t Sema
   * @param  process Process id. Value between Min_Data=0 and Max_Data=255
   * @retval None
   */
-__STATIC_INLINE void LL_HSEM_SetLock(HSEM_TypeDef *HSEMx, uint32_t Semaphore, uint32_t process)
-{
-  WRITE_REG(HSEMx->R[Semaphore], (HSEM_R_LOCK | LL_HSEM_COREID | process));
+__STATIC_INLINE void LL_HSEM_SetLock(HSEM_TypeDef *HSEMx, uint32_t Semaphore, uint32_t process) {
+    WRITE_REG(HSEMx->R[Semaphore], (HSEM_R_LOCK | LL_HSEM_COREID | process));
 }
 
 /**
@@ -215,10 +211,9 @@ __STATIC_INLINE void LL_HSEM_SetLock(HSEM_TypeDef *HSEMx, uint32_t Semaphore, ui
   * @param  process Process id. Value between Min_Data=0 and Max_Data=255
   * @retval 1 lock fail, 0 lock successful or already locked by same process and core
   */
-__STATIC_INLINE uint32_t LL_HSEM_2StepLock(HSEM_TypeDef *HSEMx, uint32_t Semaphore, uint32_t process)
-{
-  WRITE_REG(HSEMx->R[Semaphore], (HSEM_R_LOCK | LL_HSEM_COREID | process));
-  return ((HSEMx->R[Semaphore] != (HSEM_R_LOCK | LL_HSEM_COREID | process)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_HSEM_2StepLock(HSEM_TypeDef *HSEMx, uint32_t Semaphore, uint32_t process) {
+    WRITE_REG(HSEMx->R[Semaphore], (HSEM_R_LOCK | LL_HSEM_COREID | process));
+    return ((HSEMx->R[Semaphore] != (HSEM_R_LOCK | LL_HSEM_COREID | process)) ? 1UL : 0UL);
 }
 
 /**
@@ -230,9 +225,8 @@ __STATIC_INLINE uint32_t LL_HSEM_2StepLock(HSEM_TypeDef *HSEMx, uint32_t Semapho
   * @param  Semaphore Semaphore number. Value between Min_Data=0 and Max_Data=31
   * @retval 1 lock fail, 0 lock successful or already locked by same core
   */
-__STATIC_INLINE uint32_t LL_HSEM_1StepLock(HSEM_TypeDef *HSEMx, uint32_t Semaphore)
-{
-  return ((HSEMx->RLR[Semaphore] != (HSEM_R_LOCK | LL_HSEM_COREID)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_HSEM_1StepLock(HSEM_TypeDef *HSEMx, uint32_t Semaphore) {
+    return ((HSEMx->RLR[Semaphore] != (HSEM_R_LOCK | LL_HSEM_COREID)) ? 1UL : 0UL);
 }
 
 /**
@@ -244,9 +238,8 @@ __STATIC_INLINE uint32_t LL_HSEM_1StepLock(HSEM_TypeDef *HSEMx, uint32_t Semapho
   * @param  process Process number. Value between Min_Data=0 and Max_Data=255
   * @retval None
   */
-__STATIC_INLINE void LL_HSEM_ReleaseLock(HSEM_TypeDef *HSEMx, uint32_t Semaphore, uint32_t process)
-{
-  WRITE_REG(HSEMx->R[Semaphore], (LL_HSEM_COREID | process));
+__STATIC_INLINE void LL_HSEM_ReleaseLock(HSEM_TypeDef *HSEMx, uint32_t Semaphore, uint32_t process) {
+    WRITE_REG(HSEMx->R[Semaphore], (LL_HSEM_COREID | process));
 }
 
 /**
@@ -255,9 +248,8 @@ __STATIC_INLINE void LL_HSEM_ReleaseLock(HSEM_TypeDef *HSEMx, uint32_t Semaphore
   * @param  HSEMx HSEM Instance.
   * @param  Semaphore Semaphore number. Value between Min_Data=0 and Max_Data=31
   * @retval 0 semaphore is free, 1 semaphore is locked  */
-__STATIC_INLINE uint32_t LL_HSEM_GetStatus(HSEM_TypeDef *HSEMx, uint32_t Semaphore)
-{
-  return ((HSEMx->R[Semaphore] != 0U) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_HSEM_GetStatus(HSEM_TypeDef *HSEMx, uint32_t Semaphore) {
+    return ((HSEMx->R[Semaphore] != 0U) ? 1UL : 0UL);
 }
 
 /**
@@ -267,9 +259,8 @@ __STATIC_INLINE uint32_t LL_HSEM_GetStatus(HSEM_TypeDef *HSEMx, uint32_t Semapho
   * @param  key Key value.
   * @retval None
   */
-__STATIC_INLINE void LL_HSEM_SetKey(HSEM_TypeDef *HSEMx, uint32_t key)
-{
-  WRITE_REG(HSEMx->KEYR, key << HSEM_KEYR_KEY_Pos);
+__STATIC_INLINE void LL_HSEM_SetKey(HSEM_TypeDef *HSEMx, uint32_t key) {
+    WRITE_REG(HSEMx->KEYR, key << HSEM_KEYR_KEY_Pos);
 }
 
 /**
@@ -278,9 +269,8 @@ __STATIC_INLINE void LL_HSEM_SetKey(HSEM_TypeDef *HSEMx, uint32_t key)
   * @param  HSEMx HSEM Instance.
   * @retval key to unlock all semaphore from the same core
   */
-__STATIC_INLINE uint32_t LL_HSEM_GetKey(HSEM_TypeDef *HSEMx)
-{
-  return (uint32_t)(READ_BIT(HSEMx->KEYR, HSEM_KEYR_KEY) >> HSEM_KEYR_KEY_Pos);
+__STATIC_INLINE uint32_t LL_HSEM_GetKey(HSEM_TypeDef *HSEMx) {
+    return (uint32_t) (READ_BIT(HSEMx->KEYR, HSEM_KEYR_KEY) >> HSEM_KEYR_KEY_Pos);
 }
 
 /**
@@ -293,9 +283,8 @@ __STATIC_INLINE uint32_t LL_HSEM_GetKey(HSEM_TypeDef *HSEMx)
   *         @arg @ref LL_HSEM_COREID_CPU2
   * @retval None
   */
-__STATIC_INLINE void LL_HSEM_ResetAllLock(HSEM_TypeDef *HSEMx, uint32_t key, uint32_t core)
-{
-  WRITE_REG(HSEMx->CR, (key << HSEM_CR_KEY_Pos) | core);
+__STATIC_INLINE void LL_HSEM_ResetAllLock(HSEM_TypeDef *HSEMx, uint32_t key, uint32_t core) {
+    WRITE_REG(HSEMx->CR, (key << HSEM_CR_KEY_Pos) | core);
 }
 
 /**
@@ -346,9 +335,8 @@ __STATIC_INLINE void LL_HSEM_ResetAllLock(HSEM_TypeDef *HSEMx, uint32_t key, uin
   *         @arg @ref LL_HSEM_SEMAPHORE_ALL
   * @retval None
   */
-__STATIC_INLINE void LL_HSEM_EnableIT_C1IER(HSEM_TypeDef *HSEMx, uint32_t SemaphoreMask)
-{
-  SET_BIT(HSEMx->C1IER, SemaphoreMask);
+__STATIC_INLINE void LL_HSEM_EnableIT_C1IER(HSEM_TypeDef *HSEMx, uint32_t SemaphoreMask) {
+    SET_BIT(HSEMx->C1IER, SemaphoreMask);
 }
 
 /**
@@ -391,9 +379,8 @@ __STATIC_INLINE void LL_HSEM_EnableIT_C1IER(HSEM_TypeDef *HSEMx, uint32_t Semaph
   *         @arg @ref LL_HSEM_SEMAPHORE_ALL
   * @retval None
   */
-__STATIC_INLINE void LL_HSEM_DisableIT_C1IER(HSEM_TypeDef *HSEMx, uint32_t SemaphoreMask)
-{
-  CLEAR_BIT(HSEMx->C1IER, SemaphoreMask);
+__STATIC_INLINE void LL_HSEM_DisableIT_C1IER(HSEM_TypeDef *HSEMx, uint32_t SemaphoreMask) {
+    CLEAR_BIT(HSEMx->C1IER, SemaphoreMask);
 }
 
 /**
@@ -436,9 +423,8 @@ __STATIC_INLINE void LL_HSEM_DisableIT_C1IER(HSEM_TypeDef *HSEMx, uint32_t Semap
   *         @arg @ref LL_HSEM_SEMAPHORE_ALL
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_HSEM_IsEnabledIT_C1IER(HSEM_TypeDef *HSEMx, uint32_t SemaphoreMask)
-{
-  return ((READ_BIT(HSEMx->C1IER, SemaphoreMask) == (SemaphoreMask)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_HSEM_IsEnabledIT_C1IER(HSEM_TypeDef *HSEMx, uint32_t SemaphoreMask) {
+    return ((READ_BIT(HSEMx->C1IER, SemaphoreMask) == (SemaphoreMask)) ? 1UL : 0UL);
 }
 
 /**
@@ -481,9 +467,8 @@ __STATIC_INLINE uint32_t LL_HSEM_IsEnabledIT_C1IER(HSEM_TypeDef *HSEMx, uint32_t
   *         @arg @ref LL_HSEM_SEMAPHORE_ALL
   * @retval None
   */
-__STATIC_INLINE void LL_HSEM_EnableIT_C2IER(HSEM_TypeDef *HSEMx, uint32_t SemaphoreMask)
-{
-  SET_BIT(HSEMx->C2IER, SemaphoreMask);
+__STATIC_INLINE void LL_HSEM_EnableIT_C2IER(HSEM_TypeDef *HSEMx, uint32_t SemaphoreMask) {
+    SET_BIT(HSEMx->C2IER, SemaphoreMask);
 }
 
 /**
@@ -526,9 +511,8 @@ __STATIC_INLINE void LL_HSEM_EnableIT_C2IER(HSEM_TypeDef *HSEMx, uint32_t Semaph
   *         @arg @ref LL_HSEM_SEMAPHORE_ALL
   * @retval None
   */
-__STATIC_INLINE void LL_HSEM_DisableIT_C2IER(HSEM_TypeDef *HSEMx, uint32_t SemaphoreMask)
-{
-  CLEAR_BIT(HSEMx->C2IER, SemaphoreMask);
+__STATIC_INLINE void LL_HSEM_DisableIT_C2IER(HSEM_TypeDef *HSEMx, uint32_t SemaphoreMask) {
+    CLEAR_BIT(HSEMx->C2IER, SemaphoreMask);
 }
 
 /**
@@ -571,9 +555,8 @@ __STATIC_INLINE void LL_HSEM_DisableIT_C2IER(HSEM_TypeDef *HSEMx, uint32_t Semap
   *         @arg @ref LL_HSEM_SEMAPHORE_ALL
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_HSEM_IsEnabledIT_C2IER(HSEM_TypeDef *HSEMx, uint32_t SemaphoreMask)
-{
-  return ((READ_BIT(HSEMx->C2IER, SemaphoreMask) == (SemaphoreMask)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_HSEM_IsEnabledIT_C2IER(HSEM_TypeDef *HSEMx, uint32_t SemaphoreMask) {
+    return ((READ_BIT(HSEMx->C2IER, SemaphoreMask) == (SemaphoreMask)) ? 1UL : 0UL);
 }
 
 /**
@@ -624,9 +607,8 @@ __STATIC_INLINE uint32_t LL_HSEM_IsEnabledIT_C2IER(HSEM_TypeDef *HSEMx, uint32_t
   *         @arg @ref LL_HSEM_SEMAPHORE_ALL
   * @retval None
   */
-__STATIC_INLINE void LL_HSEM_ClearFlag_C1ICR(HSEM_TypeDef *HSEMx, uint32_t SemaphoreMask)
-{
-  WRITE_REG(HSEMx->C1ICR, SemaphoreMask);
+__STATIC_INLINE void LL_HSEM_ClearFlag_C1ICR(HSEM_TypeDef *HSEMx, uint32_t SemaphoreMask) {
+    WRITE_REG(HSEMx->C1ICR, SemaphoreMask);
 }
 
 /**
@@ -669,9 +651,8 @@ __STATIC_INLINE void LL_HSEM_ClearFlag_C1ICR(HSEM_TypeDef *HSEMx, uint32_t Semap
   *         @arg @ref LL_HSEM_SEMAPHORE_ALL
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_HSEM_IsActiveFlag_C1ISR(HSEM_TypeDef *HSEMx, uint32_t SemaphoreMask)
-{
-  return ((READ_BIT(HSEMx->C1ISR, SemaphoreMask) == (SemaphoreMask)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_HSEM_IsActiveFlag_C1ISR(HSEM_TypeDef *HSEMx, uint32_t SemaphoreMask) {
+    return ((READ_BIT(HSEMx->C1ISR, SemaphoreMask) == (SemaphoreMask)) ? 1UL : 0UL);
 }
 
 /**
@@ -714,9 +695,8 @@ __STATIC_INLINE uint32_t LL_HSEM_IsActiveFlag_C1ISR(HSEM_TypeDef *HSEMx, uint32_
   *         @arg @ref LL_HSEM_SEMAPHORE_ALL
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_HSEM_IsActiveFlag_C1MISR(HSEM_TypeDef *HSEMx, uint32_t SemaphoreMask)
-{
-  return ((READ_BIT(HSEMx->C1MISR, SemaphoreMask) == (SemaphoreMask)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_HSEM_IsActiveFlag_C1MISR(HSEM_TypeDef *HSEMx, uint32_t SemaphoreMask) {
+    return ((READ_BIT(HSEMx->C1MISR, SemaphoreMask) == (SemaphoreMask)) ? 1UL : 0UL);
 }
 
 /**
@@ -759,9 +739,8 @@ __STATIC_INLINE uint32_t LL_HSEM_IsActiveFlag_C1MISR(HSEM_TypeDef *HSEMx, uint32
   *         @arg @ref LL_HSEM_SEMAPHORE_ALL
   * @retval None
   */
-__STATIC_INLINE void LL_HSEM_ClearFlag_C2ICR(HSEM_TypeDef *HSEMx, uint32_t SemaphoreMask)
-{
-  WRITE_REG(HSEMx->C2ICR, SemaphoreMask);
+__STATIC_INLINE void LL_HSEM_ClearFlag_C2ICR(HSEM_TypeDef *HSEMx, uint32_t SemaphoreMask) {
+    WRITE_REG(HSEMx->C2ICR, SemaphoreMask);
 }
 
 /**
@@ -804,9 +783,8 @@ __STATIC_INLINE void LL_HSEM_ClearFlag_C2ICR(HSEM_TypeDef *HSEMx, uint32_t Semap
   *         @arg @ref LL_HSEM_SEMAPHORE_ALL
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_HSEM_IsActiveFlag_C2ISR(HSEM_TypeDef *HSEMx, uint32_t SemaphoreMask)
-{
-  return ((READ_BIT(HSEMx->C2ISR, SemaphoreMask) == (SemaphoreMask)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_HSEM_IsActiveFlag_C2ISR(HSEM_TypeDef *HSEMx, uint32_t SemaphoreMask) {
+    return ((READ_BIT(HSEMx->C2ISR, SemaphoreMask) == (SemaphoreMask)) ? 1UL : 0UL);
 }
 
 /**
@@ -849,9 +827,8 @@ __STATIC_INLINE uint32_t LL_HSEM_IsActiveFlag_C2ISR(HSEM_TypeDef *HSEMx, uint32_
   *         @arg @ref LL_HSEM_SEMAPHORE_ALL
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_HSEM_IsActiveFlag_C2MISR(HSEM_TypeDef *HSEMx, uint32_t SemaphoreMask)
-{
-  return ((READ_BIT(HSEMx->C2MISR, SemaphoreMask) == (SemaphoreMask)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_HSEM_IsActiveFlag_C2MISR(HSEM_TypeDef *HSEMx, uint32_t SemaphoreMask) {
+    return ((READ_BIT(HSEMx->C2MISR, SemaphoreMask) == (SemaphoreMask)) ? 1UL : 0UL);
 }
 /**
   * @}

@@ -31,7 +31,7 @@
  * @param[out] Build_Number Build number of the firmware.
  * @return Value indicating success or error code.
  */
-tBleStatus aci_hal_get_fw_build_number( uint16_t* Build_Number );
+tBleStatus aci_hal_get_fw_build_number(uint16_t *Build_Number);
 
 /**
  * @brief ACI_HAL_WRITE_CONFIG_DATA
@@ -55,9 +55,9 @@ tBleStatus aci_hal_get_fw_build_number( uint16_t* Build_Number );
  * @param Value Data to be written
  * @return Value indicating success or error code.
  */
-tBleStatus aci_hal_write_config_data( uint8_t Offset,
-                                      uint8_t Length,
-                                      const uint8_t* Value );
+tBleStatus aci_hal_write_config_data(uint8_t Offset,
+                                     uint8_t Length,
+                                     const uint8_t *Value);
 
 /**
  * @brief ACI_HAL_READ_CONFIG_DATA
@@ -79,9 +79,9 @@ tBleStatus aci_hal_write_config_data( uint8_t Offset,
  * @param[out] Data Data field associated with Offset parameter
  * @return Value indicating success or error code.
  */
-tBleStatus aci_hal_read_config_data( uint8_t Offset,
-                                     uint8_t* Data_Length,
-                                     uint8_t* Data );
+tBleStatus aci_hal_read_config_data(uint8_t Offset,
+                                    uint8_t *Data_Length,
+                                    uint8_t *Data);
 
 /**
  * @brief ACI_HAL_SET_TX_POWER_LEVEL
@@ -140,8 +140,8 @@ tBleStatus aci_hal_read_config_data( uint8_t Offset,
  *        - 0x1F: +6 dBm
  * @return Value indicating success or error code.
  */
-tBleStatus aci_hal_set_tx_power_level( uint8_t En_High_Power,
-                                       uint8_t PA_Level );
+tBleStatus aci_hal_set_tx_power_level(uint8_t En_High_Power,
+                                      uint8_t PA_Level);
 
 /**
  * @brief ACI_HAL_LE_TX_TEST_PACKET_NUMBER
@@ -158,7 +158,7 @@ tBleStatus aci_hal_set_tx_power_level( uint8_t En_High_Power,
  *        TX test.
  * @return Value indicating success or error code.
  */
-tBleStatus aci_hal_le_tx_test_packet_number( uint32_t* Number_Of_Packets );
+tBleStatus aci_hal_le_tx_test_packet_number(uint32_t *Number_Of_Packets);
 
 /**
  * @brief ACI_HAL_TONE_START
@@ -182,8 +182,8 @@ tBleStatus aci_hal_le_tx_test_packet_number( uint32_t* Number_Of_Packets );
  *        - 0x00 ... 0xFF
  * @return Value indicating success or error code.
  */
-tBleStatus aci_hal_tone_start( uint8_t RF_Channel,
-                               uint8_t Freq_offset );
+tBleStatus aci_hal_tone_start(uint8_t RF_Channel,
+                              uint8_t Freq_offset);
 
 /**
  * @brief ACI_HAL_TONE_STOP
@@ -192,7 +192,7 @@ tBleStatus aci_hal_tone_start( uint8_t RF_Channel,
  * 
  * @return Value indicating success or error code.
  */
-tBleStatus aci_hal_tone_stop( void );
+tBleStatus aci_hal_tone_stop(void);
 
 /**
  * @brief ACI_HAL_GET_LINK_STATUS
@@ -214,8 +214,8 @@ tBleStatus aci_hal_tone_stop( void );
  *        8 links.
  * @return Value indicating success or error code.
  */
-tBleStatus aci_hal_get_link_status( uint8_t* Link_Status,
-                                    uint16_t* Link_Connection_Handle );
+tBleStatus aci_hal_get_link_status(uint8_t *Link_Status,
+                                   uint16_t *Link_Connection_Handle);
 
 /**
  * @brief ACI_HAL_SET_RADIO_ACTIVITY_MASK
@@ -236,7 +236,7 @@ tBleStatus aci_hal_get_link_status( uint8_t* Link_Status,
  *        - 0x0080: RX test mode
  * @return Value indicating success or error code.
  */
-tBleStatus aci_hal_set_radio_activity_mask( uint16_t Radio_Activity_Mask );
+tBleStatus aci_hal_set_radio_activity_mask(uint16_t Radio_Activity_Mask);
 
 /**
  * @brief ACI_HAL_GET_ANCHOR_PERIOD
@@ -250,8 +250,8 @@ tBleStatus aci_hal_set_radio_activity_mask( uint16_t Radio_Activity_Mask );
  *        T = N * 0.625 ms.
  * @return Value indicating success or error code.
  */
-tBleStatus aci_hal_get_anchor_period( uint32_t* Anchor_Period,
-                                      uint32_t* Max_Free_Slot );
+tBleStatus aci_hal_get_anchor_period(uint32_t *Anchor_Period,
+                                     uint32_t *Max_Free_Slot);
 
 /**
  * @brief ACI_HAL_SET_EVENT_MASK
@@ -263,7 +263,7 @@ tBleStatus aci_hal_get_anchor_period( uint32_t* Anchor_Period,
  *        - 0x00000001: ACI_HAL_SCAN_REQ_REPORT_EVENT
  * @return Value indicating success or error code.
  */
-tBleStatus aci_hal_set_event_mask( uint32_t Event_Mask );
+tBleStatus aci_hal_set_event_mask(uint32_t Event_Mask);
 
 /**
  * @brief ACI_HAL_SET_SMP_ENG_CONFIG
@@ -286,7 +286,7 @@ tBleStatus aci_hal_set_event_mask( uint32_t Event_Mask );
  *        - 0x00000117: Debug KEY On + DBG msg On + CL=7
  * @return Value indicating success or error code.
  */
-tBleStatus aci_hal_set_smp_eng_config( uint32_t SMP_Config );
+tBleStatus aci_hal_set_smp_eng_config(uint32_t SMP_Config);
 
 /**
  * @brief ACI_HAL_GET_PM_DEBUG_INFO
@@ -298,9 +298,9 @@ tBleStatus aci_hal_set_smp_eng_config( uint32_t SMP_Config );
  * @param[out] Allocated_MBlocks Overall allocated MBlocks
  * @return Value indicating success or error code.
  */
-tBleStatus aci_hal_get_pm_debug_info( uint8_t* Allocated_For_TX,
-                                      uint8_t* Allocated_For_RX,
-                                      uint8_t* Allocated_MBlocks );
+tBleStatus aci_hal_get_pm_debug_info(uint8_t *Allocated_For_TX,
+                                     uint8_t *Allocated_For_RX,
+                                     uint8_t *Allocated_MBlocks);
 
 /**
  * @brief ACI_HAL_SET_SLAVE_LATENCY
@@ -314,7 +314,7 @@ tBleStatus aci_hal_get_pm_debug_info( uint8_t* Allocated_For_TX,
  *        - 0x01: Slave latency is enabled
  * @return Value indicating success or error code.
  */
-tBleStatus aci_hal_set_slave_latency( uint8_t Enable );
+tBleStatus aci_hal_set_slave_latency(uint8_t Enable);
 
 /**
  * @brief ACI_HAL_READ_RADIO_REG
@@ -324,8 +324,8 @@ tBleStatus aci_hal_set_slave_latency( uint8_t Enable );
  * @param[out] reg_val Register value
  * @return Value indicating success or error code.
  */
-tBleStatus aci_hal_read_radio_reg( uint8_t Register_Address,
-                                   uint8_t* reg_val );
+tBleStatus aci_hal_read_radio_reg(uint8_t Register_Address,
+                                  uint8_t *reg_val);
 
 /**
  * @brief ACI_HAL_WRITE_RADIO_REG
@@ -335,8 +335,8 @@ tBleStatus aci_hal_read_radio_reg( uint8_t Register_Address,
  * @param Register_Value Value to be written
  * @return Value indicating success or error code.
  */
-tBleStatus aci_hal_write_radio_reg( uint8_t Register_Address,
-                                    uint8_t Register_Value );
+tBleStatus aci_hal_write_radio_reg(uint8_t Register_Address,
+                                   uint8_t Register_Value);
 
 /**
  * @brief ACI_HAL_READ_RAW_RSSI
@@ -345,7 +345,7 @@ tBleStatus aci_hal_write_radio_reg( uint8_t Register_Address,
  * @param[out] Value RAW RSSI value
  * @return Value indicating success or error code.
  */
-tBleStatus aci_hal_read_raw_rssi( uint8_t* Value );
+tBleStatus aci_hal_read_raw_rssi(uint8_t *Value);
 
 /**
  * @brief ACI_HAL_RX_START
@@ -360,7 +360,7 @@ tBleStatus aci_hal_read_raw_rssi( uint8_t* Value );
  *        - 0x00 ... 0x27
  * @return Value indicating success or error code.
  */
-tBleStatus aci_hal_rx_start( uint8_t RF_Channel );
+tBleStatus aci_hal_rx_start(uint8_t RF_Channel);
 
 /**
  * @brief ACI_HAL_RX_STOP
@@ -368,7 +368,7 @@ tBleStatus aci_hal_rx_start( uint8_t RF_Channel );
  * 
  * @return Value indicating success or error code.
  */
-tBleStatus aci_hal_rx_stop( void );
+tBleStatus aci_hal_rx_stop(void);
 
 /**
  * @brief ACI_HAL_STACK_RESET
@@ -377,7 +377,7 @@ tBleStatus aci_hal_rx_stop( void );
  * 
  * @return Value indicating success or error code.
  */
-tBleStatus aci_hal_stack_reset( void );
+tBleStatus aci_hal_stack_reset(void);
 
 
 #endif /* BLE_HAL_ACI_H__ */

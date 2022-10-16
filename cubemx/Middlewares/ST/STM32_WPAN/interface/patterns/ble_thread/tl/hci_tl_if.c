@@ -20,13 +20,12 @@
 #include "tl.h"
 
 
-void hci_register_io_bus(tHciIO* fops)
-{
-  /* Register IO bus services */
-  fops->Init    = TL_BLE_Init;
-  fops->Send    = TL_BLE_SendCmd;
+void hci_register_io_bus(tHciIO *fops) {
+    /* Register IO bus services */
+    fops->Init = TL_BLE_Init;
+    fops->Send = TL_BLE_SendCmd;
 
-  return;
+    return;
 }
 
 /******************* (C) COPYRIGHT 2011 STMicroelectronics *****END OF FILE****/

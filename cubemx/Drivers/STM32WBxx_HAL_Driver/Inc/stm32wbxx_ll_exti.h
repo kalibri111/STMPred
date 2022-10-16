@@ -32,7 +32,7 @@ extern "C" {
   * @{
   */
 
-#if defined (EXTI)
+#if defined(EXTI)
 
 /** @defgroup EXTI_LL EXTI
   * @{
@@ -58,19 +58,19 @@ extern "C" {
 typedef struct
 {
 
-  uint32_t Line_0_31;           /*!< Specifies the EXTI lines to be enabled or disabled for Lines in range 0 to 31
+    uint32_t Line_0_31; /*!< Specifies the EXTI lines to be enabled or disabled for Lines in range 0 to 31
                                      This parameter can be any combination of @ref EXTI_LL_EC_LINE */
 
-  uint32_t Line_32_63;          /*!< Specifies the EXTI lines to be enabled or disabled for Lines in range 32 to 63
+    uint32_t Line_32_63; /*!< Specifies the EXTI lines to be enabled or disabled for Lines in range 32 to 63
                                      This parameter can be any combination of @ref EXTI_LL_EC_LINE */
 
-  FunctionalState LineCommand;  /*!< Specifies the new state of the selected EXTI lines.
+    FunctionalState LineCommand; /*!< Specifies the new state of the selected EXTI lines.
                                      This parameter can be set either to ENABLE or DISABLE */
 
-  uint8_t Mode;                 /*!< Specifies the mode for the EXTI lines.
+    uint8_t Mode; /*!< Specifies the mode for the EXTI lines.
                                      This parameter can be a value of @ref EXTI_LL_EC_MODE. */
 
-  uint8_t Trigger;              /*!< Specifies the trigger signal active edge for the EXTI lines.
+    uint8_t Trigger; /*!< Specifies the trigger signal active edge for the EXTI lines.
                                      This parameter can be a value of @ref EXTI_LL_EC_TRIGGER. */
 } LL_EXTI_InitTypeDef;
 
@@ -87,123 +87,123 @@ typedef struct
 /** @defgroup EXTI_LL_EC_LINE LINE
   * @{
   */
-#define LL_EXTI_LINE_0                 EXTI_IMR1_IM0           /*!< Extended line 0 */
-#define LL_EXTI_LINE_1                 EXTI_IMR1_IM1           /*!< Extended line 1 */
-#define LL_EXTI_LINE_2                 EXTI_IMR1_IM2           /*!< Extended line 2 */
-#define LL_EXTI_LINE_3                 EXTI_IMR1_IM3           /*!< Extended line 3 */
-#define LL_EXTI_LINE_4                 EXTI_IMR1_IM4           /*!< Extended line 4 */
-#define LL_EXTI_LINE_5                 EXTI_IMR1_IM5           /*!< Extended line 5 */
-#define LL_EXTI_LINE_6                 EXTI_IMR1_IM6           /*!< Extended line 6 */
-#define LL_EXTI_LINE_7                 EXTI_IMR1_IM7           /*!< Extended line 7 */
-#define LL_EXTI_LINE_8                 EXTI_IMR1_IM8           /*!< Extended line 8 */
-#define LL_EXTI_LINE_9                 EXTI_IMR1_IM9           /*!< Extended line 9 */
-#define LL_EXTI_LINE_10                EXTI_IMR1_IM10          /*!< Extended line 10 */
-#define LL_EXTI_LINE_11                EXTI_IMR1_IM11          /*!< Extended line 11 */
-#define LL_EXTI_LINE_12                EXTI_IMR1_IM12          /*!< Extended line 12 */
-#define LL_EXTI_LINE_13                EXTI_IMR1_IM13          /*!< Extended line 13 */
-#define LL_EXTI_LINE_14                EXTI_IMR1_IM14          /*!< Extended line 14 */
-#define LL_EXTI_LINE_15                EXTI_IMR1_IM15          /*!< Extended line 15 */
-#define LL_EXTI_LINE_16                EXTI_IMR1_IM16          /*!< Extended line 16 */
-#define LL_EXTI_LINE_17                EXTI_IMR1_IM17          /*!< Extended line 17 */
-#define LL_EXTI_LINE_18                EXTI_IMR1_IM18          /*!< Extended line 18 */
-#define LL_EXTI_LINE_19                EXTI_IMR1_IM19          /*!< Extended line 19 */
-#if defined (STM32WB55xx) || defined (STM32WB5Mxx) || defined (STM32WB35xx) || defined (STM32WB15xx)
-#define LL_EXTI_LINE_20                EXTI_IMR1_IM20          /*!< Extended line 20 */
+#define LL_EXTI_LINE_0 EXTI_IMR1_IM0   /*!< Extended line 0 */
+#define LL_EXTI_LINE_1 EXTI_IMR1_IM1   /*!< Extended line 1 */
+#define LL_EXTI_LINE_2 EXTI_IMR1_IM2   /*!< Extended line 2 */
+#define LL_EXTI_LINE_3 EXTI_IMR1_IM3   /*!< Extended line 3 */
+#define LL_EXTI_LINE_4 EXTI_IMR1_IM4   /*!< Extended line 4 */
+#define LL_EXTI_LINE_5 EXTI_IMR1_IM5   /*!< Extended line 5 */
+#define LL_EXTI_LINE_6 EXTI_IMR1_IM6   /*!< Extended line 6 */
+#define LL_EXTI_LINE_7 EXTI_IMR1_IM7   /*!< Extended line 7 */
+#define LL_EXTI_LINE_8 EXTI_IMR1_IM8   /*!< Extended line 8 */
+#define LL_EXTI_LINE_9 EXTI_IMR1_IM9   /*!< Extended line 9 */
+#define LL_EXTI_LINE_10 EXTI_IMR1_IM10 /*!< Extended line 10 */
+#define LL_EXTI_LINE_11 EXTI_IMR1_IM11 /*!< Extended line 11 */
+#define LL_EXTI_LINE_12 EXTI_IMR1_IM12 /*!< Extended line 12 */
+#define LL_EXTI_LINE_13 EXTI_IMR1_IM13 /*!< Extended line 13 */
+#define LL_EXTI_LINE_14 EXTI_IMR1_IM14 /*!< Extended line 14 */
+#define LL_EXTI_LINE_15 EXTI_IMR1_IM15 /*!< Extended line 15 */
+#define LL_EXTI_LINE_16 EXTI_IMR1_IM16 /*!< Extended line 16 */
+#define LL_EXTI_LINE_17 EXTI_IMR1_IM17 /*!< Extended line 17 */
+#define LL_EXTI_LINE_18 EXTI_IMR1_IM18 /*!< Extended line 18 */
+#define LL_EXTI_LINE_19 EXTI_IMR1_IM19 /*!< Extended line 19 */
+#if defined(STM32WB55xx) || defined(STM32WB5Mxx) || defined(STM32WB35xx) || defined(STM32WB15xx)
+#define LL_EXTI_LINE_20 EXTI_IMR1_IM20 /*!< Extended line 20 */
 #endif
-#if defined (STM32WB55xx) || defined (STM32WB5Mxx) || defined (STM32WB35xx)
-#define LL_EXTI_LINE_21                EXTI_IMR1_IM21          /*!< Extended line 21 */
+#if defined(STM32WB55xx) || defined(STM32WB5Mxx) || defined(STM32WB35xx)
+#define LL_EXTI_LINE_21 EXTI_IMR1_IM21 /*!< Extended line 21 */
 #endif
-#define LL_EXTI_LINE_22                EXTI_IMR1_IM22          /*!< Extended line 22 */
-#if defined (STM32WB55xx) || defined (STM32WB5Mxx) || defined (STM32WB35xx)
-#define LL_EXTI_LINE_23                EXTI_IMR1_IM23          /*!< Extended line 23 */
+#define LL_EXTI_LINE_22 EXTI_IMR1_IM22 /*!< Extended line 22 */
+#if defined(STM32WB55xx) || defined(STM32WB5Mxx) || defined(STM32WB35xx)
+#define LL_EXTI_LINE_23 EXTI_IMR1_IM23 /*!< Extended line 23 */
 #endif
-#define LL_EXTI_LINE_24                EXTI_IMR1_IM24          /*!< Extended line 24 */
-#if defined (STM32WB55xx) || defined (STM32WB5Mxx) || defined (STM32WB35xx) || defined (STM32WB15xx)
-#define LL_EXTI_LINE_25                EXTI_IMR1_IM25          /*!< Extended line 25 */
+#define LL_EXTI_LINE_24 EXTI_IMR1_IM24 /*!< Extended line 24 */
+#if defined(STM32WB55xx) || defined(STM32WB5Mxx) || defined(STM32WB35xx) || defined(STM32WB15xx)
+#define LL_EXTI_LINE_25 EXTI_IMR1_IM25 /*!< Extended line 25 */
 #endif
-#if defined (STM32WB55xx) || defined (STM32WB5Mxx) || defined (STM32WB35xx)
-#define LL_EXTI_LINE_28                EXTI_IMR1_IM28          /*!< Extended line 28 */
+#if defined(STM32WB55xx) || defined(STM32WB5Mxx) || defined(STM32WB35xx)
+#define LL_EXTI_LINE_28 EXTI_IMR1_IM28 /*!< Extended line 28 */
 #endif
-#define LL_EXTI_LINE_29                EXTI_IMR1_IM29          /*!< Extended line 29 */
-#define LL_EXTI_LINE_30                EXTI_IMR1_IM30          /*!< Extended line 30 */
-#if defined (STM32WB55xx) || defined (STM32WB5Mxx) || defined (STM32WB35xx) || defined (STM32WB15xx)
-#define LL_EXTI_LINE_31                EXTI_IMR1_IM31          /*!< Extended line 31 */
+#define LL_EXTI_LINE_29 EXTI_IMR1_IM29 /*!< Extended line 29 */
+#define LL_EXTI_LINE_30 EXTI_IMR1_IM30 /*!< Extended line 30 */
+#if defined(STM32WB55xx) || defined(STM32WB5Mxx) || defined(STM32WB35xx) || defined(STM32WB15xx)
+#define LL_EXTI_LINE_31 EXTI_IMR1_IM31 /*!< Extended line 31 */
 #endif
 
-#if defined (STM32WB55xx) || defined (STM32WB5Mxx) || defined (STM32WB35xx)
-#define LL_EXTI_LINE_ALL_0_31          (LL_EXTI_LINE_0 | LL_EXTI_LINE_1 | LL_EXTI_LINE_2 | \
-                                        LL_EXTI_LINE_3 | LL_EXTI_LINE_4 | LL_EXTI_LINE_5 | \
-                                        LL_EXTI_LINE_6 | LL_EXTI_LINE_7 | LL_EXTI_LINE_8 | \
-                                        LL_EXTI_LINE_9 | LL_EXTI_LINE_10 | LL_EXTI_LINE_11 | \
-                                        LL_EXTI_LINE_12 | LL_EXTI_LINE_13 | LL_EXTI_LINE_14 | \
-                                        LL_EXTI_LINE_15 | LL_EXTI_LINE_16 | LL_EXTI_LINE_17 | \
-                                        LL_EXTI_LINE_18 | LL_EXTI_LINE_19 | LL_EXTI_LINE_20 | \
-                                        LL_EXTI_LINE_21 | LL_EXTI_LINE_22 | LL_EXTI_LINE_23 | \
-                                        LL_EXTI_LINE_24 | LL_EXTI_LINE_25 | LL_EXTI_LINE_28 | \
-                                        LL_EXTI_LINE_29 | LL_EXTI_LINE_30 | LL_EXTI_LINE_31) /*!< All Extended line not reserved*/
-#elif defined (STM32WB15xx)
-#define LL_EXTI_LINE_ALL_0_31          (LL_EXTI_LINE_0 | LL_EXTI_LINE_1 | LL_EXTI_LINE_2 | \
-                                        LL_EXTI_LINE_3 | LL_EXTI_LINE_4 | LL_EXTI_LINE_5 | \
-                                        LL_EXTI_LINE_6 | LL_EXTI_LINE_7 | LL_EXTI_LINE_8 | \
-                                        LL_EXTI_LINE_9 | LL_EXTI_LINE_10 | LL_EXTI_LINE_11 | \
-                                        LL_EXTI_LINE_12 | LL_EXTI_LINE_13 | LL_EXTI_LINE_14 | \
-                                        LL_EXTI_LINE_15 | LL_EXTI_LINE_16 | LL_EXTI_LINE_17 | \
-                                        LL_EXTI_LINE_18 | LL_EXTI_LINE_19 | LL_EXTI_LINE_20 | \
-                                        LL_EXTI_LINE_22 | LL_EXTI_LINE_24 | LL_EXTI_LINE_25 | \
-                                        LL_EXTI_LINE_29 | LL_EXTI_LINE_30 | LL_EXTI_LINE_31) /*!< All Extended line not reserved*/
+#if defined(STM32WB55xx) || defined(STM32WB5Mxx) || defined(STM32WB35xx)
+#define LL_EXTI_LINE_ALL_0_31 (LL_EXTI_LINE_0 | LL_EXTI_LINE_1 | LL_EXTI_LINE_2 |    \
+                               LL_EXTI_LINE_3 | LL_EXTI_LINE_4 | LL_EXTI_LINE_5 |    \
+                               LL_EXTI_LINE_6 | LL_EXTI_LINE_7 | LL_EXTI_LINE_8 |    \
+                               LL_EXTI_LINE_9 | LL_EXTI_LINE_10 | LL_EXTI_LINE_11 |  \
+                               LL_EXTI_LINE_12 | LL_EXTI_LINE_13 | LL_EXTI_LINE_14 | \
+                               LL_EXTI_LINE_15 | LL_EXTI_LINE_16 | LL_EXTI_LINE_17 | \
+                               LL_EXTI_LINE_18 | LL_EXTI_LINE_19 | LL_EXTI_LINE_20 | \
+                               LL_EXTI_LINE_21 | LL_EXTI_LINE_22 | LL_EXTI_LINE_23 | \
+                               LL_EXTI_LINE_24 | LL_EXTI_LINE_25 | LL_EXTI_LINE_28 | \
+                               LL_EXTI_LINE_29 | LL_EXTI_LINE_30 | LL_EXTI_LINE_31) /*!< All Extended line not reserved*/
+#elif defined(STM32WB15xx)
+#define LL_EXTI_LINE_ALL_0_31 (LL_EXTI_LINE_0 | LL_EXTI_LINE_1 | LL_EXTI_LINE_2 |    \
+                               LL_EXTI_LINE_3 | LL_EXTI_LINE_4 | LL_EXTI_LINE_5 |    \
+                               LL_EXTI_LINE_6 | LL_EXTI_LINE_7 | LL_EXTI_LINE_8 |    \
+                               LL_EXTI_LINE_9 | LL_EXTI_LINE_10 | LL_EXTI_LINE_11 |  \
+                               LL_EXTI_LINE_12 | LL_EXTI_LINE_13 | LL_EXTI_LINE_14 | \
+                               LL_EXTI_LINE_15 | LL_EXTI_LINE_16 | LL_EXTI_LINE_17 | \
+                               LL_EXTI_LINE_18 | LL_EXTI_LINE_19 | LL_EXTI_LINE_20 | \
+                               LL_EXTI_LINE_22 | LL_EXTI_LINE_24 | LL_EXTI_LINE_25 | \
+                               LL_EXTI_LINE_29 | LL_EXTI_LINE_30 | LL_EXTI_LINE_31) /*!< All Extended line not reserved*/
 #else
-#define LL_EXTI_LINE_ALL_0_31          (LL_EXTI_LINE_0 | LL_EXTI_LINE_1 | LL_EXTI_LINE_2 | \
-                                        LL_EXTI_LINE_3 | LL_EXTI_LINE_4 | LL_EXTI_LINE_5 | \
-                                        LL_EXTI_LINE_6 | LL_EXTI_LINE_7 | LL_EXTI_LINE_8 | \
-                                        LL_EXTI_LINE_9 | LL_EXTI_LINE_10 | LL_EXTI_LINE_11 | \
-                                        LL_EXTI_LINE_12 | LL_EXTI_LINE_13 | LL_EXTI_LINE_14 | \
-                                        LL_EXTI_LINE_15 | LL_EXTI_LINE_16 | LL_EXTI_LINE_17 | \
-                                        LL_EXTI_LINE_18 | LL_EXTI_LINE_19 | LL_EXTI_LINE_22 | \
-                                        LL_EXTI_LINE_24 | LL_EXTI_LINE_29 | LL_EXTI_LINE_30) /*!< All Extended line not reserved*/
+#define LL_EXTI_LINE_ALL_0_31 (LL_EXTI_LINE_0 | LL_EXTI_LINE_1 | LL_EXTI_LINE_2 |    \
+                               LL_EXTI_LINE_3 | LL_EXTI_LINE_4 | LL_EXTI_LINE_5 |    \
+                               LL_EXTI_LINE_6 | LL_EXTI_LINE_7 | LL_EXTI_LINE_8 |    \
+                               LL_EXTI_LINE_9 | LL_EXTI_LINE_10 | LL_EXTI_LINE_11 |  \
+                               LL_EXTI_LINE_12 | LL_EXTI_LINE_13 | LL_EXTI_LINE_14 | \
+                               LL_EXTI_LINE_15 | LL_EXTI_LINE_16 | LL_EXTI_LINE_17 | \
+                               LL_EXTI_LINE_18 | LL_EXTI_LINE_19 | LL_EXTI_LINE_22 | \
+                               LL_EXTI_LINE_24 | LL_EXTI_LINE_29 | LL_EXTI_LINE_30) /*!< All Extended line not reserved*/
 #endif
 
-#define LL_EXTI_LINE_33                EXTI_IMR2_IM33          /*!< Extended line 33 */
-#define LL_EXTI_LINE_36                EXTI_IMR2_IM36          /*!< Extended line 36 */
-#define LL_EXTI_LINE_37                EXTI_IMR2_IM37          /*!< Extended line 37 */
-#define LL_EXTI_LINE_38                EXTI_IMR2_IM38          /*!< Extended line 38 */
-#define LL_EXTI_LINE_39                EXTI_IMR2_IM39          /*!< Extended line 39 */
-#define LL_EXTI_LINE_40                EXTI_IMR2_IM40          /*!< Extended line 40 */
-#define LL_EXTI_LINE_41                EXTI_IMR2_IM41          /*!< Extended line 41 */
-#define LL_EXTI_LINE_42                EXTI_IMR2_IM42          /*!< Extended line 42 */
-#if defined (STM32WB55xx) || defined (STM32WB5Mxx)
-#define LL_EXTI_LINE_43                EXTI_IMR2_IM43          /*!< Extended line 43 */
+#define LL_EXTI_LINE_33 EXTI_IMR2_IM33 /*!< Extended line 33 */
+#define LL_EXTI_LINE_36 EXTI_IMR2_IM36 /*!< Extended line 36 */
+#define LL_EXTI_LINE_37 EXTI_IMR2_IM37 /*!< Extended line 37 */
+#define LL_EXTI_LINE_38 EXTI_IMR2_IM38 /*!< Extended line 38 */
+#define LL_EXTI_LINE_39 EXTI_IMR2_IM39 /*!< Extended line 39 */
+#define LL_EXTI_LINE_40 EXTI_IMR2_IM40 /*!< Extended line 40 */
+#define LL_EXTI_LINE_41 EXTI_IMR2_IM41 /*!< Extended line 41 */
+#define LL_EXTI_LINE_42 EXTI_IMR2_IM42 /*!< Extended line 42 */
+#if defined(STM32WB55xx) || defined(STM32WB5Mxx)
+#define LL_EXTI_LINE_43 EXTI_IMR2_IM43 /*!< Extended line 43 */
 #endif
-#define LL_EXTI_LINE_44                EXTI_IMR2_IM44          /*!< Extended line 44 */
-#define LL_EXTI_LINE_45                EXTI_IMR2_IM45          /*!< Extended line 45 */
-#if defined (STM32WB55xx) || defined (STM32WB5Mxx) || defined (STM32WB50xx) || defined (STM32WB35xx) || defined (STM32WB30xx)
-#define LL_EXTI_LINE_46                EXTI_IMR2_IM46          /*!< Extended line 46 */
+#define LL_EXTI_LINE_44 EXTI_IMR2_IM44 /*!< Extended line 44 */
+#define LL_EXTI_LINE_45 EXTI_IMR2_IM45 /*!< Extended line 45 */
+#if defined(STM32WB55xx) || defined(STM32WB5Mxx) || defined(STM32WB50xx) || defined(STM32WB35xx) || defined(STM32WB30xx)
+#define LL_EXTI_LINE_46 EXTI_IMR2_IM46 /*!< Extended line 46 */
 #endif
-#define LL_EXTI_LINE_48                EXTI_IMR2_IM48          /*!< Extended line 48 */
+#define LL_EXTI_LINE_48 EXTI_IMR2_IM48 /*!< Extended line 48 */
 
-#if defined (STM32WB55xx) || defined (STM32WB5Mxx)
-#define LL_EXTI_LINE_ALL_32_63         (LL_EXTI_LINE_33 | LL_EXTI_LINE_36 | LL_EXTI_LINE_37 | \
-                                        LL_EXTI_LINE_38 | LL_EXTI_LINE_39 | LL_EXTI_LINE_40 | \
-                                        LL_EXTI_LINE_41 | LL_EXTI_LINE_42 | LL_EXTI_LINE_43 | \
-                                        LL_EXTI_LINE_44 | LL_EXTI_LINE_45 | LL_EXTI_LINE_46 | \
-                                        LL_EXTI_LINE_48)                    /*!< All Extended line not reserved*/
-#elif defined (STM32WB50xx) || defined (STM32WB35xx) || defined (STM32WB30xx)
-#define LL_EXTI_LINE_ALL_32_63         (LL_EXTI_LINE_33 | LL_EXTI_LINE_36 | LL_EXTI_LINE_37 | \
-                                        LL_EXTI_LINE_38 | LL_EXTI_LINE_39 | LL_EXTI_LINE_40 | \
-                                        LL_EXTI_LINE_41 | LL_EXTI_LINE_42 | LL_EXTI_LINE_44 | \
-                                        LL_EXTI_LINE_45 | LL_EXTI_LINE_46 | LL_EXTI_LINE_48)  /*!< All Extended line not reserved*/
+#if defined(STM32WB55xx) || defined(STM32WB5Mxx)
+#define LL_EXTI_LINE_ALL_32_63 (LL_EXTI_LINE_33 | LL_EXTI_LINE_36 | LL_EXTI_LINE_37 | \
+                                LL_EXTI_LINE_38 | LL_EXTI_LINE_39 | LL_EXTI_LINE_40 | \
+                                LL_EXTI_LINE_41 | LL_EXTI_LINE_42 | LL_EXTI_LINE_43 | \
+                                LL_EXTI_LINE_44 | LL_EXTI_LINE_45 | LL_EXTI_LINE_46 | \
+                                LL_EXTI_LINE_48) /*!< All Extended line not reserved*/
+#elif defined(STM32WB50xx) || defined(STM32WB35xx) || defined(STM32WB30xx)
+#define LL_EXTI_LINE_ALL_32_63 (LL_EXTI_LINE_33 | LL_EXTI_LINE_36 | LL_EXTI_LINE_37 | \
+                                LL_EXTI_LINE_38 | LL_EXTI_LINE_39 | LL_EXTI_LINE_40 | \
+                                LL_EXTI_LINE_41 | LL_EXTI_LINE_42 | LL_EXTI_LINE_44 | \
+                                LL_EXTI_LINE_45 | LL_EXTI_LINE_46 | LL_EXTI_LINE_48) /*!< All Extended line not reserved*/
 #else
-#define LL_EXTI_LINE_ALL_32_63         (LL_EXTI_LINE_33 | LL_EXTI_LINE_36 | LL_EXTI_LINE_37 | \
-                                        LL_EXTI_LINE_38 | LL_EXTI_LINE_39 | LL_EXTI_LINE_40 | \
-                                        LL_EXTI_LINE_41 | LL_EXTI_LINE_42 | LL_EXTI_LINE_44 | \
-                                        LL_EXTI_LINE_45 | LL_EXTI_LINE_48)  /*!< All Extended line not reserved*/
+#define LL_EXTI_LINE_ALL_32_63 (LL_EXTI_LINE_33 | LL_EXTI_LINE_36 | LL_EXTI_LINE_37 | \
+                                LL_EXTI_LINE_38 | LL_EXTI_LINE_39 | LL_EXTI_LINE_40 | \
+                                LL_EXTI_LINE_41 | LL_EXTI_LINE_42 | LL_EXTI_LINE_44 | \
+                                LL_EXTI_LINE_45 | LL_EXTI_LINE_48) /*!< All Extended line not reserved*/
 #endif
 
 
-#define LL_EXTI_LINE_ALL               (0xFFFFFFFFU)  /*!< All Extended line */
+#define LL_EXTI_LINE_ALL (0xFFFFFFFFU) /*!< All Extended line */
 
 #if defined(USE_FULL_LL_DRIVER)
-#define LL_EXTI_LINE_NONE              (0x00000000U)  /*!< None Extended line */
-#endif /*USE_FULL_LL_DRIVER*/
+#define LL_EXTI_LINE_NONE (0x00000000U) /*!< None Extended line */
+#endif                                  /*USE_FULL_LL_DRIVER*/
 
 /**
   * @}
@@ -213,9 +213,9 @@ typedef struct
 /** @defgroup EXTI_LL_EC_MODE Mode
   * @{
   */
-#define LL_EXTI_MODE_IT                 ((uint8_t)0x00U) /*!< Interrupt Mode */
-#define LL_EXTI_MODE_EVENT              ((uint8_t)0x01U) /*!< Event Mode */
-#define LL_EXTI_MODE_IT_EVENT           ((uint8_t)0x02U) /*!< Interrupt & Event Mode */
+#define LL_EXTI_MODE_IT ((uint8_t) 0x00U)       /*!< Interrupt Mode */
+#define LL_EXTI_MODE_EVENT ((uint8_t) 0x01U)    /*!< Event Mode */
+#define LL_EXTI_MODE_IT_EVENT ((uint8_t) 0x02U) /*!< Interrupt & Event Mode */
 /**
   * @}
   */
@@ -223,10 +223,10 @@ typedef struct
 /** @defgroup EXTI_LL_EC_TRIGGER Edge Trigger
   * @{
   */
-#define LL_EXTI_TRIGGER_NONE            ((uint8_t)0x00U) /*!< No Trigger Mode */
-#define LL_EXTI_TRIGGER_RISING          ((uint8_t)0x01U) /*!< Trigger Rising Mode */
-#define LL_EXTI_TRIGGER_FALLING         ((uint8_t)0x02U) /*!< Trigger Falling Mode */
-#define LL_EXTI_TRIGGER_RISING_FALLING  ((uint8_t)0x03U) /*!< Trigger Rising & Falling Mode */
+#define LL_EXTI_TRIGGER_NONE ((uint8_t) 0x00U)           /*!< No Trigger Mode */
+#define LL_EXTI_TRIGGER_RISING ((uint8_t) 0x01U)         /*!< Trigger Rising Mode */
+#define LL_EXTI_TRIGGER_FALLING ((uint8_t) 0x02U)        /*!< Trigger Falling Mode */
+#define LL_EXTI_TRIGGER_RISING_FALLING ((uint8_t) 0x03U) /*!< Trigger Rising & Falling Mode */
 
 /**
   * @}
@@ -271,7 +271,6 @@ typedef struct
 /**
   * @}
   */
-
 
 
 /* Exported functions --------------------------------------------------------*/
@@ -320,9 +319,8 @@ typedef struct
   *         (*) value not defined in all devices
   * @retval None
   */
-__STATIC_INLINE void LL_EXTI_EnableIT_0_31(uint32_t ExtiLine)
-{
-  SET_BIT(EXTI->IMR1, ExtiLine);
+__STATIC_INLINE void LL_EXTI_EnableIT_0_31(uint32_t ExtiLine) {
+    SET_BIT(EXTI->IMR1, ExtiLine);
 }
 
 /**
@@ -363,9 +361,8 @@ __STATIC_INLINE void LL_EXTI_EnableIT_0_31(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval None
   */
-__STATIC_INLINE void LL_C2_EXTI_EnableIT_0_31(uint32_t ExtiLine)
-{
-  SET_BIT(EXTI->C2IMR1, ExtiLine);
+__STATIC_INLINE void LL_C2_EXTI_EnableIT_0_31(uint32_t ExtiLine) {
+    SET_BIT(EXTI->C2IMR1, ExtiLine);
 }
 
 /**
@@ -389,9 +386,8 @@ __STATIC_INLINE void LL_C2_EXTI_EnableIT_0_31(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval None
   */
-__STATIC_INLINE void LL_EXTI_EnableIT_32_63(uint32_t ExtiLine)
-{
-  SET_BIT(EXTI->IMR2, ExtiLine);
+__STATIC_INLINE void LL_EXTI_EnableIT_32_63(uint32_t ExtiLine) {
+    SET_BIT(EXTI->IMR2, ExtiLine);
 }
 
 /**
@@ -415,9 +411,8 @@ __STATIC_INLINE void LL_EXTI_EnableIT_32_63(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval None
   */
-__STATIC_INLINE void LL_C2_EXTI_EnableIT_32_63(uint32_t ExtiLine)
-{
-  SET_BIT(EXTI->C2IMR2, ExtiLine);
+__STATIC_INLINE void LL_C2_EXTI_EnableIT_32_63(uint32_t ExtiLine) {
+    SET_BIT(EXTI->C2IMR2, ExtiLine);
 }
 
 /**
@@ -458,9 +453,8 @@ __STATIC_INLINE void LL_C2_EXTI_EnableIT_32_63(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval None
   */
-__STATIC_INLINE void LL_EXTI_DisableIT_0_31(uint32_t ExtiLine)
-{
-  CLEAR_BIT(EXTI->IMR1, ExtiLine);
+__STATIC_INLINE void LL_EXTI_DisableIT_0_31(uint32_t ExtiLine) {
+    CLEAR_BIT(EXTI->IMR1, ExtiLine);
 }
 
 /**
@@ -501,9 +495,8 @@ __STATIC_INLINE void LL_EXTI_DisableIT_0_31(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval None
   */
-__STATIC_INLINE void LL_C2_EXTI_DisableIT_0_31(uint32_t ExtiLine)
-{
-  CLEAR_BIT(EXTI->C2IMR1, ExtiLine);
+__STATIC_INLINE void LL_C2_EXTI_DisableIT_0_31(uint32_t ExtiLine) {
+    CLEAR_BIT(EXTI->C2IMR1, ExtiLine);
 }
 
 /**
@@ -527,9 +520,8 @@ __STATIC_INLINE void LL_C2_EXTI_DisableIT_0_31(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval None
   */
-__STATIC_INLINE void LL_EXTI_DisableIT_32_63(uint32_t ExtiLine)
-{
-  CLEAR_BIT(EXTI->IMR2, ExtiLine);
+__STATIC_INLINE void LL_EXTI_DisableIT_32_63(uint32_t ExtiLine) {
+    CLEAR_BIT(EXTI->IMR2, ExtiLine);
 }
 
 /**
@@ -553,9 +545,8 @@ __STATIC_INLINE void LL_EXTI_DisableIT_32_63(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval None
   */
-__STATIC_INLINE void LL_C2_EXTI_DisableIT_32_63(uint32_t ExtiLine)
-{
-  CLEAR_BIT(EXTI->C2IMR2, ExtiLine);
+__STATIC_INLINE void LL_C2_EXTI_DisableIT_32_63(uint32_t ExtiLine) {
+    CLEAR_BIT(EXTI->C2IMR2, ExtiLine);
 }
 
 /**
@@ -596,9 +587,8 @@ __STATIC_INLINE void LL_C2_EXTI_DisableIT_32_63(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_EXTI_IsEnabledIT_0_31(uint32_t ExtiLine)
-{
-  return ((READ_BIT(EXTI->IMR1, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_EXTI_IsEnabledIT_0_31(uint32_t ExtiLine) {
+    return ((READ_BIT(EXTI->IMR1, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
 }
 
 /**
@@ -639,9 +629,8 @@ __STATIC_INLINE uint32_t LL_EXTI_IsEnabledIT_0_31(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_C2_EXTI_IsEnabledIT_0_31(uint32_t ExtiLine)
-{
-  return ((READ_BIT(EXTI->C2IMR1, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_C2_EXTI_IsEnabledIT_0_31(uint32_t ExtiLine) {
+    return ((READ_BIT(EXTI->C2IMR1, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
 }
 
 /**
@@ -665,9 +654,8 @@ __STATIC_INLINE uint32_t LL_C2_EXTI_IsEnabledIT_0_31(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_EXTI_IsEnabledIT_32_63(uint32_t ExtiLine)
-{
-  return ((READ_BIT(EXTI->IMR2, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_EXTI_IsEnabledIT_32_63(uint32_t ExtiLine) {
+    return ((READ_BIT(EXTI->IMR2, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
 }
 
 /**
@@ -691,9 +679,8 @@ __STATIC_INLINE uint32_t LL_EXTI_IsEnabledIT_32_63(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_C2_EXTI_IsEnabledIT_32_63(uint32_t ExtiLine)
-{
-  return ((READ_BIT(EXTI->C2IMR2, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_C2_EXTI_IsEnabledIT_32_63(uint32_t ExtiLine) {
+    return ((READ_BIT(EXTI->C2IMR2, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
 }
 
 /**
@@ -732,9 +719,8 @@ __STATIC_INLINE uint32_t LL_C2_EXTI_IsEnabledIT_32_63(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval None
   */
-__STATIC_INLINE void LL_EXTI_EnableEvent_0_31(uint32_t ExtiLine)
-{
-  SET_BIT(EXTI->EMR1, ExtiLine);
+__STATIC_INLINE void LL_EXTI_EnableEvent_0_31(uint32_t ExtiLine) {
+    SET_BIT(EXTI->EMR1, ExtiLine);
 }
 
 /**
@@ -765,9 +751,8 @@ __STATIC_INLINE void LL_EXTI_EnableEvent_0_31(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval None
   */
-__STATIC_INLINE void LL_C2_EXTI_EnableEvent_0_31(uint32_t ExtiLine)
-{
-  SET_BIT(EXTI->C2EMR1, ExtiLine);
+__STATIC_INLINE void LL_C2_EXTI_EnableEvent_0_31(uint32_t ExtiLine) {
+    SET_BIT(EXTI->C2EMR1, ExtiLine);
 }
 
 /**
@@ -778,9 +763,8 @@ __STATIC_INLINE void LL_C2_EXTI_EnableEvent_0_31(uint32_t ExtiLine)
   *         @arg @ref LL_EXTI_LINE_41
   * @retval None
   */
-__STATIC_INLINE void LL_EXTI_EnableEvent_32_63(uint32_t ExtiLine)
-{
-  SET_BIT(EXTI->EMR2, ExtiLine);
+__STATIC_INLINE void LL_EXTI_EnableEvent_32_63(uint32_t ExtiLine) {
+    SET_BIT(EXTI->EMR2, ExtiLine);
 }
 
 /**
@@ -791,9 +775,8 @@ __STATIC_INLINE void LL_EXTI_EnableEvent_32_63(uint32_t ExtiLine)
   *         @arg @ref LL_EXTI_LINE_41
   * @retval None
   */
-__STATIC_INLINE void LL_C2_EXTI_EnableEvent_32_63(uint32_t ExtiLine)
-{
-  SET_BIT(EXTI->C2EMR2, ExtiLine);
+__STATIC_INLINE void LL_C2_EXTI_EnableEvent_32_63(uint32_t ExtiLine) {
+    SET_BIT(EXTI->C2EMR2, ExtiLine);
 }
 
 /**
@@ -823,9 +806,8 @@ __STATIC_INLINE void LL_C2_EXTI_EnableEvent_32_63(uint32_t ExtiLine)
   *         @arg @ref LL_EXTI_LINE_21 (*)
   * @retval None
   */
-__STATIC_INLINE void LL_EXTI_DisableEvent_0_31(uint32_t ExtiLine)
-{
-  CLEAR_BIT(EXTI->EMR1, ExtiLine);
+__STATIC_INLINE void LL_EXTI_DisableEvent_0_31(uint32_t ExtiLine) {
+    CLEAR_BIT(EXTI->EMR1, ExtiLine);
 }
 
 /**
@@ -856,9 +838,8 @@ __STATIC_INLINE void LL_EXTI_DisableEvent_0_31(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval None
   */
-__STATIC_INLINE void LL_C2_EXTI_DisableEvent_0_31(uint32_t ExtiLine)
-{
-  CLEAR_BIT(EXTI->C2EMR1, ExtiLine);
+__STATIC_INLINE void LL_C2_EXTI_DisableEvent_0_31(uint32_t ExtiLine) {
+    CLEAR_BIT(EXTI->C2EMR1, ExtiLine);
 }
 
 /**
@@ -870,9 +851,8 @@ __STATIC_INLINE void LL_C2_EXTI_DisableEvent_0_31(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval None
   */
-__STATIC_INLINE void LL_EXTI_DisableEvent_32_63(uint32_t ExtiLine)
-{
-  CLEAR_BIT(EXTI->EMR2, ExtiLine);
+__STATIC_INLINE void LL_EXTI_DisableEvent_32_63(uint32_t ExtiLine) {
+    CLEAR_BIT(EXTI->EMR2, ExtiLine);
 }
 
 /**
@@ -883,9 +863,8 @@ __STATIC_INLINE void LL_EXTI_DisableEvent_32_63(uint32_t ExtiLine)
   *         @arg @ref LL_EXTI_LINE_41
   * @retval None
   */
-__STATIC_INLINE void LL_C2_EXTI_DisableEvent_32_63(uint32_t ExtiLine)
-{
-  CLEAR_BIT(EXTI->C2EMR2, ExtiLine);
+__STATIC_INLINE void LL_C2_EXTI_DisableEvent_32_63(uint32_t ExtiLine) {
+    CLEAR_BIT(EXTI->C2EMR2, ExtiLine);
 }
 
 /**
@@ -917,9 +896,8 @@ __STATIC_INLINE void LL_C2_EXTI_DisableEvent_32_63(uint32_t ExtiLine)
   * @note   Please check each device line mapping for EXTI Line availability
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_EXTI_IsEnabledEvent_0_31(uint32_t ExtiLine)
-{
-  return ((READ_BIT(EXTI->EMR1, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_EXTI_IsEnabledEvent_0_31(uint32_t ExtiLine) {
+    return ((READ_BIT(EXTI->EMR1, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
 }
 
 /**
@@ -951,9 +929,8 @@ __STATIC_INLINE uint32_t LL_EXTI_IsEnabledEvent_0_31(uint32_t ExtiLine)
   * @note   Please check each device line mapping for EXTI Line availability
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_C2_EXTI_IsEnabledEvent_0_31(uint32_t ExtiLine)
-{
-  return ((READ_BIT(EXTI->C2EMR1, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_C2_EXTI_IsEnabledEvent_0_31(uint32_t ExtiLine) {
+    return ((READ_BIT(EXTI->C2EMR1, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
 }
 
 /**
@@ -964,9 +941,8 @@ __STATIC_INLINE uint32_t LL_C2_EXTI_IsEnabledEvent_0_31(uint32_t ExtiLine)
   *         @arg @ref LL_EXTI_LINE_41
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_EXTI_IsEnabledEvent_32_63(uint32_t ExtiLine)
-{
-  return ((READ_BIT(EXTI->EMR2, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_EXTI_IsEnabledEvent_32_63(uint32_t ExtiLine) {
+    return ((READ_BIT(EXTI->EMR2, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
 }
 
 /**
@@ -977,9 +953,8 @@ __STATIC_INLINE uint32_t LL_EXTI_IsEnabledEvent_32_63(uint32_t ExtiLine)
   *         @arg @ref LL_EXTI_LINE_41
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_C2_EXTI_IsEnabledEvent_32_63(uint32_t ExtiLine)
-{
-  return ((READ_BIT(EXTI->C2EMR2, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_C2_EXTI_IsEnabledEvent_32_63(uint32_t ExtiLine) {
+    return ((READ_BIT(EXTI->C2EMR2, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
 }
 
 /**
@@ -1027,10 +1002,8 @@ __STATIC_INLINE uint32_t LL_C2_EXTI_IsEnabledEvent_32_63(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval None
   */
-__STATIC_INLINE void LL_EXTI_EnableRisingTrig_0_31(uint32_t ExtiLine)
-{
-  SET_BIT(EXTI->RTSR1, ExtiLine);
-
+__STATIC_INLINE void LL_EXTI_EnableRisingTrig_0_31(uint32_t ExtiLine) {
+    SET_BIT(EXTI->RTSR1, ExtiLine);
 }
 
 /**
@@ -1049,9 +1022,8 @@ __STATIC_INLINE void LL_EXTI_EnableRisingTrig_0_31(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval None
   */
-__STATIC_INLINE void LL_EXTI_EnableRisingTrig_32_63(uint32_t ExtiLine)
-{
-  SET_BIT(EXTI->RTSR2, ExtiLine);
+__STATIC_INLINE void LL_EXTI_EnableRisingTrig_32_63(uint32_t ExtiLine) {
+    SET_BIT(EXTI->RTSR2, ExtiLine);
 }
 
 /**
@@ -1091,10 +1063,8 @@ __STATIC_INLINE void LL_EXTI_EnableRisingTrig_32_63(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval None
   */
-__STATIC_INLINE void LL_EXTI_DisableRisingTrig_0_31(uint32_t ExtiLine)
-{
-  CLEAR_BIT(EXTI->RTSR1, ExtiLine);
-
+__STATIC_INLINE void LL_EXTI_DisableRisingTrig_0_31(uint32_t ExtiLine) {
+    CLEAR_BIT(EXTI->RTSR1, ExtiLine);
 }
 
 /**
@@ -1114,9 +1084,8 @@ __STATIC_INLINE void LL_EXTI_DisableRisingTrig_0_31(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval None
   */
-__STATIC_INLINE void LL_EXTI_DisableRisingTrig_32_63(uint32_t ExtiLine)
-{
-  CLEAR_BIT(EXTI->RTSR2, ExtiLine);
+__STATIC_INLINE void LL_EXTI_DisableRisingTrig_32_63(uint32_t ExtiLine) {
+    CLEAR_BIT(EXTI->RTSR2, ExtiLine);
 }
 
 /**
@@ -1149,9 +1118,8 @@ __STATIC_INLINE void LL_EXTI_DisableRisingTrig_32_63(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_EXTI_IsEnabledRisingTrig_0_31(uint32_t ExtiLine)
-{
-  return ((READ_BIT(EXTI->RTSR1, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_EXTI_IsEnabledRisingTrig_0_31(uint32_t ExtiLine) {
+    return ((READ_BIT(EXTI->RTSR1, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
 }
 
 /**
@@ -1164,9 +1132,8 @@ __STATIC_INLINE uint32_t LL_EXTI_IsEnabledRisingTrig_0_31(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_EXTI_IsEnabledRisingTrig_32_63(uint32_t ExtiLine)
-{
-  return ((READ_BIT(EXTI->RTSR2, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_EXTI_IsEnabledRisingTrig_32_63(uint32_t ExtiLine) {
+    return ((READ_BIT(EXTI->RTSR2, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
 }
 
 /**
@@ -1215,9 +1182,8 @@ __STATIC_INLINE uint32_t LL_EXTI_IsEnabledRisingTrig_32_63(uint32_t ExtiLine)
   * @note   Please check each device line mapping for EXTI Line availability
   * @retval None
   */
-__STATIC_INLINE void LL_EXTI_EnableFallingTrig_0_31(uint32_t ExtiLine)
-{
-  SET_BIT(EXTI->FTSR1, ExtiLine);
+__STATIC_INLINE void LL_EXTI_EnableFallingTrig_0_31(uint32_t ExtiLine) {
+    SET_BIT(EXTI->FTSR1, ExtiLine);
 }
 
 /**
@@ -1237,9 +1203,8 @@ __STATIC_INLINE void LL_EXTI_EnableFallingTrig_0_31(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval None
   */
-__STATIC_INLINE void LL_EXTI_EnableFallingTrig_32_63(uint32_t ExtiLine)
-{
-  SET_BIT(EXTI->FTSR2, ExtiLine);
+__STATIC_INLINE void LL_EXTI_EnableFallingTrig_32_63(uint32_t ExtiLine) {
+    SET_BIT(EXTI->FTSR2, ExtiLine);
 }
 
 /**
@@ -1279,9 +1244,8 @@ __STATIC_INLINE void LL_EXTI_EnableFallingTrig_32_63(uint32_t ExtiLine)
   * @note   Please check each device line mapping for EXTI Line availability
   * @retval None
   */
-__STATIC_INLINE void LL_EXTI_DisableFallingTrig_0_31(uint32_t ExtiLine)
-{
-  CLEAR_BIT(EXTI->FTSR1, ExtiLine);
+__STATIC_INLINE void LL_EXTI_DisableFallingTrig_0_31(uint32_t ExtiLine) {
+    CLEAR_BIT(EXTI->FTSR1, ExtiLine);
 }
 
 /**
@@ -1300,9 +1264,8 @@ __STATIC_INLINE void LL_EXTI_DisableFallingTrig_0_31(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval None
   */
-__STATIC_INLINE void LL_EXTI_DisableFallingTrig_32_63(uint32_t ExtiLine)
-{
-  CLEAR_BIT(EXTI->FTSR2, ExtiLine);
+__STATIC_INLINE void LL_EXTI_DisableFallingTrig_32_63(uint32_t ExtiLine) {
+    CLEAR_BIT(EXTI->FTSR2, ExtiLine);
 }
 
 /**
@@ -1336,9 +1299,8 @@ __STATIC_INLINE void LL_EXTI_DisableFallingTrig_32_63(uint32_t ExtiLine)
   * @note   Please check each device line mapping for EXTI Line availability
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_EXTI_IsEnabledFallingTrig_0_31(uint32_t ExtiLine)
-{
-  return ((READ_BIT(EXTI->FTSR1, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_EXTI_IsEnabledFallingTrig_0_31(uint32_t ExtiLine) {
+    return ((READ_BIT(EXTI->FTSR1, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
 }
 
 /**
@@ -1350,9 +1312,8 @@ __STATIC_INLINE uint32_t LL_EXTI_IsEnabledFallingTrig_0_31(uint32_t ExtiLine)
   *         @arg @ref LL_EXTI_LINE_41
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_EXTI_IsEnabledFallingTrig_32_63(uint32_t ExtiLine)
-{
-  return ((READ_BIT(EXTI->FTSR2, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_EXTI_IsEnabledFallingTrig_32_63(uint32_t ExtiLine) {
+    return ((READ_BIT(EXTI->FTSR2, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
 }
 
 /**
@@ -1399,9 +1360,8 @@ __STATIC_INLINE uint32_t LL_EXTI_IsEnabledFallingTrig_32_63(uint32_t ExtiLine)
   * @note   Please check each device line mapping for EXTI Line availability
   * @retval None
   */
-__STATIC_INLINE void LL_EXTI_GenerateSWI_0_31(uint32_t ExtiLine)
-{
-  SET_BIT(EXTI->SWIER1, ExtiLine);
+__STATIC_INLINE void LL_EXTI_GenerateSWI_0_31(uint32_t ExtiLine) {
+    SET_BIT(EXTI->SWIER1, ExtiLine);
 }
 
 /**
@@ -1419,9 +1379,8 @@ __STATIC_INLINE void LL_EXTI_GenerateSWI_0_31(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval None
   */
-__STATIC_INLINE void LL_EXTI_GenerateSWI_32_63(uint32_t ExtiLine)
-{
-  SET_BIT(EXTI->SWIER2, ExtiLine);
+__STATIC_INLINE void LL_EXTI_GenerateSWI_32_63(uint32_t ExtiLine) {
+    SET_BIT(EXTI->SWIER2, ExtiLine);
 }
 
 /**
@@ -1464,9 +1423,8 @@ __STATIC_INLINE void LL_EXTI_GenerateSWI_32_63(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_EXTI_IsActiveFlag_0_31(uint32_t ExtiLine)
-{
-  return ((READ_BIT(EXTI->PR1, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_EXTI_IsActiveFlag_0_31(uint32_t ExtiLine) {
+    return ((READ_BIT(EXTI->PR1, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
 }
 
 /**
@@ -1481,9 +1439,8 @@ __STATIC_INLINE uint32_t LL_EXTI_IsActiveFlag_0_31(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_EXTI_IsActiveFlag_32_63(uint32_t ExtiLine)
-{
-  return ((READ_BIT(EXTI->PR2, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_EXTI_IsActiveFlag_32_63(uint32_t ExtiLine) {
+    return ((READ_BIT(EXTI->PR2, ExtiLine) == (ExtiLine)) ? 1UL : 0UL);
 }
 
 /**
@@ -1518,9 +1475,8 @@ __STATIC_INLINE uint32_t LL_EXTI_IsActiveFlag_32_63(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval @note This bit is set when the selected edge event arrives on the interrupt
   */
-__STATIC_INLINE uint32_t LL_EXTI_ReadFlag_0_31(uint32_t ExtiLine)
-{
-  return (uint32_t)(READ_BIT(EXTI->PR1, ExtiLine));
+__STATIC_INLINE uint32_t LL_EXTI_ReadFlag_0_31(uint32_t ExtiLine) {
+    return (uint32_t) (READ_BIT(EXTI->PR1, ExtiLine));
 }
 
 /**
@@ -1535,9 +1491,8 @@ __STATIC_INLINE uint32_t LL_EXTI_ReadFlag_0_31(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval @note This bit is set when the selected edge event arrives on the interrupt
   */
-__STATIC_INLINE uint32_t LL_EXTI_ReadFlag_32_63(uint32_t ExtiLine)
-{
-  return (uint32_t)(READ_BIT(EXTI->PR2, ExtiLine));
+__STATIC_INLINE uint32_t LL_EXTI_ReadFlag_32_63(uint32_t ExtiLine) {
+    return (uint32_t) (READ_BIT(EXTI->PR2, ExtiLine));
 }
 
 /**
@@ -1572,9 +1527,8 @@ __STATIC_INLINE uint32_t LL_EXTI_ReadFlag_32_63(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval None
   */
-__STATIC_INLINE void LL_EXTI_ClearFlag_0_31(uint32_t ExtiLine)
-{
-  WRITE_REG(EXTI->PR1, ExtiLine);
+__STATIC_INLINE void LL_EXTI_ClearFlag_0_31(uint32_t ExtiLine) {
+    WRITE_REG(EXTI->PR1, ExtiLine);
 }
 
 /**
@@ -1589,9 +1543,8 @@ __STATIC_INLINE void LL_EXTI_ClearFlag_0_31(uint32_t ExtiLine)
   *         (*) value not defined in all devices
   * @retval None
   */
-__STATIC_INLINE void LL_EXTI_ClearFlag_32_63(uint32_t ExtiLine)
-{
-  WRITE_REG(EXTI->PR2, ExtiLine);
+__STATIC_INLINE void LL_EXTI_ClearFlag_32_63(uint32_t ExtiLine) {
+    WRITE_REG(EXTI->PR2, ExtiLine);
 }
 
 /**

@@ -37,21 +37,21 @@
  *         Usage:  PACKED(struct) myStruct_s
  *                 PACKED(union) myStruct_s
  */
-#define PACKED(decl)                   __packed decl
+#define PACKED(decl) __packed decl
 
 /**
  * @brief  SECTION
  *         Use the SECTION macro to assign data or code in a specific section.
  *         Usage:  SECTION(".my_section")
  */
-#define SECTION(name)                  _Pragma(QUOTE_(location=name))
+#define SECTION(name) _Pragma(QUOTE_(location = name))
 
 /**
  * @brief  ALIGN_DEF
  *         Use the ALIGN_DEF macro to specify the alignment of a variable.
  *         Usage:  ALIGN_DEF(4)
  */
-#define ALIGN_DEF(v)                   _Pragma(QUOTE_(data_alignment=v))
+#define ALIGN_DEF(v) _Pragma(QUOTE_(data_alignment = v))
 
 /**
  * @brief  NO_INIT
@@ -59,7 +59,7 @@
  *         Usage:  NO_INIT(int my_no_init_var)
  *         Usage:  NO_INIT(uint16_t my_no_init_array[10])
  */
-#define NO_INIT(var)                   __no_init var
+#define NO_INIT(var) __no_init var
 
 /**
  * @brief  This is the section dedicated to GNU toolchain
@@ -77,21 +77,21 @@
  *         Usage:  PACKED(struct) myStruct_s
  *                 PACKED(union) myStruct_s
  */
-#define PACKED(decl)                    decl __attribute__((packed))
+#define PACKED(decl) decl __attribute__((packed))
 
 /**
  * @brief  SECTION
  *         Use the SECTION macro to assign data or code in a specific section.
  *         Usage:  SECTION(".my_section")
  */
-#define SECTION(name)                   __attribute__((section(name)))
+#define SECTION(name) __attribute__((section(name)))
 
 /**
  * @brief  ALIGN_DEF
  *         Use the ALIGN_DEF macro to specify the alignment of a variable.
  *         Usage:  ALIGN_DEF(4)
  */
-#define ALIGN_DEF(N)                    __attribute__((aligned(N)))
+#define ALIGN_DEF(N) __attribute__((aligned(N)))
 
 /**
  * @brief  NO_INIT
@@ -99,13 +99,13 @@
  *         Usage:  NO_INIT(int my_no_init_var)
  *         Usage:  NO_INIT(uint16_t my_no_init_array[10])
  */
-#define NO_INIT(var)                    var  __attribute__((section(".noinit")))
+#define NO_INIT(var) var __attribute__((section(".noinit")))
 
 /**
  * @brief  This is the section dedicated to Keil toolchain
  */
 #else
-#ifdef __CC_ARM	
+#ifdef __CC_ARM
 
 #ifndef __WEAK
 #define __WEAK __weak
@@ -117,21 +117,21 @@
  *         Usage:  PACKED(struct) myStruct_s
  *                 PACKED(union) myStruct_s
  */
-#define PACKED(decl)                        decl __attribute__((packed))
+#define PACKED(decl) decl __attribute__((packed))
 
 /**
  * @brief  SECTION
  *         Use the SECTION macro to assign data or code in a specific section.
  *         Usage:  SECTION(".my_section")
  */
-#define SECTION(name)                       __attribute__((section(name)))
+#define SECTION(name) __attribute__((section(name)))
 
 /**
  * @brief  ALIGN_DEF
  *         Use the ALIGN_DEF macro to specify the alignment of a variable.
  *         Usage:  ALIGN_DEF(4)
  */
-#define ALIGN_DEF(N)                        __attribute__((aligned(N)))
+#define ALIGN_DEF(N) __attribute__((aligned(N)))
 
 /**
  * @brief  NO_INIT
@@ -139,7 +139,7 @@
  *         Usage:  NO_INIT(int my_no_init_var)
  *         Usage:  NO_INIT(uint16_t my_no_init_array[10])
  */
-#define NO_INIT(var)                        var __attribute__((section("NoInit")))
+#define NO_INIT(var) var __attribute__((section("NoInit")))
 
 #else
 

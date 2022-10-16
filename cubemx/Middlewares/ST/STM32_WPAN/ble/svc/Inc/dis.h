@@ -18,23 +18,21 @@
  */
 
 
-
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __DIS_H
 #define __DIS_H
 
 #ifdef __cplusplus
-extern "C" 
-{
+extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
 /* Exported types ------------------------------------------------------------*/
 typedef struct
 {
-  uint8_t     *pPayload;
-  uint8_t     Length;
-}DIS_Data_t;
+    uint8_t *pPayload;
+    uint8_t Length;
+} DIS_Data_t;
 
 
 /* Exported constants --------------------------------------------------------*/

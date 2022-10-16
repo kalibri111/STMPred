@@ -28,17 +28,15 @@ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "ble_common.h"
 #include "ble.h"
+#include "ble_common.h"
 #include "dbg_trace.h"
 
 
-
 /* Exported types ------------------------------------------------------------*/
-typedef enum
-{
-  COMSVC_Notification = ( 1 << 0 ),
-  COMSVC_Indication =   ( 1 << 1 ),
+typedef enum {
+    COMSVC_Notification = (1 << 0),
+    COMSVC_Indication = (1 << 1),
 } COMSVC_ClientCharConfMask_t;
 
 /* Exported constants --------------------------------------------------------*/

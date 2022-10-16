@@ -32,14 +32,14 @@ extern "C" {
 #include "ble_dbg_conf.h"
 
 /**< core */
-#include "core/ble_core.h"
 #include "core/ble_bufsize.h"
+#include "core/ble_core.h"
 #include "core/ble_defs.h"
 #include "core/ble_legacy.h"
 #include "core/ble_std.h"
 
 /**< blesvc */
-#include "svc/Inc/bas.h"    
+#include "svc/Inc/bas.h"
 #include "svc/Inc/bls.h"
 #include "svc/Inc/crs_stm.h"
 #include "svc/Inc/dis.h"
@@ -49,13 +49,13 @@ extern "C" {
 #include "svc/Inc/hts.h"
 #include "svc/Inc/ias.h"
 #include "svc/Inc/lls.h"
-#include "svc/Inc/tps.h"
+#include "svc/Inc/mesh.h"
 #include "svc/Inc/motenv_stm.h"
-#include "svc/Inc/p2p_stm.h"
 #include "svc/Inc/otas_stm.h"
-#include "svc/Inc/mesh.h"  
-#include "svc/Inc/template_stm.h"  
-  
+#include "svc/Inc/p2p_stm.h"
+#include "svc/Inc/template_stm.h"
+#include "svc/Inc/tps.h"
+
 #include "svc/Inc/svc_ctl.h"
 
 #include "svc/Inc/uuid.h"

@@ -28,32 +28,30 @@ extern "C" {
 #include "tl.h"
 
 /* Exported defines -----------------------------------------------------------*/
-typedef enum
-{
-  SHCI_TL_UserEventFlow_Disable,
-  SHCI_TL_UserEventFlow_Enable,
+typedef enum {
+    SHCI_TL_UserEventFlow_Disable,
+    SHCI_TL_UserEventFlow_Enable,
 } SHCI_TL_UserEventFlowStatus_t;
 
-typedef enum
-{
-  SHCI_TL_CmdBusy,
-  SHCI_TL_CmdAvailable
+typedef enum {
+    SHCI_TL_CmdBusy,
+    SHCI_TL_CmdAvailable
 } SHCI_TL_CmdStatus_t;
 
 /**
  * @brief Structure used to manage the BUS IO operations.
  *        All the structure fields will point to functions defined at user level.
  * @{
- */ 
+ */
 typedef struct
-{                
-  int32_t (* Init)    (void* pConf); /**< Pointer to SHCI TL function for the IO Bus initialization */
-  int32_t (* DeInit)  (void); /**< Pointer to SHCI TL function for the IO Bus de-initialization */
-  int32_t (* Reset)   (void); /**< Pointer to SHCI TL function for the IO Bus reset */
-  int32_t (* Receive) (uint8_t*, uint16_t); /**< Pointer to SHCI TL function for the IO Bus data reception */
-  int32_t (* Send)    (uint8_t*, uint16_t); /**< Pointer to SHCI TL function for the IO Bus data transmission */
-  int32_t (* DataAck) (uint8_t*, uint16_t* len); /**< Pointer to SHCI TL function for the IO Bus data ack reception */
-  int32_t (* GetTick) (void); /**< Pointer to BSP function for getting the HAL time base timestamp */    
+{
+    int32_t (*Init)(void *pConf);                 /**< Pointer to SHCI TL function for the IO Bus initialization */
+    int32_t (*DeInit)(void);                      /**< Pointer to SHCI TL function for the IO Bus de-initialization */
+    int32_t (*Reset)(void);                       /**< Pointer to SHCI TL function for the IO Bus reset */
+    int32_t (*Receive)(uint8_t *, uint16_t);      /**< Pointer to SHCI TL function for the IO Bus data reception */
+    int32_t (*Send)(uint8_t *, uint16_t);         /**< Pointer to SHCI TL function for the IO Bus data transmission */
+    int32_t (*DataAck)(uint8_t *, uint16_t *len); /**< Pointer to SHCI TL function for the IO Bus data ack reception */
+    int32_t (*GetTick)(void);                     /**< Pointer to BSP function for getting the HAL time base timestamp */
 } tSHciIO;
 /**
  * @}
@@ -64,21 +62,21 @@ typedef struct
  * @{
  */
 typedef struct
-{   
-  tSHciIO io; /**< Manage the BUS IO operations */
-  void (* UserEvtRx) (void * pData); /**< User System events callback function pointer */
+{
+    tSHciIO io;                     /**< Manage the BUS IO operations */
+    void (*UserEvtRx)(void *pData); /**< User System events callback function pointer */
 } tSHciContext;
 
 typedef struct
 {
-  SHCI_TL_UserEventFlowStatus_t status;
-  TL_EvtPacket_t *pckt;
+    SHCI_TL_UserEventFlowStatus_t status;
+    TL_EvtPacket_t *pckt;
 } tSHCI_UserEvtRxParam;
 
 typedef struct
 {
-  uint8_t *p_cmdbuffer;
-  void (* StatusNotCallBack) (SHCI_TL_CmdStatus_t status);
+    uint8_t *p_cmdbuffer;
+    void (*StatusNotCallBack)(SHCI_TL_CmdStatus_t status);
 } SHCI_TL_HciInitConf_t;
 
 /**
@@ -91,14 +89,14 @@ typedef struct
   * @param : p_rsp_status = Address of the full buffer holding the command complete event
   * @retval : None
   */
-void shci_send( uint16_t cmd_code, uint8_t len_cmd_payload, uint8_t * p_cmd_payload, TL_EvtPacket_t * p_rsp_status );
- 
+void shci_send(uint16_t cmd_code, uint8_t len_cmd_payload, uint8_t *p_cmd_payload, TL_EvtPacket_t *p_rsp_status);
+
 /**
  * @brief  Register IO bus services.
  * @param  fops The SHCI IO structure managing the IO BUS
  * @retval None
  */
-void shci_register_io_bus(tSHciIO* fops);
+void shci_register_io_bus(tSHciIO *fops);
 
 /**
  * @brief  Interrupt service routine that must be called when the system channel
@@ -107,7 +105,7 @@ void shci_register_io_bus(tSHciIO* fops);
  * @param  pdata Packet or event pointer
  * @retval None
  */
-void shci_notify_asynch_evt(void* pdata);
+void shci_notify_asynch_evt(void *pdata);
 
 /**
  * @brief  This function resume the User Event Flow which has been stopped on return 
@@ -166,7 +164,7 @@ void shci_user_evt_proc(void);
  * @param  pConf: Configuration structure pointer
  * @retval None
  */
-void shci_init(void(* UserEvtRx)(void* pData), void* pConf);
+void shci_init(void (*UserEvtRx)(void *pData), void *pConf);
 
 #ifdef __cplusplus
 }

@@ -28,10 +28,10 @@ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32wbxx_hal.h"
+#include "app_common.h"
 #include "app_conf.h"
 #include "app_entry.h"
-#include "app_common.h"
+#include "stm32wbxx_hal.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -61,10 +61,6 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define MPU_SCL_Pin GPIO_PIN_8
-#define MPU_SCL_GPIO_Port GPIOB
-#define MPU_SDA_Pin GPIO_PIN_9
-#define MPU_SDA_GPIO_Port GPIOB
 #define B1_Pin GPIO_PIN_4
 #define B1_GPIO_Port GPIOC
 #define LD2_Pin GPIO_PIN_0
@@ -83,10 +79,7 @@ void Error_Handler(void);
 #define JTDO_GPIO_Port GPIOB
 #define LD1_Pin GPIO_PIN_5
 #define LD1_GPIO_Port GPIOB
-#define STLINK_RX_Pin GPIO_PIN_6
-#define STLINK_RX_GPIO_Port GPIOB
-#define STLINK_TX_Pin GPIO_PIN_7
-#define STLINK_TX_GPIO_Port GPIOB
+void MX_USART1_UART_Init(void);
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
