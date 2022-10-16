@@ -44,8 +44,8 @@ extern "C" {
 /** @defgroup FLASHEx_EMPTY_CHECK FLASHEx Empty Check
   * @{
   */
-#define FLASH_PROG_NOT_EMPTY 0x00000000U /*!< 1st location in Flash is programmed */
-#define FLASH_PROG_EMPTY FLASH_ACR_EMPTY /*!< 1st location in Flash is empty      */
+#define FLASH_PROG_NOT_EMPTY            0x00000000U     /*!< 1st location in Flash is programmed */
+#define FLASH_PROG_EMPTY                FLASH_ACR_EMPTY /*!< 1st location in Flash is empty      */
 /**
   * @}
   */
@@ -65,13 +65,13 @@ extern "C" {
   */
 HAL_StatusTypeDef HAL_FLASHEx_Erase(FLASH_EraseInitTypeDef *pEraseInit, uint32_t *PageError);
 HAL_StatusTypeDef HAL_FLASHEx_Erase_IT(FLASH_EraseInitTypeDef *pEraseInit);
-uint32_t HAL_FLASHEx_FlashEmptyCheck(void);
-void HAL_FLASHEx_ForceFlashEmpty(uint32_t FlashEmpty);
+uint32_t          HAL_FLASHEx_FlashEmptyCheck(void);
+void              HAL_FLASHEx_ForceFlashEmpty(uint32_t FlashEmpty);
 HAL_StatusTypeDef HAL_FLASHEx_OBProgram(FLASH_OBProgramInitTypeDef *pOBInit);
-void HAL_FLASHEx_OBGetConfig(FLASH_OBProgramInitTypeDef *pOBInit);
-void HAL_FLASHEx_SuspendOperation(void);
-void HAL_FLASHEx_AllowOperation(void);
-uint32_t HAL_FLASHEx_IsOperationSuspended(void);
+void              HAL_FLASHEx_OBGetConfig(FLASH_OBProgramInitTypeDef *pOBInit);
+void              HAL_FLASHEx_SuspendOperation(void);
+void              HAL_FLASHEx_AllowOperation(void);
+uint32_t          HAL_FLASHEx_IsOperationSuspended(void);
 /**
   * @}
   */
@@ -84,7 +84,7 @@ uint32_t HAL_FLASHEx_IsOperationSuspended(void);
 /** @defgroup FLASHEx_Private_Macros FLASHEx Private Macros
   *  @{
   */
-#define IS_FLASH_EMPTY_CHECK(__VALUE__) (((__VALUE__) == FLASH_PROG_EMPTY) || ((__VALUE__) == FLASH_PROG_NOT_EMPTY))
+#define IS_FLASH_EMPTY_CHECK(__VALUE__)     (((__VALUE__) == FLASH_PROG_EMPTY) || ((__VALUE__) == FLASH_PROG_NOT_EMPTY))
 /**
   * @}
   */
@@ -93,7 +93,7 @@ uint32_t HAL_FLASHEx_IsOperationSuspended(void);
 /** @defgroup FLASHEx_Private_Functions FLASHEx Private Functions
   * @{
   */
-void FLASH_PageErase(uint32_t Page);
+void              FLASH_PageErase(uint32_t Page);
 /**
   * @}
   */

@@ -57,22 +57,22 @@ extern "C" {
   */
 
 /* Max delay can be used in LL_mDelay */
-#define LL_MAX_DELAY 0xFFFFFFFFU
+#define LL_MAX_DELAY                  0xFFFFFFFFU
 
 /**
  * @brief Unique device ID register base address
  */
-#define UID_BASE_ADDRESS UID_BASE
+#define UID_BASE_ADDRESS              UID_BASE
 
 /**
  * @brief Flash size data register base address
  */
-#define FLASHSIZE_BASE_ADDRESS FLASHSIZE_BASE
+#define FLASHSIZE_BASE_ADDRESS        FLASHSIZE_BASE
 
 /**
  * @brief Package data register base address
  */
-#define PACKAGE_BASE_ADDRESS PACKAGE_BASE
+#define PACKAGE_BASE_ADDRESS          PACKAGE_BASE
 
 /**
   * @}
@@ -94,19 +94,19 @@ extern "C" {
   */
 typedef struct
 {
-    uint32_t PLLM; /*!< Division factor for PLL VCO input clock.
+  uint32_t PLLM;   /*!< Division factor for PLL VCO input clock.
                         This parameter can be a value of @ref RCC_LL_EC_PLLM_DIV.
 
                         This feature can be modified afterwards using unitary function
                         @ref LL_RCC_PLL_ConfigDomain_SYS(). */
 
-    uint32_t PLLN; /*!< Multiplication factor for PLL VCO output clock.
+  uint32_t PLLN;   /*!< Multiplication factor for PLL VCO output clock.
                         This parameter must be a number between Min_Data = 6 and Max_Data = 127.
 
                         This feature can be modified afterwards using unitary function
                         @ref LL_RCC_PLL_ConfigDomain_SYS(). */
 
-    uint32_t PLLR; /*!< Division for the main system clock.
+  uint32_t PLLR;   /*!< Division for the main system clock.
                         This parameter can be a value of @ref RCC_LL_EC_PLLR_DIV.
 
                         This feature can be modified afterwards using unitary function
@@ -118,31 +118,31 @@ typedef struct
   */
 typedef struct
 {
-    uint32_t CPU1CLKDivider; /*!< The CPU1 clock (HCLK1) divider. This clock is derived from the system clock (SYSCLK).
+  uint32_t CPU1CLKDivider;         /*!< The CPU1 clock (HCLK1) divider. This clock is derived from the system clock (SYSCLK).
                                         This parameter can be a value of @ref RCC_LL_EC_SYSCLK_DIV.
 
                                         This feature can be modified afterwards using unitary function
                                         @ref LL_RCC_SetAHBPrescaler(). */
 
-    uint32_t CPU2CLKDivider; /*!< The CPU2 clock (HCLK2) divider. This clock is derived from the system clock (SYSCLK).
+  uint32_t CPU2CLKDivider;         /*!< The CPU2 clock (HCLK2) divider. This clock is derived from the system clock (SYSCLK).
                                         This parameter can be a value of @ref RCC_LL_EC_SYSCLK_DIV.
 
                                         This feature can be modified afterwards using unitary function
                                         @ref LL_C2_RCC_SetAHBPrescaler(). */
 
-    uint32_t AHB4CLKDivider; /*!< The AHBS clock (HCLK4) divider. This clock is derived from the system clock (SYSCLK).
+  uint32_t AHB4CLKDivider;         /*!< The AHBS clock (HCLK4) divider. This clock is derived from the system clock (SYSCLK).
                                         This parameter can be a value of @ref RCC_LL_EC_SYSCLK_DIV.
 
                                         This feature can be modified afterwards using unitary function
                                         @ref LL_RCC_SetAHB4Prescaler(). */
 
-    uint32_t APB1CLKDivider; /*!< The APB1 clock (PCLK1) divider. This clock is derived from the AHB clock (HCLK1).
+  uint32_t APB1CLKDivider;        /*!< The APB1 clock (PCLK1) divider. This clock is derived from the AHB clock (HCLK1).
                                        This parameter can be a value of @ref RCC_LL_EC_APB1_DIV.
 
                                        This feature can be modified afterwards using unitary function
                                        @ref LL_RCC_SetAPB1Prescaler(). */
 
-    uint32_t APB2CLKDivider; /*!< The APB2 clock (PCLK2) divider. This clock is derived from the AHB clock (HCLK1).
+  uint32_t APB2CLKDivider;        /*!< The APB2 clock (PCLK2) divider. This clock is derived from the AHB clock (HCLK1).
                                        This parameter can be a value of @ref RCC_LL_EC_APB2_DIV.
 
                                        This feature can be modified afterwards using unitary function
@@ -162,8 +162,8 @@ typedef struct
 /** @defgroup UTILS_EC_HSE_BYPASS HSE Bypass activation
   * @{
   */
-#define LL_UTILS_HSEBYPASS_OFF 0x00000000U /*!< HSE Bypass is not enabled                */
-#define LL_UTILS_HSEBYPASS_ON 0x00000001U  /*!< HSE Bypass is enabled                    */
+#define LL_UTILS_HSEBYPASS_OFF        0x00000000U       /*!< HSE Bypass is not enabled                */
+#define LL_UTILS_HSEBYPASS_ON         0x00000001U       /*!< HSE Bypass is enabled                    */
 /**
   * @}
   */
@@ -171,9 +171,9 @@ typedef struct
 /** @defgroup UTILS_EC_PACKAGETYPE PACKAGE TYPE
   * @{
   */
-#define LL_UTILS_PACKAGETYPE_CSP100 0x00000011U /*!< CSP100/BGA129 package type               */
-#define LL_UTILS_PACKAGETYPE_QFN68 0x00000013U  /*!< QFN68 package type                       */
-#define LL_UTILS_PACKAGETYPE_QFN48 0x0000000AU  /*!< QFN48 package type                       */
+#define LL_UTILS_PACKAGETYPE_CSP100         0x00000011U /*!< CSP100/BGA129 package type               */
+#define LL_UTILS_PACKAGETYPE_QFN68          0x00000013U /*!< QFN68 package type                       */
+#define LL_UTILS_PACKAGETYPE_QFN48          0x0000000AU /*!< QFN48 package type                       */
 
 /**
   * @}
@@ -197,24 +197,27 @@ typedef struct
   * @brief  Get Word0 of the unique device identifier (UID based on 96 bits)
   * @retval UID[31:0]: X and Y coordinates on the wafer expressed in BCD format
   */
-__STATIC_INLINE uint32_t LL_GetUID_Word0(void) {
-    return (uint32_t) (READ_REG(*((uint32_t *) UID_BASE_ADDRESS)));
+__STATIC_INLINE uint32_t LL_GetUID_Word0(void)
+{
+  return (uint32_t)(READ_REG(*((uint32_t *)UID_BASE_ADDRESS)));
 }
 
 /**
   * @brief  Get Word1 of the unique device identifier (UID based on 96 bits)
   * @retval UID[63:32]: Wafer number (UID[39:32]) & LOT_NUM[23:0] (UID[63:40])
   */
-__STATIC_INLINE uint32_t LL_GetUID_Word1(void) {
-    return (uint32_t) (READ_REG(*((uint32_t *) (UID_BASE_ADDRESS + 4U))));
+__STATIC_INLINE uint32_t LL_GetUID_Word1(void)
+{
+  return (uint32_t)(READ_REG(*((uint32_t *)(UID_BASE_ADDRESS + 4U))));
 }
 
 /**
   * @brief  Get Word2 of the unique device identifier (UID based on 96 bits)
   * @retval UID[95:64]: Lot number (ASCII encoded) - LOT_NUM[55:24]
   */
-__STATIC_INLINE uint32_t LL_GetUID_Word2(void) {
-    return (uint32_t) (READ_REG(*((uint32_t *) (UID_BASE_ADDRESS + 8U))));
+__STATIC_INLINE uint32_t LL_GetUID_Word2(void)
+{
+  return (uint32_t)(READ_REG(*((uint32_t *)(UID_BASE_ADDRESS + 8U))));
 }
 
 /**
@@ -223,8 +226,9 @@ __STATIC_INLINE uint32_t LL_GetUID_Word2(void) {
   *         Kbytes. As an example, 0x040 corresponds to 64 Kbytes.
   * @retval FLASH_SIZE[15:0]: Flash memory size
   */
-__STATIC_INLINE uint32_t LL_GetFlashSize(void) {
-    return (uint32_t) (READ_REG(*((uint32_t *) FLASHSIZE_BASE_ADDRESS)) & 0x0000FFFFUL);
+__STATIC_INLINE uint32_t LL_GetFlashSize(void)
+{
+  return (uint32_t)(READ_REG(*((uint32_t *)FLASHSIZE_BASE_ADDRESS)) & 0x0000FFFFUL);
 }
 
 /**
@@ -235,8 +239,9 @@ __STATIC_INLINE uint32_t LL_GetFlashSize(void) {
   *         @arg @ref LL_UTILS_PACKAGETYPE_QFN48
   *
   */
-__STATIC_INLINE uint32_t LL_GetPackageType(void) {
-    return (uint32_t) (READ_REG(*((uint32_t *) PACKAGE_BASE_ADDRESS)) & 0x1FU);
+__STATIC_INLINE uint32_t LL_GetPackageType(void)
+{
+  return (uint32_t)(READ_REG(*((uint32_t *)PACKAGE_BASE_ADDRESS)) & 0x1FU);
 }
 
 /**
@@ -254,17 +259,18 @@ __STATIC_INLINE uint32_t LL_GetPackageType(void) {
   * @param  Ticks Number of ticks
   * @retval None
   */
-__STATIC_INLINE void LL_InitTick(uint32_t HCLKFrequency, uint32_t Ticks) {
-    /* Configure the SysTick to have interrupt in 1ms time base */
-    SysTick->LOAD = (uint32_t) ((HCLKFrequency / Ticks) - 1UL); /* set reload register */
-    SysTick->VAL = 0UL;                                         /* Load the SysTick Counter Value */
-    SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk |
-                    SysTick_CTRL_ENABLE_Msk; /* Enable the Systick Timer */
+__STATIC_INLINE void LL_InitTick(uint32_t HCLKFrequency, uint32_t Ticks)
+{
+  /* Configure the SysTick to have interrupt in 1ms time base */
+  SysTick->LOAD  = (uint32_t)((HCLKFrequency / Ticks) - 1UL);  /* set reload register */
+  SysTick->VAL   = 0UL;                                       /* Load the SysTick Counter Value */
+  SysTick->CTRL  = SysTick_CTRL_CLKSOURCE_Msk |
+                   SysTick_CTRL_ENABLE_Msk;                   /* Enable the Systick Timer */
 }
 
-void LL_Init1msTick(uint32_t HCLKFrequency);
+void        LL_Init1msTick(uint32_t HCLKFrequency);
 
-void LL_mDelay(uint32_t Delay);
+void        LL_mDelay(uint32_t Delay);
 
 /**
   * @}
@@ -274,7 +280,7 @@ void LL_mDelay(uint32_t Delay);
   * @{
   */
 
-void LL_SetSystemCoreClock(uint32_t HCLKFrequency);
+void        LL_SetSystemCoreClock(uint32_t HCLKFrequency);
 ErrorStatus LL_SetFlashLatency(uint32_t HCLK4Frequency);
 ErrorStatus LL_PLL_ConfigSystemClock_MSI(LL_UTILS_PLLInitTypeDef *UTILS_PLLInitStruct,
                                          LL_UTILS_ClkInitTypeDef *UTILS_ClkInitStruct);

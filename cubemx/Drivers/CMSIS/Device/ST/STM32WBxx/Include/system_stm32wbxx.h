@@ -23,8 +23,8 @@
 
 /** @addtogroup stm32wbxx_system
   * @{
-  */
-
+  */  
+  
 /**
   * @brief Define to prevent recursive inclusion
   */
@@ -32,8 +32,8 @@
 #define __SYSTEM_STM32WBXX_H
 
 #ifdef __cplusplus
-extern "C" {
-#endif
+ extern "C" {
+#endif 
 
 #include <stdint.h>
 
@@ -49,7 +49,7 @@ extern "C" {
 /** @addtogroup STM32WBxx_System_Exported_types
   * @{
   */
-/* The SystemCoreClock variable is updated in three ways:
+  /* The SystemCoreClock variable is updated in three ways:
       1) by calling CMSIS function SystemCoreClockUpdate()
       2) by calling HAL API function HAL_RCC_GetSysClockFreq()
       3) each time HAL_RCC_ClockConfig() is called to configure the system clock frequency
@@ -58,14 +58,14 @@ extern "C" {
                variable is updated automatically.
   */
 
-extern uint32_t SystemCoreClock; /*!< System Clock Frequency */
+extern uint32_t SystemCoreClock;            /*!< System Clock Frequency */
 
-extern const uint32_t AHBPrescTable[16]; /*!< AHB prescalers table values */
-extern const uint32_t APBPrescTable[8];  /*!< APB prescalers table values */
-extern const uint32_t MSIRangeTable[16]; /*!< MSI ranges table values     */
+extern const uint32_t AHBPrescTable[16];    /*!< AHB prescalers table values */
+extern const uint32_t APBPrescTable[8];     /*!< APB prescalers table values */
+extern const uint32_t MSIRangeTable[16];    /*!< MSI ranges table values     */
 
-#if defined(STM32WB55xx) || defined(STM32WB5Mxx) || defined(STM32WB35xx) || defined(STM32WB15xx) || defined(STM32WB10xx)
-extern const uint32_t SmpsPrescalerTable[4][6]; /*!< SMPS factor ranges table values     */
+#if defined(STM32WB55xx) || defined(STM32WB5Mxx) || defined(STM32WB35xx) || defined (STM32WB15xx) || defined (STM32WB10xx)
+extern const uint32_t SmpsPrescalerTable[4][6];  /*!< SMPS factor ranges table values     */
 #endif
 /**
   * @}
@@ -90,7 +90,7 @@ extern const uint32_t SmpsPrescalerTable[4][6]; /*!< SMPS factor ranges table va
 /** @addtogroup STM32WBxx_System_Exported_Functions
   * @{
   */
-
+  
 extern void SystemInit(void);
 extern void SystemCoreClockUpdate(void);
 /**
@@ -106,8 +106,8 @@ extern void SystemCoreClockUpdate(void);
 /**
   * @}
   */
-
+  
 /**
   * @}
-  */
+  */  
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

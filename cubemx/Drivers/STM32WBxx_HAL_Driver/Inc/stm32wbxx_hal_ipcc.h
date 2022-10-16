@@ -70,37 +70,41 @@ extern "C" {
 /**
   * @brief HAL IPCC State structures definition
   */
-typedef enum {
-    HAL_IPCC_STATE_RESET = 0x00U, /*!< IPCC not yet initialized or disabled  */
-    HAL_IPCC_STATE_READY = 0x01U, /*!< IPCC initialized and ready for use    */
-    HAL_IPCC_STATE_BUSY = 0x02U   /*!< IPCC internal processing is ongoing   */
+typedef enum
+{
+  HAL_IPCC_STATE_RESET             = 0x00U,  /*!< IPCC not yet initialized or disabled  */
+  HAL_IPCC_STATE_READY             = 0x01U,  /*!< IPCC initialized and ready for use    */
+  HAL_IPCC_STATE_BUSY              = 0x02U   /*!< IPCC internal processing is ongoing   */
 } HAL_IPCC_StateTypeDef;
 
 /**
   * @brief  IPCC channel direction structure definition
   */
-typedef enum {
-    IPCC_CHANNEL_DIR_TX = 0x00U, /*!< Channel direction Tx is used by an MCU to transmit */
-    IPCC_CHANNEL_DIR_RX = 0x01U  /*!< Channel direction Rx is used by an MCU to receive */
+typedef enum
+{
+  IPCC_CHANNEL_DIR_TX  = 0x00U,  /*!< Channel direction Tx is used by an MCU to transmit */
+  IPCC_CHANNEL_DIR_RX  = 0x01U   /*!< Channel direction Rx is used by an MCU to receive */
 } IPCC_CHANNELDirTypeDef;
 
 /**
   * @brief  IPCC channel status structure definition
   */
-typedef enum {
-    IPCC_CHANNEL_STATUS_FREE = 0x00U,    /*!< Means that a new msg can be posted on that channel */
-    IPCC_CHANNEL_STATUS_OCCUPIED = 0x01U /*!< An MCU has posted a msg the other MCU hasn't retrieved */
+typedef enum
+{
+  IPCC_CHANNEL_STATUS_FREE       = 0x00U,  /*!< Means that a new msg can be posted on that channel */
+  IPCC_CHANNEL_STATUS_OCCUPIED   = 0x01U   /*!< An MCU has posted a msg the other MCU hasn't retrieved */
 } IPCC_CHANNELStatusTypeDef;
 
 /**
   * @brief  IPCC handle structure definition
   */
-typedef struct __IPCC_HandleTypeDef {
-    IPCC_TypeDef *Instance;                                                                                                                       /*!< IPCC registers base address */
-    void (*ChannelCallbackRx[IPCC_CHANNEL_NUMBER])(struct __IPCC_HandleTypeDef *hipcc, uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir); /*!< Rx Callback registration table */
-    void (*ChannelCallbackTx[IPCC_CHANNEL_NUMBER])(struct __IPCC_HandleTypeDef *hipcc, uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir); /*!< Tx Callback registration table */
-    uint32_t callbackRequest;                                                                                                                     /*!< Store information about callback notification by channel */
-    __IO HAL_IPCC_StateTypeDef State;                                                                                                             /*!< IPCC State: initialized or not */
+typedef struct __IPCC_HandleTypeDef
+{
+  IPCC_TypeDef                   *Instance;     /*!< IPCC registers base address */
+  void (* ChannelCallbackRx[IPCC_CHANNEL_NUMBER])(struct __IPCC_HandleTypeDef *hipcc, uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir);                            /*!< Rx Callback registration table */
+  void (* ChannelCallbackTx[IPCC_CHANNEL_NUMBER])(struct __IPCC_HandleTypeDef *hipcc, uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir);                            /*!< Tx Callback registration table */
+  uint32_t                       callbackRequest; /*!< Store information about callback notification by channel */
+  __IO HAL_IPCC_StateTypeDef      State;         /*!< IPCC State: initialized or not */
 } IPCC_HandleTypeDef;
 
 /**
@@ -126,7 +130,9 @@ typedef void ChannelCb(IPCC_HandleTypeDef *hipcc, uint32_t ChannelIndex, IPCC_CH
   *            @arg @ref IPCC_CHANNEL_DIR_RX Receive channel occupied interrupt enable
   */
 #define __HAL_IPCC_ENABLE_IT(__HANDLE__, __CHDIRECTION__) \
-    (((__CHDIRECTION__) == IPCC_CHANNEL_DIR_RX) ? ((__HANDLE__)->Instance->C1CR |= IPCC_C1CR_RXOIE) : ((__HANDLE__)->Instance->C1CR |= IPCC_C1CR_TXFIE))
+            (((__CHDIRECTION__) == IPCC_CHANNEL_DIR_RX) ? \
+                ((__HANDLE__)->Instance->C1CR |= IPCC_C1CR_RXOIE) : \
+                ((__HANDLE__)->Instance->C1CR |= IPCC_C1CR_TXFIE))
 
 /**
   * @brief  Disable the specified interrupt.
@@ -137,7 +143,9 @@ typedef void ChannelCb(IPCC_HandleTypeDef *hipcc, uint32_t ChannelIndex, IPCC_CH
   *            @arg @ref IPCC_CHANNEL_DIR_RX Receive channel occupied interrupt enable
   */
 #define __HAL_IPCC_DISABLE_IT(__HANDLE__, __CHDIRECTION__) \
-    (((__CHDIRECTION__) == IPCC_CHANNEL_DIR_RX) ? ((__HANDLE__)->Instance->C1CR &= ~IPCC_C1CR_RXOIE) : ((__HANDLE__)->Instance->C1CR &= ~IPCC_C1CR_TXFIE))
+            (((__CHDIRECTION__) == IPCC_CHANNEL_DIR_RX) ? \
+                ((__HANDLE__)->Instance->C1CR &= ~IPCC_C1CR_RXOIE) : \
+                ((__HANDLE__)->Instance->C1CR &= ~IPCC_C1CR_TXFIE))
 
 /**
   * @brief  Mask the specified interrupt.
@@ -156,7 +164,9 @@ typedef void ChannelCb(IPCC_HandleTypeDef *hipcc, uint32_t ChannelIndex, IPCC_CH
   *            @arg IPCC_CHANNEL_6: IPCC Channel 6
   */
 #define __HAL_IPCC_MASK_CHANNEL_IT(__HANDLE__, __CHDIRECTION__, __CHINDEX__) \
-    (((__CHDIRECTION__) == IPCC_CHANNEL_DIR_RX) ? ((__HANDLE__)->Instance->C1MR |= (IPCC_C1MR_CH1OM_Msk << (__CHINDEX__))) : ((__HANDLE__)->Instance->C1MR |= (IPCC_C1MR_CH1FM_Msk << (__CHINDEX__))))
+            (((__CHDIRECTION__) == IPCC_CHANNEL_DIR_RX) ? \
+                ((__HANDLE__)->Instance->C1MR |= (IPCC_C1MR_CH1OM_Msk << (__CHINDEX__))) : \
+                ((__HANDLE__)->Instance->C1MR |= (IPCC_C1MR_CH1FM_Msk << (__CHINDEX__))))
 
 /**
   * @brief  Unmask the specified interrupt.
@@ -175,7 +185,9 @@ typedef void ChannelCb(IPCC_HandleTypeDef *hipcc, uint32_t ChannelIndex, IPCC_CH
   *            @arg IPCC_CHANNEL_6: IPCC Channel 6
   */
 #define __HAL_IPCC_UNMASK_CHANNEL_IT(__HANDLE__, __CHDIRECTION__, __CHINDEX__) \
-    (((__CHDIRECTION__) == IPCC_CHANNEL_DIR_RX) ? ((__HANDLE__)->Instance->C1MR &= ~(IPCC_C1MR_CH1OM_Msk << (__CHINDEX__))) : ((__HANDLE__)->Instance->C1MR &= ~(IPCC_C1MR_CH1FM_Msk << (__CHINDEX__))))
+            (((__CHDIRECTION__) == IPCC_CHANNEL_DIR_RX) ? \
+                ((__HANDLE__)->Instance->C1MR &= ~(IPCC_C1MR_CH1OM_Msk << (__CHINDEX__))) : \
+                ((__HANDLE__)->Instance->C1MR &= ~(IPCC_C1MR_CH1FM_Msk << (__CHINDEX__))))
 
 /**
   * @}
@@ -223,7 +235,7 @@ HAL_IPCC_StateTypeDef HAL_IPCC_GetState(IPCC_HandleTypeDef const *const hipcc);
  *  @{
  */
 /* IRQHandler and Callbacks used in non blocking modes  ************************/
-void HAL_IPCC_TX_IRQHandler(IPCC_HandleTypeDef *const hipcc);
+void HAL_IPCC_TX_IRQHandler(IPCC_HandleTypeDef   *const hipcc);
 void HAL_IPCC_RX_IRQHandler(IPCC_HandleTypeDef *const hipcc);
 void HAL_IPCC_TxCallback(IPCC_HandleTypeDef *hipcc, uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir);
 void HAL_IPCC_RxCallback(IPCC_HandleTypeDef *hipcc, uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir);

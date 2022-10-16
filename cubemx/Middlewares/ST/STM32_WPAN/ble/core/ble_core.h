@@ -24,13 +24,13 @@
 #include "ble_std.h"
 
 /* BLE stack API definitions */
-#include "auto/ble_events.h"
+#include "ble_defs.h"
 #include "auto/ble_gap_aci.h"
 #include "auto/ble_gatt_aci.h"
 #include "auto/ble_hal_aci.h"
 #include "auto/ble_hci_le.h"
 #include "auto/ble_l2cap_aci.h"
-#include "ble_defs.h"
+#include "auto/ble_events.h"
 
 /* BLE stack buffer size definitions */
 #include "ble_bufsize.h"

@@ -19,13 +19,13 @@
 
 
 /* Includes ------------------------------------------------------------------*/
-#include "dbg_trace.h"
-#include "stm_queue.h"
 #include "utilities_common.h"
+#include "stm_queue.h"
+#include "dbg_trace.h"
 
 /* Definition of the function */
-#if !defined(__GNUC__) /* SW4STM32 */
-size_t __write(int handle, const unsigned char *buf, size_t bufSize);
+#if !defined(__GNUC__)  /* SW4STM32 */
+size_t __write(int handle, const unsigned char * buf, size_t bufSize);
 #endif
 
 /** @addtogroup TRACE
@@ -68,7 +68,7 @@ size_t __write(int handle, const unsigned char *buf, size_t bufSize);
 /** @defgroup TRACE Log private variables 
  * @{
  */
-#if ((CFG_DEBUG_TRACE_FULL != 0) || (CFG_DEBUG_TRACE_LIGHT != 0))
+#if (( CFG_DEBUG_TRACE_FULL != 0 ) || ( CFG_DEBUG_TRACE_LIGHT != 0 ))
 #if (DBG_TRACE_USE_CIRCULAR_QUEUE != 0)
 static queue_t MsgDbgTraceQueue;
 static uint8_t MsgDbgTraceQueueBuff[DBG_TRACE_MSG_QUEUE_SIZE];
@@ -91,7 +91,7 @@ __IO ITStatus DbgTracePeripheralReady = SET;
 /** @defgroup TRACE Log private function prototypes 
  * @{
  */
-#if ((CFG_DEBUG_TRACE_FULL != 0) || (CFG_DEBUG_TRACE_LIGHT != 0))
+#if (( CFG_DEBUG_TRACE_FULL != 0 ) || ( CFG_DEBUG_TRACE_LIGHT != 0 ))
 static void DbgTrace_TxCpltCallback(void);
 #endif
 
@@ -118,16 +118,20 @@ static void DbgTrace_TxCpltCallback(void);
  * @retval char* Pointer on filename string
  */
 
-const char *DbgTraceGetFileName(const char *fullpath) {
-    const char *ret = fullpath;
+const char *DbgTraceGetFileName(const char *fullpath)
+{
+  const char *ret = fullpath;
 
-    if (strrchr(fullpath, '\\') != NULL) {
-        ret = strrchr(fullpath, '\\') + 1;
-    } else if (strrchr(fullpath, '/') != NULL) {
-        ret = strrchr(fullpath, '/') + 1;
-    }
+  if (strrchr(fullpath, '\\') != NULL)
+  {
+    ret = strrchr(fullpath, '\\') + 1;
+  }
+  else if (strrchr(fullpath, '/') != NULL)
+  {
+    ret = strrchr(fullpath, '/') + 1;
+  }
 
-    return ret;
+  return ret;
 }
 
 /**
@@ -139,18 +143,20 @@ const char *DbgTraceGetFileName(const char *fullpath) {
  * @retval None
  */
 
-void DbgTraceBuffer(const void *pBuffer, uint32_t u32Length, const char *strFormat, ...) {
-    va_list vaArgs;
-    uint32_t u32Index;
-    va_start(vaArgs, strFormat);
-    vprintf(strFormat, vaArgs);
-    va_end(vaArgs);
-    for (u32Index = 0; u32Index < u32Length; u32Index++) {
-        printf(" %02X", ((const uint8_t *) pBuffer)[u32Index]);
-    }
+void DbgTraceBuffer(const void *pBuffer, uint32_t u32Length, const char *strFormat, ...)
+{
+  va_list vaArgs;
+  uint32_t u32Index;
+  va_start(vaArgs, strFormat);
+  vprintf(strFormat, vaArgs);
+  va_end(vaArgs);
+  for (u32Index = 0; u32Index < u32Length; u32Index ++)
+  {
+    printf(" %02X", ((const uint8_t *) pBuffer)[u32Index]);
+  }
 }
 
-#if ((CFG_DEBUG_TRACE_FULL != 0) || (CFG_DEBUG_TRACE_LIGHT != 0))
+#if (( CFG_DEBUG_TRACE_FULL != 0 ) || ( CFG_DEBUG_TRACE_LIGHT != 0 ))
 /**
  * @brief  DBG_TRACE USART Tx Transfer completed callback
  * @param  UartHandle: UART handle.
@@ -158,54 +164,59 @@ void DbgTraceBuffer(const void *pBuffer, uint32_t u32Length, const char *strForm
  *         contains new trace data to transmit, start a new transmission.
  * @retval None
  */
-static void DbgTrace_TxCpltCallback(void) {
+static void DbgTrace_TxCpltCallback(void)
+{
 #if (DBG_TRACE_USE_CIRCULAR_QUEUE != 0)
-    uint8_t *buf;
-    uint16_t bufSize;
+  uint8_t* buf;
+  uint16_t bufSize;
 
-    BACKUP_PRIMASK();
+  BACKUP_PRIMASK();
 
-    DISABLE_IRQ(); /**< Disable all interrupts by setting PRIMASK bit on Cortex*/
-    /* Remove element just sent to UART */
-    CircularQueue_Remove(&MsgDbgTraceQueue, &bufSize);
+  DISABLE_IRQ();			/**< Disable all interrupts by setting PRIMASK bit on Cortex*/
+  /* Remove element just sent to UART */
+  CircularQueue_Remove(&MsgDbgTraceQueue,&bufSize);
 
-    /* Sense if new data to be sent */
-    buf = CircularQueue_Sense(&MsgDbgTraceQueue, &bufSize);
+  /* Sense if new data to be sent */
+  buf=CircularQueue_Sense(&MsgDbgTraceQueue,&bufSize);
 
 
-    if (buf != NULL) {
-        RESTORE_PRIMASK();
-        DbgOutputTraces((uint8_t *) buf, bufSize, DbgTrace_TxCpltCallback);
-    } else {
-        DbgTracePeripheralReady = SET;
-        RESTORE_PRIMASK();
-    }
+  if ( buf != NULL) 
+  {
+    RESTORE_PRIMASK();
+    DbgOutputTraces((uint8_t*)buf, bufSize, DbgTrace_TxCpltCallback);
+  } 
+  else
+  {
+    DbgTracePeripheralReady = SET;
+    RESTORE_PRIMASK();
+  }
 
 #else
-    BACKUP_PRIMASK();
+  BACKUP_PRIMASK();
 
-    DISABLE_IRQ(); /**< Disable all interrupts by setting PRIMASK bit on Cortex*/
+  DISABLE_IRQ();      /**< Disable all interrupts by setting PRIMASK bit on Cortex*/
 
-    DbgTracePeripheralReady = SET;
+  DbgTracePeripheralReady = SET;
 
-    RESTORE_PRIMASK();
+  RESTORE_PRIMASK();
 #endif
 }
 #endif
 
-void DbgTraceInit(void) {
-#if ((CFG_DEBUG_TRACE_FULL != 0) || (CFG_DEBUG_TRACE_LIGHT != 0))
-    DbgOutputInit();
+void DbgTraceInit( void )
+{
+#if (( CFG_DEBUG_TRACE_FULL != 0 ) || ( CFG_DEBUG_TRACE_LIGHT != 0 ))
+  DbgOutputInit();
 #if (DBG_TRACE_USE_CIRCULAR_QUEUE != 0)
-    CircularQueue_Init(&MsgDbgTraceQueue, MsgDbgTraceQueueBuff, DBG_TRACE_MSG_QUEUE_SIZE, 0, CIRCULAR_QUEUE_SPLIT_IF_WRAPPING_FLAG);
+  CircularQueue_Init(&MsgDbgTraceQueue, MsgDbgTraceQueueBuff, DBG_TRACE_MSG_QUEUE_SIZE, 0, CIRCULAR_QUEUE_SPLIT_IF_WRAPPING_FLAG);
+#endif 
 #endif
-#endif
-    return;
+  return;
 }
 
 
-#if ((CFG_DEBUG_TRACE_FULL != 0) || (CFG_DEBUG_TRACE_LIGHT != 0))
-#if defined(__GNUC__) /* SW4STM32 (GCC) */
+#if (( CFG_DEBUG_TRACE_FULL != 0 ) || ( CFG_DEBUG_TRACE_LIGHT != 0 ))
+#if defined(__GNUC__)  /* SW4STM32 (GCC) */
 /**
  * @brief	_write: override the __write standard lib function to redirect printf to USART.
  * @param	handle output handle (STDIO, STDERR...)
@@ -214,8 +225,9 @@ void DbgTraceInit(void) {
  * @param	...: arguments to be formatted in format string
  * @retval none
  */
-size_t _write(int handle, const unsigned char *buf, size_t bufSize) {
-    return (DbgTraceWrite(handle, buf, bufSize));
+size_t _write(int handle, const unsigned char * buf, size_t bufSize)
+{
+  return ( DbgTraceWrite(handle, buf, bufSize) );
 }
 
 #else
@@ -227,8 +239,9 @@ size_t _write(int handle, const unsigned char *buf, size_t bufSize) {
  * @param ...: arguments to be formatted in format string
  * @retval none
  */
-size_t __write(int handle, const unsigned char *buf, size_t bufSize) {
-    return (DbgTraceWrite(handle, buf, bufSize));
+size_t __write(int handle, const unsigned char * buf, size_t bufSize)
+{
+  return ( DbgTraceWrite(handle, buf, bufSize) );
 }
 #endif /* #if defined(__GNUC__)  */
 
@@ -239,51 +252,57 @@ size_t __write(int handle, const unsigned char *buf, size_t bufSize) {
  * @param bufsize buffer size
  * @retval Number of elements written
  */
-size_t DbgTraceWrite(int handle, const unsigned char *buf, size_t bufSize) {
-    size_t chars_written = 0;
-    uint8_t *buffer;
+size_t DbgTraceWrite(int handle, const unsigned char * buf, size_t bufSize)
+{
+  size_t chars_written = 0;
+  uint8_t* buffer;
 
-    BACKUP_PRIMASK();
+  BACKUP_PRIMASK();
 
-    /* Ignore flushes */
-    if (handle == -1) {
-        chars_written = (size_t) 0;
-    }
-    /* Only allow stdout/stderr output */
-    else if ((handle != 1) && (handle != 2)) {
-        chars_written = (size_t) -1;
-    }
-    /* Parameters OK, call the low-level character output routine */
-    else if (bufSize != 0) {
-        chars_written = bufSize;
-        /* If queue emepty and TX free, send directly */
-        /* CS Start */
+  /* Ignore flushes */
+  if ( handle == -1 )
+  {
+    chars_written = ( size_t ) 0;
+  }
+  /* Only allow stdout/stderr output */
+  else if ( ( handle != 1 ) && ( handle != 2 ) )
+  {
+    chars_written = ( size_t ) - 1;
+  }
+  /* Parameters OK, call the low-level character output routine */
+  else if (bufSize != 0)
+  {
+    chars_written = bufSize;
+    /* If queue emepty and TX free, send directly */
+    /* CS Start */
 
 #if (DBG_TRACE_USE_CIRCULAR_QUEUE != 0)
-        DISABLE_IRQ(); /**< Disable all interrupts by setting PRIMASK bit on Cortex*/
-        buffer = CircularQueue_Add(&MsgDbgTraceQueue, (uint8_t *) buf, bufSize, 1);
-        if (buffer && DbgTracePeripheralReady) {
-            DbgTracePeripheralReady = RESET;
-            RESTORE_PRIMASK();
-            DbgOutputTraces((uint8_t *) buffer, bufSize, DbgTrace_TxCpltCallback);
-        } else {
-            RESTORE_PRIMASK();
-        }
-#else
-        DISABLE_IRQ(); /**< Disable all interrupts by setting PRIMASK bit on Cortex*/
-        DbgTracePeripheralReady = RESET;
-        RESTORE_PRIMASK();
-
-        DbgOutputTraces((uint8_t *) buf, bufSize, DbgTrace_TxCpltCallback);
-        while (!DbgTracePeripheralReady)
-            ;
-#endif
-        /* CS END */
+    DISABLE_IRQ();      /**< Disable all interrupts by setting PRIMASK bit on Cortex*/
+    buffer=CircularQueue_Add(&MsgDbgTraceQueue,(uint8_t*)buf, bufSize,1);
+    if (buffer && DbgTracePeripheralReady)
+    {
+      DbgTracePeripheralReady = RESET;
+      RESTORE_PRIMASK();
+      DbgOutputTraces((uint8_t*)buffer, bufSize, DbgTrace_TxCpltCallback);
     }
-    return (chars_written);
+    else
+    {
+      RESTORE_PRIMASK();
+    }
+#else
+    DISABLE_IRQ();      /**< Disable all interrupts by setting PRIMASK bit on Cortex*/
+    DbgTracePeripheralReady = RESET;
+    RESTORE_PRIMASK();
+
+    DbgOutputTraces((uint8_t*)buf, bufSize, DbgTrace_TxCpltCallback);
+    while (!DbgTracePeripheralReady);
+#endif
+    /* CS END */
+  }
+  return ( chars_written );
 }
 
-#if defined(__CC_ARM) /* Keil */
+#if   defined ( __CC_ARM )     /* Keil */
 
 /**
   Called from assert() and prints a message on stderr and calls abort().
@@ -292,34 +311,36 @@ size_t DbgTraceWrite(int handle, const unsigned char *buf, size_t bufSize) {
   \param[in] file  source file of the assertion
   \param[in] line  source line of the assertion
 */
-__attribute__((weak, noreturn)) void __aeabi_assert(const char *expr, const char *file, int line) {
-    char str[12], *p;
+__attribute__((weak,noreturn))
+void __aeabi_assert (const char *expr, const char *file, int line) {
+  char str[12], *p;
 
-    fputs("*** assertion failed: ", stderr);
-    fputs(expr, stderr);
-    fputs(", file ", stderr);
-    fputs(file, stderr);
-    fputs(", line ", stderr);
+  fputs("*** assertion failed: ", stderr);
+  fputs(expr, stderr);
+  fputs(", file ", stderr);
+  fputs(file, stderr);
+  fputs(", line ", stderr);
 
-    p = str + sizeof(str);
-    *--p = '\0';
-    *--p = '\n';
-    while (line > 0) {
-        *--p = '0' + (line % 10);
-        line /= 10;
-    }
-    fputs(p, stderr);
+  p = str + sizeof(str);
+  *--p = '\0';
+  *--p = '\n';
+  while (line > 0) {
+    *--p = '0' + (line % 10);
+    line /= 10;
+  }
+  fputs(p, stderr);
 
-    abort();
+  abort();
 }
 
 /* For KEIL re-implement our own version of fputc */
-int fputc(int ch, FILE *f) {
-    /* temp char avoids endianness issue */
-    char tempch = ch;
-    /* Write one character to Debug Circular Queue */
-    DbgTraceWrite(1U, (const unsigned char *) &tempch, 1);
-    return ch;
+int fputc(int ch, FILE *f)
+{
+  /* temp char avoids endianness issue */
+  char tempch = ch;
+  /* Write one character to Debug Circular Queue */
+  DbgTraceWrite(1U, (const unsigned char *) &tempch, 1);
+  return ch;
 }
 
 #endif /* #if   defined ( __CC_ARM )  */

@@ -157,7 +157,8 @@ static void APPD_BleDtbCfg(void);
 /* USER CODE END PFP */
 
 /* Functions Definition ------------------------------------------------------*/
-void APPD_Init(void) {
+void APPD_Init( void )
+{
 /* USER CODE BEGIN APPD_Init */
 #if (CFG_DEBUGGER_SUPPORTED == 1)
     /**
@@ -198,12 +199,13 @@ void APPD_Init(void) {
     APPD_SetCPU2GpioConfig();
     APPD_BleDtbCfg();
 
-    /* USER CODE END APPD_Init */
-    return;
+/* USER CODE END APPD_Init */
+  return;
 }
 
-void APPD_EnableCPU2(void) {
-    /* USER CODE BEGIN APPD_EnableCPU2 */
+void APPD_EnableCPU2( void )
+{
+/* USER CODE BEGIN APPD_EnableCPU2 */
     SHCI_C2_DEBUG_Init_Cmd_Packet_t DebugCmdPacket =
             {
                     {{0, 0, 0}}, /**< Does not need to be initialized */
@@ -220,8 +222,8 @@ void APPD_EnableCPU2(void) {
     /** GPIO DEBUG Initialization */
     SHCI_C2_DEBUG_Init(&DebugCmdPacket);
 
-    /* USER CODE END APPD_EnableCPU2 */
-    return;
+/* USER CODE END APPD_EnableCPU2 */
+  return;
 }
 
 /*************************************************************
@@ -229,8 +231,9 @@ void APPD_EnableCPU2(void) {
  * LOCAL FUNCTIONS
  *
  *************************************************************/
-static void APPD_SetCPU2GpioConfig(void) {
-    /* USER CODE BEGIN APPD_SetCPU2GpioConfig */
+static void APPD_SetCPU2GpioConfig( void )
+{
+/* USER CODE BEGIN APPD_SetCPU2GpioConfig */
     GPIO_InitTypeDef gpio_config = {0};
     uint8_t local_loop;
     uint16_t gpioa_pin_list;
@@ -290,11 +293,12 @@ static void APPD_SetCPU2GpioConfig(void) {
         HAL_GPIO_WritePin(GPIOC, gpioc_pin_list, GPIO_PIN_RESET);
     }
 
-    /* USER CODE END APPD_SetCPU2GpioConfig */
-    return;
+/* USER CODE END APPD_SetCPU2GpioConfig */
+  return;
 }
 
-static void APPD_BleDtbCfg(void) {
+static void APPD_BleDtbCfg( void )
+{
 /* USER CODE BEGIN APPD_BleDtbCfg */
 #if (BLE_DTB_CFG != 0)
     GPIO_InitTypeDef gpio_config = {0};
@@ -342,8 +346,8 @@ static void APPD_BleDtbCfg(void) {
     }
 #endif
 
-    /* USER CODE END APPD_BleDtbCfg */
-    return;
+/* USER CODE END APPD_BleDtbCfg */
+  return;
 }
 
 /*************************************************************
@@ -351,8 +355,9 @@ static void APPD_BleDtbCfg(void) {
  * WRAP FUNCTIONS
  *
 *************************************************************/
-#if (CFG_DEBUG_TRACE != 0)
-void DbgOutputInit(void) {
+#if(CFG_DEBUG_TRACE != 0)
+void DbgOutputInit( void )
+{
 /* USER CODE BEGIN DbgOutputInit */
 #ifdef CFG_DEBUG_TRACE_UART
     if (CFG_DEBUG_TRACE_UART == hw_lpuart1) {
@@ -366,16 +371,17 @@ void DbgOutputInit(void) {
     }
 #endif
 
-    /* USER CODE END DbgOutputInit */
-    return;
+/* USER CODE END DbgOutputInit */
+  return;
 }
 
-void DbgOutputTraces(uint8_t *p_data, uint16_t size, void (*cb)(void)) {
-    /* USER CODE END DbgOutputTraces */
-    HW_UART_Transmit_DMA(CFG_DEBUG_TRACE_UART, p_data, size, cb);
+void DbgOutputTraces(  uint8_t *p_data, uint16_t size, void (*cb)(void) )
+{
+/* USER CODE END DbgOutputTraces */
+  HW_UART_Transmit_DMA(CFG_DEBUG_TRACE_UART, p_data, size, cb);
 
-    /* USER CODE END DbgOutputTraces */
-    return;
+/* USER CODE END DbgOutputTraces */
+  return;
 }
 #endif
 

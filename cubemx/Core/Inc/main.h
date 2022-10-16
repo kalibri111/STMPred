@@ -28,10 +28,10 @@ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "app_common.h"
+#include "stm32wbxx_hal.h"
 #include "app_conf.h"
 #include "app_entry.h"
-#include "stm32wbxx_hal.h"
+#include "app_common.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -79,7 +79,7 @@ void Error_Handler(void);
 #define JTDO_GPIO_Port GPIOB
 #define LD1_Pin GPIO_PIN_5
 #define LD1_GPIO_Port GPIOB
-void MX_USART1_UART_Init(void);
+void   MX_USART1_UART_Init(void);
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

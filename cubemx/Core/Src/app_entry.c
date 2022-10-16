@@ -19,16 +19,16 @@
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
+#include "app_common.h"
+#include "main.h"
 #include "app_entry.h"
 #include "app_ble.h"
-#include "app_common.h"
-#include "app_debug.h"
 #include "ble.h"
-#include "main.h"
+#include "tl.h"
+#include "stm32_seq.h"
 #include "shci_tl.h"
 #include "stm32_lpm.h"
-#include "stm32_seq.h"
-#include "tl.h"
+#include "app_debug.h"
 
 /* Private includes -----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -42,7 +42,7 @@ extern RTC_HandleTypeDef hrtc;
 /* USER CODE END PTD */
 
 /* Private defines -----------------------------------------------------------*/
-#define POOL_SIZE (CFG_TLBLE_EVT_QUEUE_LENGTH * 4U * DIVC((sizeof(TL_PacketHeader_t) + TL_BLE_EVENT_FRAME_SIZE), 4U))
+#define POOL_SIZE (CFG_TLBLE_EVT_QUEUE_LENGTH*4U*DIVC(( sizeof(TL_PacketHeader_t) + TL_BLE_EVENT_FRAME_SIZE ), 4U))
 
 /* USER CODE BEGIN PD */
 
@@ -54,49 +54,46 @@ extern RTC_HandleTypeDef hrtc;
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-PLACE_IN_SECTION("MB_MEM2")
-ALIGN(4) static uint8_t EvtPool[POOL_SIZE];
-PLACE_IN_SECTION("MB_MEM2")
-ALIGN(4) static TL_CmdPacket_t SystemCmdBuffer;
-PLACE_IN_SECTION("MB_MEM2")
-ALIGN(4) static uint8_t SystemSpareEvtBuffer[sizeof(TL_PacketHeader_t) + TL_EVT_HDR_SIZE + 255U];
-PLACE_IN_SECTION("MB_MEM2")
-ALIGN(4) static uint8_t BleSpareEvtBuffer[sizeof(TL_PacketHeader_t) + TL_EVT_HDR_SIZE + 255];
+PLACE_IN_SECTION("MB_MEM2") ALIGN(4) static uint8_t EvtPool[POOL_SIZE];
+PLACE_IN_SECTION("MB_MEM2") ALIGN(4) static TL_CmdPacket_t SystemCmdBuffer;
+PLACE_IN_SECTION("MB_MEM2") ALIGN(4) static uint8_t SystemSpareEvtBuffer[sizeof(TL_PacketHeader_t) + TL_EVT_HDR_SIZE + 255U];
+PLACE_IN_SECTION("MB_MEM2") ALIGN(4) static uint8_t BleSpareEvtBuffer[sizeof(TL_PacketHeader_t) + TL_EVT_HDR_SIZE + 255];
 
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
 
 /* Private functions prototypes-----------------------------------------------*/
-static void SystemPower_Config(void);
-static void appe_Tl_Init(void);
-static void APPE_SysStatusNot(SHCI_TL_CmdStatus_t status);
-static void APPE_SysUserEvtRx(void *pPayload);
+static void SystemPower_Config( void );
+static void appe_Tl_Init( void );
+static void APPE_SysStatusNot( SHCI_TL_CmdStatus_t status );
+static void APPE_SysUserEvtRx( void * pPayload );
 
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Functions Definition ------------------------------------------------------*/
-void APPE_Init(void) {
-    SystemPower_Config(); /**< Configure the system Power Mode */
+void APPE_Init( void )
+{
+  SystemPower_Config(); /**< Configure the system Power Mode */
 
-    HW_TS_Init(hw_ts_InitMode_Full, &hrtc); /**< Initialize the TimerServer */
+  HW_TS_Init(hw_ts_InitMode_Full, &hrtc); /**< Initialize the TimerServer */
 
-    /* USER CODE BEGIN APPE_Init_1 */
+/* USER CODE BEGIN APPE_Init_1 */
 
-    /* USER CODE END APPE_Init_1 */
-    appe_Tl_Init(); /* Initialize all transport layers */
+/* USER CODE END APPE_Init_1 */
+  appe_Tl_Init();	/* Initialize all transport layers */
 
-    /**
+  /**
    * From now, the application is waiting for the ready event ( VS_HCI_C2_Ready )
    * received on the system channel before starting the Stack
    * This system event is received with APPE_SysUserEvtRx()
    */
-    /* USER CODE BEGIN APPE_Init_2 */
+/* USER CODE BEGIN APPE_Init_2 */
 
-    /* USER CODE END APPE_Init_2 */
-    return;
+/* USER CODE END APPE_Init_2 */
+   return;
 }
 /* USER CODE BEGIN FD */
 
@@ -116,54 +113,57 @@ void APPE_Init(void) {
  * @param  None
  * @retval None
  */
-static void SystemPower_Config(void) {
-    /**
+static void SystemPower_Config(void)
+{
+  /**
    * Select HSI as system clock source after Wake Up from Stop mode
    */
-    LL_RCC_SetClkAfterWakeFromStop(LL_RCC_STOP_WAKEUPCLOCK_HSI);
+  LL_RCC_SetClkAfterWakeFromStop(LL_RCC_STOP_WAKEUPCLOCK_HSI);
 
-    /* Initialize low power manager */
-    UTIL_LPM_Init();
-    /* Initialize the CPU2 reset value before starting CPU2 with C2BOOT */
-    LL_C2_PWR_SetPowerMode(LL_PWR_MODE_SHUTDOWN);
+  /* Initialize low power manager */
+  UTIL_LPM_Init();
+  /* Initialize the CPU2 reset value before starting CPU2 with C2BOOT */
+  LL_C2_PWR_SetPowerMode(LL_PWR_MODE_SHUTDOWN);
 
 #if (CFG_USB_INTERFACE_ENABLE != 0)
-    /**
+  /**
    *  Enable USB power
    */
-    HAL_PWREx_EnableVddUSB();
+  HAL_PWREx_EnableVddUSB();
 #endif
 
-    return;
+  return;
 }
 
-static void appe_Tl_Init(void) {
-    TL_MM_Config_t tl_mm_config;
-    SHCI_TL_HciInitConf_t SHci_Tl_Init_Conf;
-    /**< Reference table initialization */
-    TL_Init();
+static void appe_Tl_Init( void )
+{
+  TL_MM_Config_t tl_mm_config;
+  SHCI_TL_HciInitConf_t SHci_Tl_Init_Conf;
+  /**< Reference table initialization */
+  TL_Init();
 
-    /**< System channel initialization */
-    UTIL_SEQ_RegTask(1 << CFG_TASK_SYSTEM_HCI_ASYNCH_EVT_ID, UTIL_SEQ_RFU, shci_user_evt_proc);
-    SHci_Tl_Init_Conf.p_cmdbuffer = (uint8_t *) &SystemCmdBuffer;
-    SHci_Tl_Init_Conf.StatusNotCallBack = APPE_SysStatusNot;
-    shci_init(APPE_SysUserEvtRx, (void *) &SHci_Tl_Init_Conf);
+  /**< System channel initialization */
+  UTIL_SEQ_RegTask( 1<< CFG_TASK_SYSTEM_HCI_ASYNCH_EVT_ID, UTIL_SEQ_RFU, shci_user_evt_proc );
+  SHci_Tl_Init_Conf.p_cmdbuffer = (uint8_t*)&SystemCmdBuffer;
+  SHci_Tl_Init_Conf.StatusNotCallBack = APPE_SysStatusNot;
+  shci_init(APPE_SysUserEvtRx, (void*) &SHci_Tl_Init_Conf);
 
-    /**< Memory Manager channel initialization */
-    tl_mm_config.p_BleSpareEvtBuffer = BleSpareEvtBuffer;
-    tl_mm_config.p_SystemSpareEvtBuffer = SystemSpareEvtBuffer;
-    tl_mm_config.p_AsynchEvtPool = EvtPool;
-    tl_mm_config.AsynchEvtPoolSize = POOL_SIZE;
-    TL_MM_Init(&tl_mm_config);
+  /**< Memory Manager channel initialization */
+  tl_mm_config.p_BleSpareEvtBuffer = BleSpareEvtBuffer;
+  tl_mm_config.p_SystemSpareEvtBuffer = SystemSpareEvtBuffer;
+  tl_mm_config.p_AsynchEvtPool = EvtPool;
+  tl_mm_config.AsynchEvtPoolSize = POOL_SIZE;
+  TL_MM_Init( &tl_mm_config );
 
-    TL_Enable();
+  TL_Enable();
 
-    return;
+  return;
 }
 
-static void APPE_SysStatusNot(SHCI_TL_CmdStatus_t status) {
-    UNUSED(status);
-    return;
+static void APPE_SysStatusNot( SHCI_TL_CmdStatus_t status )
+{
+  UNUSED(status);
+  return;
 }
 
 /**
@@ -175,14 +175,15 @@ static void APPE_SysStatusNot(SHCI_TL_CmdStatus_t status) {
  * ( eg ((tSHCI_UserEvtRxParam*)pPayload)->status shall be set to SHCI_TL_UserEventFlow_Disable )
  * When the status is not filled, the buffer is released by default
  */
-static void APPE_SysUserEvtRx(void *pPayload) {
-    UNUSED(pPayload);
-    /* Traces channel initialization */
-    APPD_EnableCPU2();
+static void APPE_SysUserEvtRx( void * pPayload )
+{
+  UNUSED(pPayload);
+  /* Traces channel initialization */
+  APPD_EnableCPU2( );
 
-    APP_BLE_Init();
-    UTIL_LPM_SetOffMode(1U << CFG_LPM_APP, UTIL_LPM_ENABLE);
-    return;
+  APP_BLE_Init( );
+  UTIL_LPM_SetOffMode(1U << CFG_LPM_APP, UTIL_LPM_ENABLE);
+  return;
 }
 
 /* USER CODE BEGIN FD_LOCAL_FUNCTIONS */
@@ -195,11 +196,12 @@ static void APPE_SysUserEvtRx(void *pPayload) {
  *
  *************************************************************/
 
-void UTIL_SEQ_Idle(void) {
-#if (CFG_LPM_SUPPORTED == 1)
-    UTIL_LPM_EnterLowPower();
+void UTIL_SEQ_Idle( void )
+{
+#if ( CFG_LPM_SUPPORTED == 1)
+  UTIL_LPM_EnterLowPower( );
 #endif
-    return;
+  return;
 }
 
 /**
@@ -209,23 +211,27 @@ void UTIL_SEQ_Idle(void) {
   * @param  evt_waited_bm : Event pending.
   * @retval None
   */
-void UTIL_SEQ_EvtIdle(UTIL_SEQ_bm_t task_id_bm, UTIL_SEQ_bm_t evt_waited_bm) {
-    UTIL_SEQ_Run(UTIL_SEQ_DEFAULT);
+void UTIL_SEQ_EvtIdle( UTIL_SEQ_bm_t task_id_bm, UTIL_SEQ_bm_t evt_waited_bm )
+{
+  UTIL_SEQ_Run( UTIL_SEQ_DEFAULT );
 }
 
-void shci_notify_asynch_evt(void *pdata) {
-    UTIL_SEQ_SetTask(1 << CFG_TASK_SYSTEM_HCI_ASYNCH_EVT_ID, CFG_SCH_PRIO_0);
-    return;
+void shci_notify_asynch_evt(void* pdata)
+{
+  UTIL_SEQ_SetTask( 1<<CFG_TASK_SYSTEM_HCI_ASYNCH_EVT_ID, CFG_SCH_PRIO_0);
+  return;
 }
 
-void shci_cmd_resp_release(uint32_t flag) {
-    UTIL_SEQ_SetEvt(1 << CFG_IDLEEVT_SYSTEM_HCI_CMD_EVT_RSP_ID);
-    return;
+void shci_cmd_resp_release(uint32_t flag)
+{
+  UTIL_SEQ_SetEvt( 1<< CFG_IDLEEVT_SYSTEM_HCI_CMD_EVT_RSP_ID );
+  return;
 }
 
-void shci_cmd_resp_wait(uint32_t timeout) {
-    UTIL_SEQ_WaitEvt(1 << CFG_IDLEEVT_SYSTEM_HCI_CMD_EVT_RSP_ID);
-    return;
+void shci_cmd_resp_wait(uint32_t timeout)
+{
+  UTIL_SEQ_WaitEvt( 1<< CFG_IDLEEVT_SYSTEM_HCI_CMD_EVT_RSP_ID );
+  return;
 }
 
 /* USER CODE BEGIN FD_WRAP_FUNCTIONS */

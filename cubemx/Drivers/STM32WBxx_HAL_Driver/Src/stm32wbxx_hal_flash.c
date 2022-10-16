@@ -108,7 +108,7 @@
 /** @addtogroup FLASH_Private_Constants
   * @{
   */
-#define FLASH_NB_DOUBLE_WORDS_IN_ROW 64
+#define FLASH_NB_DOUBLE_WORDS_IN_ROW  64
 /**
   * @}
   */
@@ -121,12 +121,13 @@
 /**
   * @brief  Variable used for Program/Erase sectors under interruption
   */
-FLASH_ProcessTypeDef pFlash = {.Lock = HAL_UNLOCKED,
-                               .ErrorCode = HAL_FLASH_ERROR_NONE,
-                               .ProcedureOnGoing = 0U,
-                               .Address = 0U,
-                               .Page = 0U,
-                               .NbPagesToErase = 0U};
+FLASH_ProcessTypeDef pFlash = {.Lock = HAL_UNLOCKED, \
+                               .ErrorCode = HAL_FLASH_ERROR_NONE, \
+                               .ProcedureOnGoing = 0U, \
+                               .Address = 0U, \
+                               .Page = 0U, \
+                               .NbPagesToErase = 0U
+                              };
 /**
   * @}
   */
@@ -135,8 +136,8 @@ FLASH_ProcessTypeDef pFlash = {.Lock = HAL_UNLOCKED,
 /** @defgroup FLASH_Private_Functions FLASH Private Functions
  * @{
  */
-static void FLASH_Program_DoubleWord(uint32_t Address, uint64_t Data);
-static void FLASH_Program_Fast(uint32_t Address, uint32_t DataAddress);
+static void          FLASH_Program_DoubleWord(uint32_t Address, uint64_t Data);
+static void          FLASH_Program_Fast(uint32_t Address, uint32_t DataAddress);
 /**
   * @}
   */
@@ -174,50 +175,55 @@ static void FLASH_Program_Fast(uint32_t Address, uint32_t DataAddress);
   *
   * @retval HAL_StatusTypeDef HAL Status
   */
-HAL_StatusTypeDef HAL_FLASH_Program(uint32_t TypeProgram, uint32_t Address, uint64_t Data) {
-    HAL_StatusTypeDef status;
+HAL_StatusTypeDef HAL_FLASH_Program(uint32_t TypeProgram, uint32_t Address, uint64_t Data)
+{
+  HAL_StatusTypeDef status;
 
-    /* Check the parameters */
-    assert_param(IS_FLASH_TYPEPROGRAM(TypeProgram));
-    assert_param(IS_ADDR_ALIGNED_64BITS(Address));
-    assert_param(IS_FLASH_PROGRAM_ADDRESS(Address));
+  /* Check the parameters */
+  assert_param(IS_FLASH_TYPEPROGRAM(TypeProgram));
+  assert_param(IS_ADDR_ALIGNED_64BITS(Address));
+  assert_param(IS_FLASH_PROGRAM_ADDRESS(Address));
 
-    /* Process Locked */
-    __HAL_LOCK(&pFlash);
+  /* Process Locked */
+  __HAL_LOCK(&pFlash);
 
-    /* Reset error code */
-    pFlash.ErrorCode = HAL_FLASH_ERROR_NONE;
+  /* Reset error code */
+  pFlash.ErrorCode = HAL_FLASH_ERROR_NONE;
 
-    /* Verify that next operation can be proceed */
-    status = FLASH_WaitForLastOperation(FLASH_TIMEOUT_VALUE);
+  /* Verify that next operation can be proceed */
+  status = FLASH_WaitForLastOperation(FLASH_TIMEOUT_VALUE);
 
-    if (status == HAL_OK) {
-        if (TypeProgram == FLASH_TYPEPROGRAM_DOUBLEWORD) {
-            /* Check the parameters */
-            assert_param(IS_FLASH_PROGRAM_ADDRESS(Address));
+  if (status == HAL_OK)
+  {
+    if (TypeProgram == FLASH_TYPEPROGRAM_DOUBLEWORD)
+    {
+      /* Check the parameters */
+      assert_param(IS_FLASH_PROGRAM_ADDRESS(Address));
 
-            /* Program double-word (64-bit) at a specified address */
-            FLASH_Program_DoubleWord(Address, Data);
-        } else {
-            /* Check the parameters */
-            assert_param(IS_FLASH_FAST_PROGRAM_ADDRESS(Address));
+      /* Program double-word (64-bit) at a specified address */
+      FLASH_Program_DoubleWord(Address, Data);
+    }
+    else
+    {
+      /* Check the parameters */
+      assert_param(IS_FLASH_FAST_PROGRAM_ADDRESS(Address));
 
-            /* Fast program a 64 row double-word (64-bit) at a specified address */
-            FLASH_Program_Fast(Address, (uint32_t) Data);
-        }
-
-        /* Wait for last operation to be completed */
-        status = FLASH_WaitForLastOperation(FLASH_TIMEOUT_VALUE);
-
-        /* If the program operation is completed, disable the PG or FSTPG Bit */
-        CLEAR_BIT(FLASH->CR, TypeProgram);
+      /* Fast program a 64 row double-word (64-bit) at a specified address */
+      FLASH_Program_Fast(Address, (uint32_t)Data);
     }
 
-    /* Process Unlocked */
-    __HAL_UNLOCK(&pFlash);
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastOperation(FLASH_TIMEOUT_VALUE);
 
-    /* return status */
-    return status;
+    /* If the program operation is completed, disable the PG or FSTPG Bit */
+    CLEAR_BIT(FLASH->CR, TypeProgram);
+  }
+
+  /* Process Unlocked */
+  __HAL_UNLOCK(&pFlash);
+
+  /* return status */
+  return status;
 }
 
 /**
@@ -233,129 +239,151 @@ HAL_StatusTypeDef HAL_FLASH_Program(uint32_t TypeProgram, uint32_t Address, uint
   *
   * @retval HAL Status
   */
-HAL_StatusTypeDef HAL_FLASH_Program_IT(uint32_t TypeProgram, uint32_t Address, uint64_t Data) {
-    HAL_StatusTypeDef status;
+HAL_StatusTypeDef HAL_FLASH_Program_IT(uint32_t TypeProgram, uint32_t Address, uint64_t Data)
+{
+  HAL_StatusTypeDef status;
 
-    /* Check the parameters */
-    assert_param(IS_FLASH_TYPEPROGRAM(TypeProgram));
-    assert_param(IS_ADDR_ALIGNED_64BITS(Address));
-    assert_param(IS_FLASH_PROGRAM_ADDRESS(Address));
+  /* Check the parameters */
+  assert_param(IS_FLASH_TYPEPROGRAM(TypeProgram));
+  assert_param(IS_ADDR_ALIGNED_64BITS(Address));
+  assert_param(IS_FLASH_PROGRAM_ADDRESS(Address));
 
-    /* Process Locked */
-    __HAL_LOCK(&pFlash);
+  /* Process Locked */
+  __HAL_LOCK(&pFlash);
 
-    /* Reset error code */
-    pFlash.ErrorCode = HAL_FLASH_ERROR_NONE;
+  /* Reset error code */
+  pFlash.ErrorCode = HAL_FLASH_ERROR_NONE;
 
-    /* Verify that next operation can be proceed */
-    status = FLASH_WaitForLastOperation(FLASH_TIMEOUT_VALUE);
+  /* Verify that next operation can be proceed */
+  status = FLASH_WaitForLastOperation(FLASH_TIMEOUT_VALUE);
 
-    if (status != HAL_OK) {
-        /* Process Unlocked */
-        __HAL_UNLOCK(&pFlash);
-    } else {
-        /* Set internal variables used by the IRQ handler */
-        pFlash.ProcedureOnGoing = TypeProgram;
-        pFlash.Address = Address;
+  if (status != HAL_OK)
+  {
+    /* Process Unlocked */
+    __HAL_UNLOCK(&pFlash);
+  }
+  else
+  {
+    /* Set internal variables used by the IRQ handler */
+    pFlash.ProcedureOnGoing = TypeProgram;
+    pFlash.Address = Address;
 
-        /* Enable End of Operation and Error interrupts */
-        __HAL_FLASH_ENABLE_IT(FLASH_IT_EOP | FLASH_IT_OPERR);
+    /* Enable End of Operation and Error interrupts */
+    __HAL_FLASH_ENABLE_IT(FLASH_IT_EOP | FLASH_IT_OPERR);
 
-        if (TypeProgram == FLASH_TYPEPROGRAM_DOUBLEWORD) {
-            /* Check the parameters */
-            assert_param(IS_FLASH_PROGRAM_ADDRESS(Address));
+    if (TypeProgram == FLASH_TYPEPROGRAM_DOUBLEWORD)
+    {
+      /* Check the parameters */
+      assert_param(IS_FLASH_PROGRAM_ADDRESS(Address));
 
-            /* Program double-word (64-bit) at a specified address */
-            FLASH_Program_DoubleWord(Address, Data);
-        } else {
-            /* Check the parameters */
-            assert_param(IS_FLASH_FAST_PROGRAM_ADDRESS(Address));
-
-            /* Fast program a 64 row double-word (64-bit) at a specified address */
-            FLASH_Program_Fast(Address, (uint32_t) Data);
-        }
+      /* Program double-word (64-bit) at a specified address */
+      FLASH_Program_DoubleWord(Address, Data);
     }
+    else
+    {
+      /* Check the parameters */
+      assert_param(IS_FLASH_FAST_PROGRAM_ADDRESS(Address));
 
-    /* return status */
-    return status;
+      /* Fast program a 64 row double-word (64-bit) at a specified address */
+      FLASH_Program_Fast(Address, (uint32_t)Data);
+    }
+  }
+
+  /* return status */
+  return status;
 }
 
 /**
   * @brief Handle FLASH interrupt request.
   * @retval None
   */
-void HAL_FLASH_IRQHandler(void) {
-    uint32_t param = 0xFFFFFFFFU;
-    uint32_t error;
+void HAL_FLASH_IRQHandler(void)
+{
+  uint32_t param = 0xFFFFFFFFU;
+  uint32_t error;
 
-    /* Check FLASH operation error flags */
-    error = (FLASH->SR & FLASH_FLAG_SR_ERRORS);
+  /* Check FLASH operation error flags */
+  error = (FLASH->SR & FLASH_FLAG_SR_ERRORS);
 
-    /* Clear Current operation */
-    CLEAR_BIT(FLASH->CR, pFlash.ProcedureOnGoing);
+  /* Clear Current operation */
+  CLEAR_BIT(FLASH->CR, pFlash.ProcedureOnGoing);
 
-    /* A] Set parameter for user or error callbacks */
-    /* check operation was a program or erase */
-    if ((pFlash.ProcedureOnGoing & (FLASH_TYPEPROGRAM_DOUBLEWORD | FLASH_TYPEPROGRAM_FAST)) != 0U) {
-        /* return adress being programmed */
-        param = pFlash.Address;
-    } else if ((pFlash.ProcedureOnGoing & (FLASH_TYPEERASE_PAGES)) != 0U) {
-        /* return page number being erased */
-        param = pFlash.Page;
-    } else {
-        /* No Procedure on-going */
-        /* Nothing to do, but check error if any */
-    }
+  /* A] Set parameter for user or error callbacks */
+  /* check operation was a program or erase */
+  if ((pFlash.ProcedureOnGoing & (FLASH_TYPEPROGRAM_DOUBLEWORD | FLASH_TYPEPROGRAM_FAST)) != 0U)
+  {
+    /* return adress being programmed */
+    param = pFlash.Address;
+  }
+  else if ((pFlash.ProcedureOnGoing & (FLASH_TYPEERASE_PAGES)) != 0U)
+  {
+    /* return page number being erased */
+    param = pFlash.Page;
+  }
+  else
+  {
+    /* No Procedure on-going */
+    /* Nothing to do, but check error if any */
+  }
 
-    /* B] Check errors */
-    if (error != 0U) {
-        /*Save the error code*/
-        pFlash.ErrorCode |= error;
+  /* B] Check errors */
+  if (error != 0U)
+  {
+    /*Save the error code*/
+    pFlash.ErrorCode |= error;
 
-        /* clear error flags */
-        __HAL_FLASH_CLEAR_FLAG(error);
+    /* clear error flags */
+    __HAL_FLASH_CLEAR_FLAG(error);
 
-        /*Stop the procedure ongoing*/
+    /*Stop the procedure ongoing*/
+    pFlash.ProcedureOnGoing = FLASH_TYPENONE;
+
+    /* Error callback */
+    HAL_FLASH_OperationErrorCallback(param);
+  }
+
+  /* C] Check FLASH End of Operation flag */
+  if (__HAL_FLASH_GET_FLAG(FLASH_FLAG_EOP))
+  {
+    /* Clear FLASH End of Operation pending bit */
+    __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP);
+
+    if (pFlash.ProcedureOnGoing == FLASH_TYPEERASE_PAGES)
+    {
+      /* Nb of pages to erased can be decreased */
+      pFlash.NbPagesToErase--;
+
+      /* Check if there are still pages to erase*/
+      if (pFlash.NbPagesToErase != 0U)
+      {
+        /* Increment page number */
+        pFlash.Page++;
+        FLASH_PageErase(pFlash.Page);
+      }
+      else
+      {
+        /* No more pages to erase: stop erase pages procedure */
         pFlash.ProcedureOnGoing = FLASH_TYPENONE;
-
-        /* Error callback */
-        HAL_FLASH_OperationErrorCallback(param);
+      }
+    }
+    else
+    {
+      /*Stop the ongoing procedure */
+      pFlash.ProcedureOnGoing = FLASH_TYPENONE;
     }
 
-    /* C] Check FLASH End of Operation flag */
-    if (__HAL_FLASH_GET_FLAG(FLASH_FLAG_EOP)) {
-        /* Clear FLASH End of Operation pending bit */
-        __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP);
+    /* User callback */
+    HAL_FLASH_EndOfOperationCallback(param);
+  }
 
-        if (pFlash.ProcedureOnGoing == FLASH_TYPEERASE_PAGES) {
-            /* Nb of pages to erased can be decreased */
-            pFlash.NbPagesToErase--;
+  if (pFlash.ProcedureOnGoing == FLASH_TYPENONE)
+  {
+    /* Disable End of Operation and Error interrupts */
+    __HAL_FLASH_DISABLE_IT(FLASH_IT_EOP | FLASH_IT_OPERR);
 
-            /* Check if there are still pages to erase*/
-            if (pFlash.NbPagesToErase != 0U) {
-                /* Increment page number */
-                pFlash.Page++;
-                FLASH_PageErase(pFlash.Page);
-            } else {
-                /* No more pages to erase: stop erase pages procedure */
-                pFlash.ProcedureOnGoing = FLASH_TYPENONE;
-            }
-        } else {
-            /*Stop the ongoing procedure */
-            pFlash.ProcedureOnGoing = FLASH_TYPENONE;
-        }
-
-        /* User callback */
-        HAL_FLASH_EndOfOperationCallback(param);
-    }
-
-    if (pFlash.ProcedureOnGoing == FLASH_TYPENONE) {
-        /* Disable End of Operation and Error interrupts */
-        __HAL_FLASH_DISABLE_IT(FLASH_IT_EOP | FLASH_IT_OPERR);
-
-        /* Process Unlocked */
-        __HAL_UNLOCK(&pFlash);
-    }
+    /* Process Unlocked */
+    __HAL_UNLOCK(&pFlash);
+  }
 }
 
 /**
@@ -365,11 +393,12 @@ void HAL_FLASH_IRQHandler(void) {
   *                  Program: Address which was selected for data program
   * @retval None
   */
-__weak void HAL_FLASH_EndOfOperationCallback(uint32_t ReturnValue) {
-    /* Prevent unused argument(s) compilation warning */
-    UNUSED(ReturnValue);
+__weak void HAL_FLASH_EndOfOperationCallback(uint32_t ReturnValue)
+{
+  /* Prevent unused argument(s) compilation warning */
+  UNUSED(ReturnValue);
 
-    /* NOTE : This function should not be modified, when the callback is needed,
+  /* NOTE : This function should not be modified, when the callback is needed,
             the HAL_FLASH_EndOfOperationCallback could be implemented in the user file
    */
 }
@@ -381,11 +410,12 @@ __weak void HAL_FLASH_EndOfOperationCallback(uint32_t ReturnValue) {
   *                 Program: Address which was selected for data program
   * @retval None
   */
-__weak void HAL_FLASH_OperationErrorCallback(uint32_t ReturnValue) {
-    /* Prevent unused argument(s) compilation warning */
-    UNUSED(ReturnValue);
+__weak void HAL_FLASH_OperationErrorCallback(uint32_t ReturnValue)
+{
+  /* Prevent unused argument(s) compilation warning */
+  UNUSED(ReturnValue);
 
-    /* NOTE : This function should not be modified, when the callback is needed,
+  /* NOTE : This function should not be modified, when the callback is needed,
             the HAL_FLASH_OperationErrorCallback could be implemented in the user file
    */
 }
@@ -413,95 +443,106 @@ __weak void HAL_FLASH_OperationErrorCallback(uint32_t ReturnValue) {
   * @brief  Unlock the FLASH control register access.
   * @retval HAL Status
   */
-HAL_StatusTypeDef HAL_FLASH_Unlock(void) {
-    HAL_StatusTypeDef status = HAL_OK;
+HAL_StatusTypeDef HAL_FLASH_Unlock(void)
+{
+  HAL_StatusTypeDef status = HAL_OK;
 
-    if (READ_BIT(FLASH->CR, FLASH_CR_LOCK) != 0U) {
-        /* Authorize the FLASH Registers access */
-        WRITE_REG(FLASH->KEYR, FLASH_KEY1);
-        WRITE_REG(FLASH->KEYR, FLASH_KEY2);
+  if (READ_BIT(FLASH->CR, FLASH_CR_LOCK) != 0U)
+  {
+    /* Authorize the FLASH Registers access */
+    WRITE_REG(FLASH->KEYR, FLASH_KEY1);
+    WRITE_REG(FLASH->KEYR, FLASH_KEY2);
 
-        /* verify Flash is unlock */
-        if (READ_BIT(FLASH->CR, FLASH_CR_LOCK) != 0U) {
-            status = HAL_ERROR;
-        }
+    /* verify Flash is unlock */
+    if (READ_BIT(FLASH->CR, FLASH_CR_LOCK) != 0U)
+    {
+      status = HAL_ERROR;
     }
+  }
 
-    return status;
+  return status;
 }
 
 /**
   * @brief  Lock the FLASH control register access.
   * @retval HAL Status
   */
-HAL_StatusTypeDef HAL_FLASH_Lock(void) {
-    HAL_StatusTypeDef status = HAL_OK;
+HAL_StatusTypeDef HAL_FLASH_Lock(void)
+{
+  HAL_StatusTypeDef status = HAL_OK;
 
-    /* Set the LOCK Bit to lock the FLASH Registers access */
-    /* @Note  The lock and unlock procedure is done only using CR registers even from CPU2 */
-    SET_BIT(FLASH->CR, FLASH_CR_LOCK);
+  /* Set the LOCK Bit to lock the FLASH Registers access */
+  /* @Note  The lock and unlock procedure is done only using CR registers even from CPU2 */
+  SET_BIT(FLASH->CR, FLASH_CR_LOCK);
 
-    /* verify Flash is locked */
-    if (READ_BIT(FLASH->CR, FLASH_CR_LOCK) == 0U) {
-        status = HAL_ERROR;
-    }
+  /* verify Flash is locked */
+  if (READ_BIT(FLASH->CR, FLASH_CR_LOCK) == 0U)
+  {
+    status = HAL_ERROR;
+  }
 
-    return status;
+  return status;
 }
 
 /**
   * @brief  Unlock the FLASH Option Bytes Registers access.
   * @retval HAL Status
   */
-HAL_StatusTypeDef HAL_FLASH_OB_Unlock(void) {
-    HAL_StatusTypeDef status = HAL_ERROR;
+HAL_StatusTypeDef HAL_FLASH_OB_Unlock(void)
+{
+  HAL_StatusTypeDef status = HAL_ERROR;
 
-    /* @Note The lock and unlock procedure is done only using CR registers even from CPU2 */
-    if (READ_BIT(FLASH->CR, FLASH_CR_OPTLOCK) != 0U) {
-        /* Authorizes the Option Byte register programming */
-        WRITE_REG(FLASH->OPTKEYR, FLASH_OPTKEY1);
-        WRITE_REG(FLASH->OPTKEYR, FLASH_OPTKEY2);
+  /* @Note The lock and unlock procedure is done only using CR registers even from CPU2 */
+  if (READ_BIT(FLASH->CR, FLASH_CR_OPTLOCK) != 0U)
+  {
+    /* Authorizes the Option Byte register programming */
+    WRITE_REG(FLASH->OPTKEYR, FLASH_OPTKEY1);
+    WRITE_REG(FLASH->OPTKEYR, FLASH_OPTKEY2);
 
-        /* verify option bytes are unlocked */
-        if (READ_BIT(FLASH->CR, FLASH_CR_OPTLOCK) == 0U) {
-            status = HAL_OK;
-        }
+    /* verify option bytes are unlocked */
+    if (READ_BIT(FLASH->CR, FLASH_CR_OPTLOCK) == 0U)
+    {
+      status = HAL_OK;
     }
+  }
 
-    return status;
+  return status;
 }
 
 /**
   * @brief  Lock the FLASH Option Bytes Registers access.
   * @retval HAL Status
   */
-HAL_StatusTypeDef HAL_FLASH_OB_Lock(void) {
-    HAL_StatusTypeDef status = HAL_OK;
+HAL_StatusTypeDef HAL_FLASH_OB_Lock(void)
+{
+  HAL_StatusTypeDef status = HAL_OK;
 
-    /* Set the OPTLOCK Bit to lock the FLASH Option Byte Registers access */
-    /* @Note The lock and unlock procedure is done only using CR registers even from CPU2 */
-    SET_BIT(FLASH->CR, FLASH_CR_OPTLOCK);
+  /* Set the OPTLOCK Bit to lock the FLASH Option Byte Registers access */
+  /* @Note The lock and unlock procedure is done only using CR registers even from CPU2 */
+  SET_BIT(FLASH->CR, FLASH_CR_OPTLOCK);
 
-    /* verify option bytes are lock */
-    if (READ_BIT(FLASH->CR, FLASH_CR_OPTLOCK) == 0U) {
-        status = HAL_ERROR;
-    }
+  /* verify option bytes are lock */
+  if (READ_BIT(FLASH->CR, FLASH_CR_OPTLOCK) == 0U)
+  {
+    status = HAL_ERROR;
+  }
 
-    return status;
+  return status;
 }
 
 /**
   * @brief  Launch the option byte loading.
   * @retval HAL Status
   */
-HAL_StatusTypeDef HAL_FLASH_OB_Launch(void) {
-    /* Set the bit to force the option byte reloading */
-    /* The OB launch is done from the same register either from CPU1 or CPU2 */
-    SET_BIT(FLASH->CR, FLASH_CR_OBL_LAUNCH);
+HAL_StatusTypeDef HAL_FLASH_OB_Launch(void)
+{
+  /* Set the bit to force the option byte reloading */
+  /* The OB launch is done from the same register either from CPU1 or CPU2 */
+  SET_BIT(FLASH->CR, FLASH_CR_OBL_LAUNCH);
 
-    /* We should not reach here : Option byte launch generates Option byte reset
+  /* We should not reach here : Option byte launch generates Option byte reset
      so return error */
-    return HAL_ERROR;
+  return HAL_ERROR;
 }
 
 /**
@@ -537,8 +578,9 @@ HAL_StatusTypeDef HAL_FLASH_OB_Launch(void) {
   *            @arg @ref HAL_FLASH_ERROR_RD FLASH Read Protection error (PCROP)
   *            @arg @ref HAL_FLASH_ERROR_OPTV FLASH Option validity error
   */
-uint32_t HAL_FLASH_GetError(void) {
-    return pFlash.ErrorCode;
+uint32_t HAL_FLASH_GetError(void)
+{
+  return pFlash.ErrorCode;
 }
 
 /**
@@ -560,49 +602,56 @@ uint32_t HAL_FLASH_GetError(void) {
   * @param  Timeout Maximum flash operation timeout
   * @retval HAL_StatusTypeDef HAL Status
   */
-HAL_StatusTypeDef FLASH_WaitForLastOperation(uint32_t Timeout) {
-    uint32_t error;
-    uint32_t tickstart = HAL_GetTick();
+HAL_StatusTypeDef FLASH_WaitForLastOperation(uint32_t Timeout)
+{
+  uint32_t error;
+  uint32_t tickstart = HAL_GetTick();
 
-    /* Wait for the FLASH operation to complete by polling on BUSY flag to be reset.
+  /* Wait for the FLASH operation to complete by polling on BUSY flag to be reset.
      Even if the FLASH operation fails, the BUSY flag will be reset and an error
      flag will be set */
-    while (__HAL_FLASH_GET_FLAG(FLASH_FLAG_BSY)) {
-        if ((HAL_GetTick() - tickstart) >= Timeout) {
-            return HAL_TIMEOUT;
-        }
+  while (__HAL_FLASH_GET_FLAG(FLASH_FLAG_BSY))
+  {
+    if ((HAL_GetTick() - tickstart) >= Timeout)
+    {
+      return HAL_TIMEOUT;
     }
+  }
 
-    /* Check FLASH operation error flags */
-    error = FLASH->SR;
+  /* Check FLASH operation error flags */
+  error = FLASH->SR;
 
-    /* Check FLASH End of Operation flag */
-    if ((error & FLASH_FLAG_EOP) != 0U) {
-        /* Clear FLASH End of Operation pending bit */
-        __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP);
+  /* Check FLASH End of Operation flag */
+  if ((error & FLASH_FLAG_EOP) != 0U)
+  {
+    /* Clear FLASH End of Operation pending bit */
+    __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP);
+  }
+
+  /* Now update error variable to only error value */
+  error &= FLASH_FLAG_SR_ERRORS;
+
+  /* clear error flags */
+  __HAL_FLASH_CLEAR_FLAG(error);
+
+  if (error != 0U)
+  {
+    /*Save the error code*/
+    pFlash.ErrorCode = error;
+
+    return HAL_ERROR;
+  }
+
+  /* Wait for control register to be written */
+  while (__HAL_FLASH_GET_FLAG(FLASH_FLAG_CFGBSY))
+  {
+    if ((HAL_GetTick() - tickstart) >= Timeout)
+    {
+      return HAL_TIMEOUT;
     }
+  }
 
-    /* Now update error variable to only error value */
-    error &= FLASH_FLAG_SR_ERRORS;
-
-    /* clear error flags */
-    __HAL_FLASH_CLEAR_FLAG(error);
-
-    if (error != 0U) {
-        /*Save the error code*/
-        pFlash.ErrorCode = error;
-
-        return HAL_ERROR;
-    }
-
-    /* Wait for control register to be written */
-    while (__HAL_FLASH_GET_FLAG(FLASH_FLAG_CFGBSY)) {
-        if ((HAL_GetTick() - tickstart) >= Timeout) {
-            return HAL_TIMEOUT;
-        }
-    }
-
-    return HAL_OK;
+  return HAL_OK;
 }
 
 /**
@@ -611,19 +660,20 @@ HAL_StatusTypeDef FLASH_WaitForLastOperation(uint32_t Timeout) {
   * @param  Data Specifies the data to be programmed.
   * @retval None
   */
-static void FLASH_Program_DoubleWord(uint32_t Address, uint64_t Data) {
-    /* Set PG bit */
-    SET_BIT(FLASH->CR, FLASH_CR_PG);
+static void FLASH_Program_DoubleWord(uint32_t Address, uint64_t Data)
+{
+  /* Set PG bit */
+  SET_BIT(FLASH->CR, FLASH_CR_PG);
 
-    /* Program first word */
-    *(uint32_t *) Address = (uint32_t) Data;
+  /* Program first word */
+  *(uint32_t *)Address = (uint32_t)Data;
 
-    /* Barrier to ensure programming is performed in 2 steps, in right order
+  /* Barrier to ensure programming is performed in 2 steps, in right order
     (independently of compiler optimization behavior) */
-    __ISB();
+  __ISB();
 
-    /* Program second word */
-    *(uint32_t *) (Address + 4U) = (uint32_t) (Data >> 32U);
+  /* Program second word */
+  *(uint32_t *)(Address + 4U) = (uint32_t)(Data >> 32U);
 }
 
 /**
@@ -632,35 +682,39 @@ static void FLASH_Program_DoubleWord(uint32_t Address, uint64_t Data) {
   * @param  DataAddress Specifies the address where the data are stored.
   * @retval None
   */
-static __RAM_FUNC void FLASH_Program_Fast(uint32_t Address, uint32_t DataAddress) {
-    uint8_t row_index = (2 * FLASH_NB_DOUBLE_WORDS_IN_ROW);
-    __IO uint32_t *dest_addr = (__IO uint32_t *) Address;
-    __IO uint32_t *src_addr = (__IO uint32_t *) DataAddress;
-    uint32_t primask_bit;
+static __RAM_FUNC void FLASH_Program_Fast(uint32_t Address, uint32_t DataAddress)
+{
+  uint8_t row_index = (2 * FLASH_NB_DOUBLE_WORDS_IN_ROW);
+  __IO uint32_t *dest_addr = (__IO uint32_t *)Address;
+  __IO uint32_t *src_addr = (__IO uint32_t *)DataAddress;
+  uint32_t primask_bit;
 
-    /* Set FSTPG bit */
-    SET_BIT(FLASH->CR, FLASH_CR_FSTPG);
+  /* Set FSTPG bit */
+  SET_BIT(FLASH->CR, FLASH_CR_FSTPG);
 
-    /* Enter critical section: row programming should not be longer than 7 ms */
-    primask_bit = __get_PRIMASK();
-    __disable_irq();
+  /* Enter critical section: row programming should not be longer than 7 ms */
+  primask_bit = __get_PRIMASK();
+  __disable_irq();
 
-    /* Program the double word of the row */
-    do {
-        *dest_addr = *src_addr;
-        dest_addr++;
-        src_addr++;
-        row_index--;
-    } while (row_index != 0U);
+  /* Program the double word of the row */
+  do
+  {
+    *dest_addr = *src_addr;
+    dest_addr++;
+    src_addr++;
+    row_index--;
+  }
+  while (row_index != 0U);
 
-    /* wait for BSY in order to be sure that flash operation is ended before
+  /* wait for BSY in order to be sure that flash operation is ended before
      allowing prefetch in flash. Timeout does not return status, as it will
      be anyway done later */
-    while (__HAL_FLASH_GET_FLAG(FLASH_FLAG_BSY) != 0U) {
-    }
+  while (__HAL_FLASH_GET_FLAG(FLASH_FLAG_BSY) != 0U)
+  {
+  }
 
-    /* Exit critical section: restore previous priority mask */
-    __set_PRIMASK(primask_bit);
+  /* Exit critical section: restore previous priority mask */
+  __set_PRIMASK(primask_bit);
 }
 
 /**

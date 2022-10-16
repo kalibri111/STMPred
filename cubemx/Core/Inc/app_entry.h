@@ -33,7 +33,7 @@ extern "C" {
 
 /* USER CODE END Includes */
 
-/* Exported types ------------------------------------------------------------*/
+  /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
 
 /* USER CODE END ET */
@@ -54,7 +54,7 @@ extern "C" {
 /* USER CODE END EM */
 
 /* Exported functions ---------------------------------------------*/
-void APPE_Init(void);
+  void APPE_Init( void );
 /* USER CODE BEGIN EF */
 
 /* USER CODE END EF */

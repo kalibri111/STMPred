@@ -47,8 +47,8 @@
  *        - 0x3B: Unacceptable Connection Parameters
  * @return Value indicating success or error code.
  */
-tBleStatus hci_disconnect(uint16_t Connection_Handle,
-                          uint8_t Reason);
+tBleStatus hci_disconnect( uint16_t Connection_Handle,
+                           uint8_t Reason );
 
 /**
  * @brief HCI_READ_REMOTE_VERSION_INFORMATION
@@ -62,7 +62,7 @@ tBleStatus hci_disconnect(uint16_t Connection_Handle,
  *        - 0x0000 ... 0x0EFF
  * @return Value indicating success or error code.
  */
-tBleStatus hci_read_remote_version_information(uint16_t Connection_Handle);
+tBleStatus hci_read_remote_version_information( uint16_t Connection_Handle );
 
 /**
  * @brief HCI_SET_EVENT_MASK
@@ -85,7 +85,7 @@ tBleStatus hci_read_remote_version_information(uint16_t Connection_Handle);
  *        - 0x2000000000000000: LE Meta-Event
  * @return Value indicating success or error code.
  */
-tBleStatus hci_set_event_mask(const uint8_t *Event_Mask);
+tBleStatus hci_set_event_mask( const uint8_t* Event_Mask );
 
 /**
  * @brief HCI_RESET
@@ -104,7 +104,7 @@ tBleStatus hci_set_event_mask(const uint8_t *Event_Mask);
  * 
  * @return Value indicating success or error code.
  */
-tBleStatus hci_reset(void);
+tBleStatus hci_reset( void );
 
 /**
  * @brief HCI_READ_TRANSMIT_POWER_LEVEL
@@ -126,9 +126,9 @@ tBleStatus hci_reset(void);
  *        - -30 ... 20
  * @return Value indicating success or error code.
  */
-tBleStatus hci_read_transmit_power_level(uint16_t Connection_Handle,
-                                         uint8_t Type,
-                                         uint8_t *Transmit_Power_Level);
+tBleStatus hci_read_transmit_power_level( uint16_t Connection_Handle,
+                                          uint8_t Type,
+                                          uint8_t* Transmit_Power_Level );
 
 /**
  * @brief HCI_SET_CONTROLLER_TO_HOST_FLOW_CONTROL
@@ -162,7 +162,7 @@ tBleStatus hci_read_transmit_power_level(uint16_t Connection_Handle,
  *          synchronous.Data Packets in direction from Controller to Host.
  * @return Value indicating success or error code.
  */
-tBleStatus hci_set_controller_to_host_flow_control(uint8_t Flow_Control_Enable);
+tBleStatus hci_set_controller_to_host_flow_control( uint8_t Flow_Control_Enable );
 
 /**
  * @brief HCI_HOST_BUFFER_SIZE
@@ -214,10 +214,10 @@ tBleStatus hci_set_controller_to_host_flow_control(uint8_t Flow_Control_Enable);
  *        the Host.
  * @return Value indicating success or error code.
  */
-tBleStatus hci_host_buffer_size(uint16_t Host_ACL_Data_Packet_Length,
-                                uint8_t Host_Synchronous_Data_Packet_Length,
-                                uint16_t Host_Total_Num_ACL_Data_Packets,
-                                uint16_t Host_Total_Num_Synchronous_Data_Packets);
+tBleStatus hci_host_buffer_size( uint16_t Host_ACL_Data_Packet_Length,
+                                 uint8_t Host_Synchronous_Data_Packet_Length,
+                                 uint16_t Host_Total_Num_ACL_Data_Packets,
+                                 uint16_t Host_Total_Num_Synchronous_Data_Packets );
 
 /**
  * @brief HCI_HOST_NUMBER_OF_COMPLETED_PACKETS
@@ -260,8 +260,8 @@ tBleStatus hci_host_buffer_size(uint16_t Host_ACL_Data_Packet_Length,
  *        Host_Nb_Of_Completed_Pkt_Pair_t
  * @return Value indicating success or error code.
  */
-tBleStatus hci_host_number_of_completed_packets(uint8_t Number_Of_Handles,
-                                                const Host_Nb_Of_Completed_Pkt_Pair_t *Host_Nb_Of_Completed_Pkt_Pair);
+tBleStatus hci_host_number_of_completed_packets( uint8_t Number_Of_Handles,
+                                                 const Host_Nb_Of_Completed_Pkt_Pair_t* Host_Nb_Of_Completed_Pkt_Pair );
 
 /**
  * @brief HCI_READ_LOCAL_VERSION_INFORMATION
@@ -289,11 +289,11 @@ tBleStatus hci_host_number_of_completed_packets(uint8_t Number_Of_Handles,
  *        implementation dependent.
  * @return Value indicating success or error code.
  */
-tBleStatus hci_read_local_version_information(uint8_t *HCI_Version,
-                                              uint16_t *HCI_Revision,
-                                              uint8_t *LMP_PAL_Version,
-                                              uint16_t *Manufacturer_Name,
-                                              uint16_t *LMP_PAL_Subversion);
+tBleStatus hci_read_local_version_information( uint8_t* HCI_Version,
+                                               uint16_t* HCI_Revision,
+                                               uint8_t* LMP_PAL_Version,
+                                               uint16_t* Manufacturer_Name,
+                                               uint16_t* LMP_PAL_Subversion );
 
 /**
  * @brief HCI_READ_LOCAL_SUPPORTED_COMMANDS
@@ -309,7 +309,7 @@ tBleStatus hci_read_local_version_information(uint8_t *HCI_Version,
  *        Unsupported or undefined commands shall be set to 0.
  * @return Value indicating success or error code.
  */
-tBleStatus hci_read_local_supported_commands(uint8_t *Supported_Commands);
+tBleStatus hci_read_local_supported_commands( uint8_t* Supported_Commands );
 
 /**
  * @brief HCI_READ_LOCAL_SUPPORTED_FEATURES
@@ -321,7 +321,7 @@ tBleStatus hci_read_local_supported_commands(uint8_t *Supported_Commands);
  * @param[out] LMP_Features Bit Mask List of LMP features.
  * @return Value indicating success or error code.
  */
-tBleStatus hci_read_local_supported_features(uint8_t *LMP_Features);
+tBleStatus hci_read_local_supported_features( uint8_t* LMP_Features );
 
 /**
  * @brief HCI_READ_BD_ADDR
@@ -335,7 +335,7 @@ tBleStatus hci_read_local_supported_features(uint8_t *LMP_Features);
  * @param[out] BD_ADDR BD_ADDR ( Bluetooth Device Address) of the Device.
  * @return Value indicating success or error code.
  */
-tBleStatus hci_read_bd_addr(uint8_t *BD_ADDR);
+tBleStatus hci_read_bd_addr( uint8_t* BD_ADDR );
 
 /**
  * @brief HCI_READ_RSSI
@@ -356,8 +356,8 @@ tBleStatus hci_read_bd_addr(uint8_t *BD_ADDR);
  *        - -127 ... 20
  * @return Value indicating success or error code.
  */
-tBleStatus hci_read_rssi(uint16_t Connection_Handle,
-                         uint8_t *RSSI);
+tBleStatus hci_read_rssi( uint16_t Connection_Handle,
+                          uint8_t* RSSI );
 
 /**
  * @brief HCI_LE_SET_EVENT_MASK
@@ -396,7 +396,7 @@ tBleStatus hci_read_rssi(uint16_t Connection_Handle,
  *        - 0x0000000000080000: LE Channel Selection Algorithm Event
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_set_event_mask(const uint8_t *LE_Event_Mask);
+tBleStatus hci_le_set_event_mask( const uint8_t* LE_Event_Mask );
 
 /**
  * @brief HCI_LE_READ_BUFFER_SIZE
@@ -435,8 +435,8 @@ tBleStatus hci_le_set_event_mask(const uint8_t *LE_Event_Mask);
  *        in the data buffers of the Controller.
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_read_buffer_size(uint16_t *HC_LE_ACL_Data_Packet_Length,
-                                   uint8_t *HC_Total_Num_LE_ACL_Data_Packets);
+tBleStatus hci_le_read_buffer_size( uint16_t* HC_LE_ACL_Data_Packet_Length,
+                                    uint8_t* HC_Total_Num_LE_ACL_Data_Packets );
 
 /**
  * @brief HCI_LE_READ_LOCAL_SUPPORTED_FEATURES
@@ -448,7 +448,7 @@ tBleStatus hci_le_read_buffer_size(uint16_t *HC_LE_ACL_Data_Packet_Length,
  *        specification.
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_read_local_supported_features(uint8_t *LE_Features);
+tBleStatus hci_le_read_local_supported_features( uint8_t* LE_Features );
 
 /**
  * @brief HCI_LE_SET_RANDOM_ADDRESS
@@ -459,7 +459,7 @@ tBleStatus hci_le_read_local_supported_features(uint8_t *LE_Features);
  * @param Random_Address Random Device Address.
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_set_random_address(const uint8_t *Random_Address);
+tBleStatus hci_le_set_random_address( const uint8_t* Random_Address );
 
 /**
  * @brief HCI_LE_SET_ADVERTISING_PARAMETERS
@@ -549,14 +549,14 @@ tBleStatus hci_le_set_random_address(const uint8_t *Random_Address);
  *          Request from White List Only
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_set_advertising_parameters(uint16_t Advertising_Interval_Min,
-                                             uint16_t Advertising_Interval_Max,
-                                             uint8_t Advertising_Type,
-                                             uint8_t Own_Address_Type,
-                                             uint8_t Peer_Address_Type,
-                                             const uint8_t *Peer_Address,
-                                             uint8_t Advertising_Channel_Map,
-                                             uint8_t Advertising_Filter_Policy);
+tBleStatus hci_le_set_advertising_parameters( uint16_t Advertising_Interval_Min,
+                                              uint16_t Advertising_Interval_Max,
+                                              uint8_t Advertising_Type,
+                                              uint8_t Own_Address_Type,
+                                              uint8_t Peer_Address_Type,
+                                              const uint8_t* Peer_Address,
+                                              uint8_t Advertising_Channel_Map,
+                                              uint8_t Advertising_Filter_Policy );
 
 /**
  * @brief HCI_LE_READ_ADVERTISING_CHANNEL_TX_POWER
@@ -571,7 +571,7 @@ tBleStatus hci_le_set_advertising_parameters(uint16_t Advertising_Interval_Min,
  *        - -20 ... 10
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_read_advertising_channel_tx_power(uint8_t *Transmit_Power_Level);
+tBleStatus hci_le_read_advertising_channel_tx_power( uint8_t* Transmit_Power_Level );
 
 /**
  * @brief HCI_LE_SET_ADVERTISING_DATA
@@ -587,8 +587,8 @@ tBleStatus hci_le_read_advertising_channel_tx_power(uint8_t *Transmit_Power_Leve
  *        Part C, Section 11.
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_set_advertising_data(uint8_t Advertising_Data_Length,
-                                       const uint8_t *Advertising_Data);
+tBleStatus hci_le_set_advertising_data( uint8_t Advertising_Data_Length,
+                                        const uint8_t* Advertising_Data );
 
 /**
  * @brief HCI_LE_SET_SCAN_RESPONSE_DATA
@@ -604,8 +604,8 @@ tBleStatus hci_le_set_advertising_data(uint8_t Advertising_Data_Length,
  *        Part C, Section 11.
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_set_scan_response_data(uint8_t Scan_Response_Data_Length,
-                                         const uint8_t *Scan_Response_Data);
+tBleStatus hci_le_set_scan_response_data( uint8_t Scan_Response_Data_Length,
+                                          const uint8_t* Scan_Response_Data );
 
 /**
  * @brief HCI_LE_SET_ADVERTISE_ENABLE
@@ -626,7 +626,7 @@ tBleStatus hci_le_set_scan_response_data(uint8_t Scan_Response_Data_Length,
  *        - 0x01: Advertising is enabled
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_set_advertise_enable(uint8_t Advertising_Enable);
+tBleStatus hci_le_set_advertise_enable( uint8_t Advertising_Enable );
 
 /**
  * @brief HCI_LE_SET_SCAN_PARAMETERS
@@ -694,11 +694,11 @@ tBleStatus hci_le_set_advertise_enable(uint8_t Advertising_Enable);
  *        - 0x03: Ignore devices not in the White List (use resolving list)
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_set_scan_parameters(uint8_t LE_Scan_Type,
-                                      uint16_t LE_Scan_Interval,
-                                      uint16_t LE_Scan_Window,
-                                      uint8_t Own_Address_Type,
-                                      uint8_t Scanning_Filter_Policy);
+tBleStatus hci_le_set_scan_parameters( uint8_t LE_Scan_Type,
+                                       uint16_t LE_Scan_Interval,
+                                       uint16_t LE_Scan_Window,
+                                       uint8_t Own_Address_Type,
+                                       uint8_t Scanning_Filter_Policy );
 
 /**
  * @brief HCI_LE_SET_SCAN_ENABLE
@@ -719,8 +719,8 @@ tBleStatus hci_le_set_scan_parameters(uint8_t LE_Scan_Type,
  *        - 0x01: Duplicate filtering enabled
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_set_scan_enable(uint8_t LE_Scan_Enable,
-                                  uint8_t Filter_Duplicates);
+tBleStatus hci_le_set_scan_enable( uint8_t LE_Scan_Enable,
+                                   uint8_t Filter_Duplicates );
 
 /**
  * @brief HCI_LE_CREATE_CONNECTION
@@ -835,18 +835,18 @@ tBleStatus hci_le_set_scan_enable(uint8_t LE_Scan_Enable,
  *        - 0x0000 (0.000 ms)  ... 0xFFFF (40959.375 ms)
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_create_connection(uint16_t LE_Scan_Interval,
-                                    uint16_t LE_Scan_Window,
-                                    uint8_t Initiator_Filter_Policy,
-                                    uint8_t Peer_Address_Type,
-                                    const uint8_t *Peer_Address,
-                                    uint8_t Own_Address_Type,
-                                    uint16_t Conn_Interval_Min,
-                                    uint16_t Conn_Interval_Max,
-                                    uint16_t Conn_Latency,
-                                    uint16_t Supervision_Timeout,
-                                    uint16_t Minimum_CE_Length,
-                                    uint16_t Maximum_CE_Length);
+tBleStatus hci_le_create_connection( uint16_t LE_Scan_Interval,
+                                     uint16_t LE_Scan_Window,
+                                     uint8_t Initiator_Filter_Policy,
+                                     uint8_t Peer_Address_Type,
+                                     const uint8_t* Peer_Address,
+                                     uint8_t Own_Address_Type,
+                                     uint16_t Conn_Interval_Min,
+                                     uint16_t Conn_Interval_Max,
+                                     uint16_t Conn_Latency,
+                                     uint16_t Supervision_Timeout,
+                                     uint16_t Minimum_CE_Length,
+                                     uint16_t Maximum_CE_Length );
 
 /**
  * @brief HCI_LE_CREATE_CONNECTION_CANCEL
@@ -859,7 +859,7 @@ tBleStatus hci_le_create_connection(uint16_t LE_Scan_Interval,
  * 
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_create_connection_cancel(void);
+tBleStatus hci_le_create_connection_cancel( void );
 
 /**
  * @brief HCI_LE_READ_WHITE_LIST_SIZE
@@ -871,7 +871,7 @@ tBleStatus hci_le_create_connection_cancel(void);
  *        stored in the Controller.
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_read_white_list_size(uint8_t *White_List_Size);
+tBleStatus hci_le_read_white_list_size( uint8_t* White_List_Size );
 
 /**
  * @brief HCI_LE_CLEAR_WHITE_LIST
@@ -887,7 +887,7 @@ tBleStatus hci_le_read_white_list_size(uint8_t *White_List_Size);
  * 
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_clear_white_list(void);
+tBleStatus hci_le_clear_white_list( void );
 
 /**
  * @brief HCI_LE_ADD_DEVICE_TO_WHITE_LIST
@@ -908,8 +908,8 @@ tBleStatus hci_le_clear_white_list(void);
  * @param Address Public Device Address or Random Device Address.
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_add_device_to_white_list(uint8_t Address_Type,
-                                           const uint8_t *Address);
+tBleStatus hci_le_add_device_to_white_list( uint8_t Address_Type,
+                                            const uint8_t* Address );
 
 /**
  * @brief HCI_LE_REMOVE_DEVICE_FROM_WHITE_LIST
@@ -930,8 +930,8 @@ tBleStatus hci_le_add_device_to_white_list(uint8_t Address_Type,
  * @param Address Public Device Address or Random Device Address.
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_remove_device_from_white_list(uint8_t Address_Type,
-                                                const uint8_t *Address);
+tBleStatus hci_le_remove_device_from_white_list( uint8_t Address_Type,
+                                                 const uint8_t* Address );
 
 /**
  * @brief HCI_LE_CONNECTION_UPDATE
@@ -989,13 +989,13 @@ tBleStatus hci_le_remove_device_from_white_list(uint8_t Address_Type,
  *        - 0x0000 (0.000 ms)  ... 0xFFFF (40959.375 ms)
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_connection_update(uint16_t Connection_Handle,
-                                    uint16_t Conn_Interval_Min,
-                                    uint16_t Conn_Interval_Max,
-                                    uint16_t Conn_Latency,
-                                    uint16_t Supervision_Timeout,
-                                    uint16_t Minimum_CE_Length,
-                                    uint16_t Maximum_CE_Length);
+tBleStatus hci_le_connection_update( uint16_t Connection_Handle,
+                                     uint16_t Conn_Interval_Min,
+                                     uint16_t Conn_Interval_Max,
+                                     uint16_t Conn_Latency,
+                                     uint16_t Supervision_Timeout,
+                                     uint16_t Minimum_CE_Length,
+                                     uint16_t Maximum_CE_Length );
 
 /**
  * @brief HCI_LE_SET_HOST_CHANNEL_CLASSIFICATION
@@ -1020,7 +1020,7 @@ tBleStatus hci_le_connection_update(uint16_t Connection_Handle,
  *        At least one channel shall be marked as unknown.
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_set_host_channel_classification(const uint8_t *LE_Channel_Map);
+tBleStatus hci_le_set_host_channel_classification( const uint8_t* LE_Channel_Map );
 
 /**
  * @brief HCI_LE_READ_CHANNEL_MAP
@@ -1043,8 +1043,8 @@ tBleStatus hci_le_set_host_channel_classification(const uint8_t *LE_Channel_Map)
  *        The most significant bits are reserved and shall be set to 0.
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_read_channel_map(uint16_t Connection_Handle,
-                                   uint8_t *LE_Channel_Map);
+tBleStatus hci_le_read_channel_map( uint16_t Connection_Handle,
+                                    uint8_t* LE_Channel_Map );
 
 /**
  * @brief HCI_LE_READ_REMOTE_FEATURES
@@ -1059,7 +1059,7 @@ tBleStatus hci_le_read_channel_map(uint16_t Connection_Handle,
  *        - 0x0000 ... 0x0EFF
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_read_remote_features(uint16_t Connection_Handle);
+tBleStatus hci_le_read_remote_features( uint16_t Connection_Handle );
 
 /**
  * @brief HCI_LE_ENCRYPT
@@ -1075,9 +1075,9 @@ tBleStatus hci_le_read_remote_features(uint16_t Connection_Handle);
  * @param[out] Encrypted_Data 128 bit encrypted data block.
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_encrypt(const uint8_t *Key,
-                          const uint8_t *Plaintext_Data,
-                          uint8_t *Encrypted_Data);
+tBleStatus hci_le_encrypt( const uint8_t* Key,
+                           const uint8_t* Plaintext_Data,
+                           uint8_t* Encrypted_Data );
 
 /**
  * @brief HCI_LE_RAND
@@ -1090,7 +1090,7 @@ tBleStatus hci_le_encrypt(const uint8_t *Key,
  * @param[out] Random_Number Random Number
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_rand(uint8_t *Random_Number);
+tBleStatus hci_le_rand( uint8_t* Random_Number );
 
 /**
  * @brief HCI_LE_START_ENCRYPTION
@@ -1116,10 +1116,10 @@ tBleStatus hci_le_rand(uint8_t *Random_Number);
  * @param Long_Term_Key 128 bit long term key.
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_start_encryption(uint16_t Connection_Handle,
-                                   const uint8_t *Random_Number,
-                                   uint16_t Encrypted_Diversifier,
-                                   const uint8_t *Long_Term_Key);
+tBleStatus hci_le_start_encryption( uint16_t Connection_Handle,
+                                    const uint8_t* Random_Number,
+                                    uint16_t Encrypted_Diversifier,
+                                    const uint8_t* Long_Term_Key );
 
 /**
  * @brief HCI_LE_LONG_TERM_KEY_REQUEST_REPLY
@@ -1135,8 +1135,8 @@ tBleStatus hci_le_start_encryption(uint16_t Connection_Handle,
  * @param Long_Term_Key 128 bit long term key.
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_long_term_key_request_reply(uint16_t Connection_Handle,
-                                              const uint8_t *Long_Term_Key);
+tBleStatus hci_le_long_term_key_request_reply( uint16_t Connection_Handle,
+                                               const uint8_t* Long_Term_Key );
 
 /**
  * @brief HCI_LE_LONG_TERM_KEY_REQUESTED_NEGATIVE_REPLY
@@ -1150,7 +1150,7 @@ tBleStatus hci_le_long_term_key_request_reply(uint16_t Connection_Handle,
  *        - 0x0000 ... 0x0EFF
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_long_term_key_requested_negative_reply(uint16_t Connection_Handle);
+tBleStatus hci_le_long_term_key_requested_negative_reply( uint16_t Connection_Handle );
 
 /**
  * @brief HCI_LE_READ_SUPPORTED_STATES
@@ -1171,7 +1171,7 @@ tBleStatus hci_le_long_term_key_requested_negative_reply(uint16_t Connection_Han
  *        Controller.
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_read_supported_states(uint8_t *LE_States);
+tBleStatus hci_le_read_supported_states( uint8_t* LE_States );
 
 /**
  * @brief HCI_LE_RECEIVER_TEST
@@ -1186,7 +1186,7 @@ tBleStatus hci_le_read_supported_states(uint8_t *LE_States);
  *        - 0x00 ... 0x27
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_receiver_test(uint8_t RX_Frequency);
+tBleStatus hci_le_receiver_test( uint8_t RX_Frequency );
 
 /**
  * @brief HCI_LE_TRANSMITTER_TEST
@@ -1216,9 +1216,9 @@ tBleStatus hci_le_receiver_test(uint8_t RX_Frequency);
  *        - 0x07: Pattern of alternating bits '0101'
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_transmitter_test(uint8_t TX_Frequency,
-                                   uint8_t Length_Of_Test_Data,
-                                   uint8_t Packet_Payload);
+tBleStatus hci_le_transmitter_test( uint8_t TX_Frequency,
+                                    uint8_t Length_Of_Test_Data,
+                                    uint8_t Packet_Payload );
 
 /**
  * @brief HCI_LE_TEST_END
@@ -1231,7 +1231,7 @@ tBleStatus hci_le_transmitter_test(uint8_t TX_Frequency,
  * @param[out] Number_Of_Packets Number of packets received
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_test_end(uint16_t *Number_Of_Packets);
+tBleStatus hci_le_test_end( uint16_t* Number_Of_Packets );
 
 /**
  * @brief HCI_LE_SET_DATA_LENGTH
@@ -1257,9 +1257,9 @@ tBleStatus hci_le_test_end(uint16_t *Number_Of_Packets);
  *        - 0x0148 ... 0x4290
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_set_data_length(uint16_t Connection_Handle,
-                                  uint16_t TxOctets,
-                                  uint16_t TxTime);
+tBleStatus hci_le_set_data_length( uint16_t Connection_Handle,
+                                   uint16_t TxOctets,
+                                   uint16_t TxTime );
 
 /**
  * @brief HCI_LE_READ_SUGGESTED_DEFAULT_DATA_LENGTH
@@ -1281,8 +1281,8 @@ tBleStatus hci_le_set_data_length(uint16_t Connection_Handle,
  *        - 0x0148 ... 0x4290
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_read_suggested_default_data_length(uint16_t *SuggestedMaxTxOctets,
-                                                     uint16_t *SuggestedMaxTxTime);
+tBleStatus hci_le_read_suggested_default_data_length( uint16_t* SuggestedMaxTxOctets,
+                                                      uint16_t* SuggestedMaxTxTime );
 
 /**
  * @brief HCI_LE_WRITE_SUGGESTED_DEFAULT_DATA_LENGTH
@@ -1304,8 +1304,8 @@ tBleStatus hci_le_read_suggested_default_data_length(uint16_t *SuggestedMaxTxOct
  *        - 0x0148 ... 0x4290
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_write_suggested_default_data_length(uint16_t SuggestedMaxTxOctets,
-                                                      uint16_t SuggestedMaxTxTime);
+tBleStatus hci_le_write_suggested_default_data_length( uint16_t SuggestedMaxTxOctets,
+                                                       uint16_t SuggestedMaxTxTime );
 
 /**
  * @brief HCI_LE_READ_LOCAL_P256_PUBLIC_KEY
@@ -1316,7 +1316,7 @@ tBleStatus hci_le_write_suggested_default_data_length(uint16_t SuggestedMaxTxOct
  * 
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_read_local_p256_public_key(void);
+tBleStatus hci_le_read_local_p256_public_key( void );
 
 /**
  * @brief HCI_LE_GENERATE_DHKEY
@@ -1333,7 +1333,7 @@ tBleStatus hci_le_read_local_p256_public_key(void);
  *        Little Endian Format
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_generate_dhkey(const uint8_t *Remote_P256_Public_Key);
+tBleStatus hci_le_generate_dhkey( const uint8_t* Remote_P256_Public_Key );
 
 /**
  * @brief HCI_LE_ADD_DEVICE_TO_RESOLVING_LIST
@@ -1361,10 +1361,10 @@ tBleStatus hci_le_generate_dhkey(const uint8_t *Remote_P256_Public_Key);
  * @param Local_IRK IRK of the local device
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_add_device_to_resolving_list(uint8_t Peer_Identity_Address_Type,
-                                               const uint8_t *Peer_Identity_Address,
-                                               const uint8_t *Peer_IRK,
-                                               const uint8_t *Local_IRK);
+tBleStatus hci_le_add_device_to_resolving_list( uint8_t Peer_Identity_Address_Type,
+                                                const uint8_t* Peer_Identity_Address,
+                                                const uint8_t* Peer_IRK,
+                                                const uint8_t* Local_IRK );
 
 /**
  * @brief HCI_LE_REMOVE_DEVICE_FROM_RESOLVING_LIST
@@ -1391,8 +1391,8 @@ tBleStatus hci_le_add_device_to_resolving_list(uint8_t Peer_Identity_Address_Typ
  *        the peer device
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_remove_device_from_resolving_list(uint8_t Peer_Identity_Address_Type,
-                                                    const uint8_t *Peer_Identity_Address);
+tBleStatus hci_le_remove_device_from_resolving_list( uint8_t Peer_Identity_Address_Type,
+                                                     const uint8_t* Peer_Identity_Address );
 
 /**
  * @brief HCI_LE_CLEAR_RESOLVING_LIST
@@ -1410,7 +1410,7 @@ tBleStatus hci_le_remove_device_from_resolving_list(uint8_t Peer_Identity_Addres
  * 
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_clear_resolving_list(void);
+tBleStatus hci_le_clear_resolving_list( void );
 
 /**
  * @brief HCI_LE_READ_RESOLVING_LIST_SIZE
@@ -1423,7 +1423,7 @@ tBleStatus hci_le_clear_resolving_list(void);
  *        resolving list
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_read_resolving_list_size(uint8_t *Resolving_List_Size);
+tBleStatus hci_le_read_resolving_list_size( uint8_t* Resolving_List_Size );
 
 /**
  * @brief HCI_LE_READ_PEER_RESOLVABLE_ADDRESS
@@ -1447,9 +1447,9 @@ tBleStatus hci_le_read_resolving_list_size(uint8_t *Resolving_List_Size);
  *        the peer device
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_read_peer_resolvable_address(uint8_t Peer_Identity_Address_Type,
-                                               const uint8_t *Peer_Identity_Address,
-                                               uint8_t *Peer_Resolvable_Address);
+tBleStatus hci_le_read_peer_resolvable_address( uint8_t Peer_Identity_Address_Type,
+                                                const uint8_t* Peer_Identity_Address,
+                                                uint8_t* Peer_Resolvable_Address );
 
 /**
  * @brief HCI_LE_READ_LOCAL_RESOLVABLE_ADDRESS
@@ -1473,9 +1473,9 @@ tBleStatus hci_le_read_peer_resolvable_address(uint8_t Peer_Identity_Address_Typ
  *        by the local device
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_read_local_resolvable_address(uint8_t Peer_Identity_Address_Type,
-                                                const uint8_t *Peer_Identity_Address,
-                                                uint8_t *Local_Resolvable_Address);
+tBleStatus hci_le_read_local_resolvable_address( uint8_t Peer_Identity_Address_Type,
+                                                 const uint8_t* Peer_Identity_Address,
+                                                 uint8_t* Local_Resolvable_Address );
 
 /**
  * @brief HCI_LE_SET_ADDRESS_RESOLUTION_ENABLE
@@ -1498,7 +1498,7 @@ tBleStatus hci_le_read_local_resolvable_address(uint8_t Peer_Identity_Address_Ty
  *        - 0x01: Address Resolution in controller enabled
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_set_address_resolution_enable(uint8_t Address_Resolution_Enable);
+tBleStatus hci_le_set_address_resolution_enable( uint8_t Address_Resolution_Enable );
 
 /**
  * @brief HCI_LE_SET_RESOLVABLE_PRIVATE_ADDRESS_TIMEOUT
@@ -1513,7 +1513,7 @@ tBleStatus hci_le_set_address_resolution_enable(uint8_t Address_Resolution_Enabl
  *        Default: N= 0x0384 (900 secs or 15 minutes)
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_set_resolvable_private_address_timeout(uint16_t RPA_Timeout);
+tBleStatus hci_le_set_resolvable_private_address_timeout( uint16_t RPA_Timeout );
 
 /**
  * @brief HCI_LE_READ_MAXIMUM_DATA_LENGTH
@@ -1545,10 +1545,10 @@ tBleStatus hci_le_set_resolvable_private_address_timeout(uint16_t RPA_Timeout);
  *        - 0x0148 ... 0x4290
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_read_maximum_data_length(uint16_t *supportedMaxTxOctets,
-                                           uint16_t *supportedMaxTxTime,
-                                           uint16_t *supportedMaxRxOctets,
-                                           uint16_t *supportedMaxRxTime);
+tBleStatus hci_le_read_maximum_data_length( uint16_t* supportedMaxTxOctets,
+                                            uint16_t* supportedMaxTxTime,
+                                            uint16_t* supportedMaxRxOctets,
+                                            uint16_t* supportedMaxRxTime );
 
 /**
  * @brief HCI_LE_READ_PHY
@@ -1573,9 +1573,9 @@ tBleStatus hci_le_read_maximum_data_length(uint16_t *supportedMaxTxOctets,
  *          (Not supported by STM32WB)
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_read_phy(uint16_t Connection_Handle,
-                           uint8_t *TX_PHY,
-                           uint8_t *RX_PHY);
+tBleStatus hci_le_read_phy( uint16_t Connection_Handle,
+                            uint8_t* TX_PHY,
+                            uint8_t* RX_PHY );
 
 /**
  * @brief HCI_LE_SET_DEFAULT_PHY
@@ -1608,9 +1608,9 @@ tBleStatus hci_le_read_phy(uint16_t Connection_Handle,
  *        - 0x00 ... 0x03
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_set_default_phy(uint8_t ALL_PHYS,
-                                  uint8_t TX_PHYS,
-                                  uint8_t RX_PHYS);
+tBleStatus hci_le_set_default_phy( uint8_t ALL_PHYS,
+                                   uint8_t TX_PHYS,
+                                   uint8_t RX_PHYS );
 
 /**
  * @brief HCI_LE_SET_PHY
@@ -1660,11 +1660,11 @@ tBleStatus hci_le_set_default_phy(uint8_t ALL_PHYS,
  * @param PHY_options Not supported
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_set_phy(uint16_t Connection_Handle,
-                          uint8_t ALL_PHYS,
-                          uint8_t TX_PHYS,
-                          uint8_t RX_PHYS,
-                          uint16_t PHY_options);
+tBleStatus hci_le_set_phy( uint16_t Connection_Handle,
+                           uint8_t ALL_PHYS,
+                           uint8_t TX_PHYS,
+                           uint8_t RX_PHYS,
+                           uint16_t PHY_options );
 
 /**
  * @brief HCI_LE_ENHANCED_RECEIVER_TEST
@@ -1690,9 +1690,9 @@ tBleStatus hci_le_set_phy(uint16_t Connection_Handle,
  *        - 0x01: Assume transmitter will have a stable modulation index
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_enhanced_receiver_test(uint8_t RX_Frequency,
-                                         uint8_t PHY,
-                                         uint8_t Modulation_Index);
+tBleStatus hci_le_enhanced_receiver_test( uint8_t RX_Frequency,
+                                          uint8_t PHY,
+                                          uint8_t Modulation_Index );
 
 /**
  * @brief HCI_LE_ENHANCED_TRANSMITTER_TEST
@@ -1731,10 +1731,10 @@ tBleStatus hci_le_enhanced_receiver_test(uint8_t RX_Frequency,
  *        - 0x04: Transmitter set to use the LE Coded PHY with S=2 data coding
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_enhanced_transmitter_test(uint8_t TX_Frequency,
-                                            uint8_t Length_Of_Test_Data,
-                                            uint8_t Packet_Payload,
-                                            uint8_t PHY);
+tBleStatus hci_le_enhanced_transmitter_test( uint8_t TX_Frequency,
+                                             uint8_t Length_Of_Test_Data,
+                                             uint8_t Packet_Payload,
+                                             uint8_t PHY );
 
 /**
  * @brief HCI_LE_READ_TRANSMIT_POWER
@@ -1750,8 +1750,8 @@ tBleStatus hci_le_enhanced_transmitter_test(uint8_t TX_Frequency,
  *        - -127 ... 20
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_read_transmit_power(uint8_t *Min_TX_Power,
-                                      uint8_t *Max_TX_Power);
+tBleStatus hci_le_read_transmit_power( uint8_t* Min_TX_Power,
+                                       uint8_t* Max_TX_Power );
 
 /**
  * @brief HCI_LE_SET_PRIVACY_MODE
@@ -1771,9 +1771,9 @@ tBleStatus hci_le_read_transmit_power(uint8_t *Min_TX_Power,
  *        - 0x01: Use Device Privacy Mode
  * @return Value indicating success or error code.
  */
-tBleStatus hci_le_set_privacy_mode(uint8_t Peer_Identity_Address_Type,
-                                   const uint8_t *Peer_Identity_Address,
-                                   uint8_t Privacy_Mode);
+tBleStatus hci_le_set_privacy_mode( uint8_t Peer_Identity_Address_Type,
+                                    const uint8_t* Peer_Identity_Address,
+                                    uint8_t Privacy_Mode );
 
 
 #endif /* BLE_HCI_LE_H__ */

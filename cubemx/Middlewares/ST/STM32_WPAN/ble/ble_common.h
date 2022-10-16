@@ -26,11 +26,11 @@
 extern "C" {
 #endif
 
-#include <stdarg.h>
 #include <stdint.h>
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <stdarg.h>
 
 #include "ble_conf.h"
 #include "ble_dbg_conf.h"
@@ -40,24 +40,22 @@ extern "C" {
  * -------------------------------- */
 
 #undef NULL
-#define NULL 0
+#define NULL                    0
 
 #undef FALSE
-#define FALSE 0
+#define FALSE                   0
 
 #undef TRUE
-#define TRUE (!0)
+#define TRUE                    (!0)
 
 
 /* -------------------------------- *
  *  Macro delimiters                *
  * -------------------------------- */
 
-#define M_BEGIN do {
+#define M_BEGIN     do {
 
-#define M_END \
-    }         \
-    while (0)
+#define M_END       } while(0)
 
 
 /* -------------------------------- *
@@ -65,63 +63,49 @@ extern "C" {
  * -------------------------------- */
 
 #ifndef MAX
-#define MAX(a, b) (((a) > (b)) ? (a) : (b))
+#define MAX( a, b )            (((a) > (b)) ? (a) : (b))
 #endif
 
 #ifndef MIN
-#define MIN(a, b) (((a) < (b)) ? (a) : (b))
+#define MIN( a, b )            (((a) < (b)) ? (a) : (b))
 #endif
 
-#define MODINC(a, m)         \
-    M_BEGIN(a)               \
-    ++;                      \
-    if ((a) >= (m)) (a) = 0; \
-    M_END
+#define MODINC( a, m )       M_BEGIN  (a)++;  if ((a)>=(m)) (a)=0;  M_END
 
-#define MODDEC(a, m)                \
-    M_BEGIN if ((a) == 0)(a) = (m); \
-    (a)--;                          \
-    M_END
+#define MODDEC( a, m )       M_BEGIN  if ((a)==0) (a)=(m);  (a)--;  M_END
 
-#define MODADD(a, b, m)         \
-    M_BEGIN(a) += (b);          \
-    if ((a) >= (m)) (a) -= (m); \
-    M_END
+#define MODADD( a, b, m )    M_BEGIN  (a)+=(b);  if ((a)>=(m)) (a)-=(m);  M_END
 
-#define MODSUB(a, b, m) MODADD(a, (m) - (b), m)
+#define MODSUB( a, b, m )    MODADD( a, (m)-(b), m )
 
 #ifdef WIN32
 #define ALIGN(n)
 #else
-#define ALIGN(n) __attribute__((aligned(n)))
+#define ALIGN(n)             __attribute__((aligned(n)))
 #endif
 
-#define PAUSE(t)               \
-    M_BEGIN                    \
-    volatile int _i;           \
-    for (_i = t; _i > 0; _i--) \
-        ;                      \
-    M_END
+#define PAUSE( t )           M_BEGIN \
+                               volatile int _i; \
+                               for ( _i = t; _i > 0; _i -- ); \
+                             M_END
 
-#define DIVF(x, y) ((x) / (y))
+#define DIVF( x, y )         ((x)/(y))
 
-#define DIVC(x, y) (((x) + (y) -1) / (y))
+#define DIVC( x, y )         (((x)+(y)-1)/(y))
 
-#define DIVR(x, y) (((x) + ((y) / 2)) / (y))
+#define DIVR( x, y )         (((x)+((y)/2))/(y))
 
-#define SHRR(x, n) ((((x) >> ((n) -1)) + 1) >> 1)
+#define SHRR( x, n )         ((((x)>>((n)-1))+1)>>1)
 
-#define BITN(w, n) (((w)[(n) / 32] >> ((n) % 32)) & 1)
+#define BITN( w, n )         (((w)[(n)/32] >> ((n)%32)) & 1)
 
-#define BITNSET(w, n, b)                     \
-    M_BEGIN(w)                               \
-    [(n) / 32] |= ((U32) (b)) << ((n) % 32); \
-    M_END
+#define BITNSET( w, n, b )   M_BEGIN (w)[(n)/32] |= ((U32)(b))<<((n)%32); M_END
 
-/* -------------------------------- *
+  /* -------------------------------- *
    *  Compiler                         *
    * -------------------------------- */
-#define PLACE_IN_SECTION(__x__) __attribute__((section(__x__)))
+#define PLACE_IN_SECTION( __x__ )  __attribute__((section (__x__)))
+
 
 
 #ifdef __cplusplus

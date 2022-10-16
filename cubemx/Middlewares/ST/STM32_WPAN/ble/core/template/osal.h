@@ -34,8 +34,8 @@
  * 
  * @return  Address of the destination
  */
-
-extern void *Osal_MemCpy(void *dest, const void *src, unsigned int size);
+ 
+extern void* Osal_MemCpy( void *dest, const void *src, unsigned int size );
 
 /**
  * This function sets first number of bytes, specified
@@ -48,8 +48,8 @@ extern void *Osal_MemCpy(void *dest, const void *src, unsigned int size);
  * 
  * @return  Address of the destination
  */
-
-extern void *Osal_MemSet(void *ptr, int value, unsigned int size);
+ 
+extern void* Osal_MemSet( void *ptr, int value, unsigned int size );
 
 /**
  * This function compares n bytes of two regions of memory
@@ -60,7 +60,7 @@ extern void *Osal_MemSet(void *ptr, int value, unsigned int size);
  * 
  * @return  0 if the two buffers are equal, 1 otherwise
  */
-extern int Osal_MemCmp(const void *s1, const void *s2, unsigned int size);
+extern int Osal_MemCmp( const void *s1, const void *s2, unsigned int size );
 
 
 #endif /* OSAL_H__ */

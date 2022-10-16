@@ -42,36 +42,38 @@
 extern "C" {
 #endif
 
-/* Includes ------------------------------------------------------------------*/
-/* Exported types ------------------------------------------------------------*/
-typedef enum {
+  /* Includes ------------------------------------------------------------------*/
+  /* Exported types ------------------------------------------------------------*/
+  typedef enum
+  {
     SVCCTL_EvtNotAck,
     SVCCTL_EvtAckFlowEnable,
     SVCCTL_EvtAckFlowDisable,
-} SVCCTL_EvtAckStatus_t;
+  } SVCCTL_EvtAckStatus_t;
 
-typedef enum {
+  typedef enum
+  {
     SVCCTL_UserEvtFlowDisable,
     SVCCTL_UserEvtFlowEnable,
-} SVCCTL_UserEvtFlowStatus_t;
+  } SVCCTL_UserEvtFlowStatus_t;
 
-typedef SVCCTL_EvtAckStatus_t (*SVC_CTL_p_EvtHandler_t)(void *p_evt);
+  typedef SVCCTL_EvtAckStatus_t (*SVC_CTL_p_EvtHandler_t)(void *p_evt);
 
-/* Exported constants --------------------------------------------------------*/
-/* External variables --------------------------------------------------------*/
-/* Exported macros -----------------------------------------------------------*/
+  /* Exported constants --------------------------------------------------------*/
+  /* External variables --------------------------------------------------------*/
+  /* Exported macros -----------------------------------------------------------*/
 
-/* Exported functions ------------------------------------------------------- */
-/**
+  /* Exported functions ------------------------------------------------------- */
+  /**
    * @brief  It initializes the BLE core Driver and sends some commands to initialize the BLE core device
    *         It shall be called before any BLE operation
    *
    * @param  None
    * @retval None
    */
-void SVCCTL_Init(void);
+  void SVCCTL_Init( void );
 
-/**
+  /**
    * @brief  This API registers a handler to be called when a GATT user event is received from the BLE core device. When
    *         a Service is created, it shall register a callback to be notified when a GATT event is received from the
    *         BLE core device. When a GATT event is received, it shall be checked in the handler if the GATT events belongs
@@ -85,9 +87,9 @@ void SVCCTL_Init(void);
    *         SVCCTL_EvtAckFlowEnable.
    * @retval None
    */
-void SVCCTL_RegisterSvcHandler(SVC_CTL_p_EvtHandler_t pfBLE_SVC_Service_Event_Handler);
+  void SVCCTL_RegisterSvcHandler( SVC_CTL_p_EvtHandler_t pfBLE_SVC_Service_Event_Handler );
 
-/**
+  /**
    * @brief  This API registers a handler to be called when a GATT user event is received from the BLE core device. When
    *         a Client is created, it shall register a callback to be notified when a GATT event is received from the
    *         BLE core device. When a GATT event is received, it shall be checked in the handler if the GATT events belongs
@@ -101,18 +103,18 @@ void SVCCTL_RegisterSvcHandler(SVC_CTL_p_EvtHandler_t pfBLE_SVC_Service_Event_Ha
    *         SVCCTL_EvtAckFlowEnable.
    * @retval None
    */
-void SVCCTL_RegisterCltHandler(SVC_CTL_p_EvtHandler_t pfBLE_SVC_Client_Event_Handler);
+  void SVCCTL_RegisterCltHandler( SVC_CTL_p_EvtHandler_t pfBLE_SVC_Client_Event_Handler );
 
-/**
+  /**
    * @brief  This API is used to resume the User Event Flow that has been stopped in return of SVCCTL_UserEvtRx()
    *
    * @param  None
    * @retval None
    */
-void SVCCTL_ResumeUserEventFlow(void);
+  void SVCCTL_ResumeUserEventFlow( void );
 
 
-/**
+  /**
    * @brief This callback is triggered when either
    *          + a GAP event is received from the BLE core device.
    *          + a GATT event that has not been positively acknowledged by the registered handler is received from the
@@ -127,9 +129,9 @@ void SVCCTL_ResumeUserEventFlow(void);
    * @param  pckt: The user event received from the BLE core device
    * @retval None
    */
-SVCCTL_UserEvtFlowStatus_t SVCCTL_App_Notification(void *pckt);
+  SVCCTL_UserEvtFlowStatus_t SVCCTL_App_Notification( void *pckt );
 
-/**
+  /**
    * @brief
    *
    *
@@ -137,18 +139,18 @@ SVCCTL_UserEvtFlowStatus_t SVCCTL_App_Notification(void *pckt);
    * @retval SVCCTL_UserEvtFlowStatus_t: SVCCTL_UserEvtFlowEnable when the packet has been processed
    *         SVCCTL_UserEvtFlowDisable otherwise (the packet is kept in the queue)
    */
-SVCCTL_UserEvtFlowStatus_t SVCCTL_UserEvtRx(void *pckt);
+  SVCCTL_UserEvtFlowStatus_t SVCCTL_UserEvtRx( void *pckt );
 
-/**
+  /**
    * @brief This API may be used by the application when the Service Controller is used to add a custom service
    *
    *
    * @param  None
    * @retval None
    */
-void SVCCTL_InitCustomSvc(void);
+  void SVCCTL_InitCustomSvc( void );
 
-/**
+  /**
    * @brief This API may be overloaded by the application to select a limited list of ble services to initialize.
    *        It is called by SVCCTL_Init()
    *        By default, SVCCTL_SvcInit() is implemented to initialize all BLE services which are included in the
@@ -159,7 +161,7 @@ void SVCCTL_InitCustomSvc(void);
    * @param  None
    * @retval None
    */
-void SVCCTL_SvcInit(void);
+  void SVCCTL_SvcInit( void );
 
 #ifdef __cplusplus
 }

@@ -20,27 +20,27 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32_lpm_if.h"
-#include "app_conf.h"
 #include "stm32_lpm.h"
+#include "app_conf.h"
 /* USER CODE BEGIN include */
 
 /* USER CODE END include */
 
 /* Exported variables --------------------------------------------------------*/
 const struct UTIL_LPM_Driver_s UTIL_PowerDriver =
-        {
-                PWR_EnterSleepMode,
-                PWR_ExitSleepMode,
+{
+  PWR_EnterSleepMode,
+  PWR_ExitSleepMode,
 
-                PWR_EnterStopMode,
-                PWR_ExitStopMode,
+  PWR_EnterStopMode,
+  PWR_ExitStopMode,
 
-                PWR_EnterOffMode,
-                PWR_ExitOffMode,
+  PWR_EnterOffMode,
+  PWR_ExitOffMode,
 };
 
 /* Private function prototypes -----------------------------------------------*/
-static void Switch_On_HSI(void);
+static void Switch_On_HSI( void );
 /* USER CODE BEGIN Private_Function_Prototypes */
 
 /* USER CODE END Private_Function_Prototypes */
@@ -67,10 +67,11 @@ static void Switch_On_HSI(void);
   * @param none
   * @retval none
   */
-void PWR_EnterOffMode(void) {
-    /* USER CODE BEGIN PWR_EnterOffMode */
+void PWR_EnterOffMode( void )
+{
+/* USER CODE BEGIN PWR_EnterOffMode */
 
-    /* USER CODE END PWR_EnterOffMode */
+/* USER CODE END PWR_EnterOffMode */
 }
 
 /**
@@ -78,10 +79,11 @@ void PWR_EnterOffMode(void) {
   * @param none
   * @retval none
   */
-void PWR_ExitOffMode(void) {
-    /* USER CODE BEGIN PWR_ExitOffMode */
+void PWR_ExitOffMode( void )
+{
+/* USER CODE BEGIN PWR_ExitOffMode */
 
-    /* USER CODE END PWR_ExitOffMode */
+/* USER CODE END PWR_ExitOffMode */
 }
 
 /**
@@ -90,10 +92,11 @@ void PWR_ExitOffMode(void) {
   * @param none
   * @retval none
   */
-void PWR_EnterStopMode(void) {
-    /* USER CODE BEGIN PWR_EnterStopMode */
+void PWR_EnterStopMode( void )
+{
+/* USER CODE BEGIN PWR_EnterStopMode */
 
-    /* USER CODE END PWR_EnterStopMode */
+/* USER CODE END PWR_EnterStopMode */
 }
 
 /**
@@ -102,10 +105,11 @@ void PWR_EnterStopMode(void) {
   * @param none
   * @retval none
   */
-void PWR_ExitStopMode(void) {
-    /* USER CODE BEGIN PWR_ExitStopMode */
+void PWR_ExitStopMode( void )
+{
+/* USER CODE BEGIN PWR_ExitStopMode */
 
-    /* USER CODE END PWR_ExitStopMode */
+/* USER CODE END PWR_ExitStopMode */
 }
 
 /**
@@ -114,10 +118,11 @@ void PWR_ExitStopMode(void) {
   * @param none
   * @retval none
   */
-void PWR_EnterSleepMode(void) {
-    /* USER CODE BEGIN PWR_EnterSleepMode */
+void PWR_EnterSleepMode( void )
+{
+/* USER CODE BEGIN PWR_EnterSleepMode */
 
-    /* USER CODE END PWR_EnterSleepMode */
+/* USER CODE END PWR_EnterSleepMode */
 }
 
 /**
@@ -126,10 +131,11 @@ void PWR_EnterSleepMode(void) {
   * @param none
   * @retval none
   */
-void PWR_ExitSleepMode(void) {
-    /* USER CODE BEGIN PWR_ExitSleepMode */
+void PWR_ExitSleepMode( void )
+{
+/* USER CODE BEGIN PWR_ExitSleepMode */
 
-    /* USER CODE END PWR_ExitSleepMode */
+/* USER CODE END PWR_ExitSleepMode */
 }
 
 /*************************************************************
@@ -142,14 +148,13 @@ void PWR_ExitSleepMode(void) {
   * @param none
   * @retval none
   */
-static void Switch_On_HSI(void) {
-    LL_RCC_HSI_Enable();
-    while (!LL_RCC_HSI_IsReady())
-        ;
-    LL_RCC_SetSysClkSource(LL_RCC_SYS_CLKSOURCE_HSI);
-    LL_RCC_SetSMPSClockSource(LL_RCC_SMPS_CLKSOURCE_HSI);
-    while (LL_RCC_GetSysClkSource() != LL_RCC_SYS_CLKSOURCE_STATUS_HSI)
-        ;
+static void Switch_On_HSI( void )
+{
+  LL_RCC_HSI_Enable( );
+  while(!LL_RCC_HSI_IsReady( ));
+  LL_RCC_SetSysClkSource( LL_RCC_SYS_CLKSOURCE_HSI );
+  LL_RCC_SetSMPSClockSource(LL_RCC_SMPS_CLKSOURCE_HSI);
+  while (LL_RCC_GetSysClkSource( ) != LL_RCC_SYS_CLKSOURCE_STATUS_HSI);
 }
 
 /* USER CODE BEGIN Private_Functions */
@@ -157,3 +162,4 @@ static void Switch_On_HSI(void) {
 /* USER CODE END Private_Functions */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+

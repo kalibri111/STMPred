@@ -71,8 +71,8 @@
 /** @defgroup IPCC_Private_Constants IPCC Private Constants
   * @{
   */
-#define IPCC_ALL_RX_BUF 0x0000003FU   /*!< Mask for all RX buffers. */
-#define IPCC_ALL_TX_BUF 0x003F0000U   /*!< Mask for all TX buffers. */
+#define IPCC_ALL_RX_BUF 0x0000003FU /*!< Mask for all RX buffers. */
+#define IPCC_ALL_TX_BUF 0x003F0000U /*!< Mask for all TX buffers. */
 #define CHANNEL_INDEX_Msk 0x0000000FU /*!< Mask the channel index to avoid overflow */
 /**
   * @}
@@ -123,39 +123,44 @@ void IPCC_Reset_Register(IPCC_CommonTypeDef *Instance);
   * @param  hipcc IPCC handle
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_IPCC_Init(IPCC_HandleTypeDef *hipcc) {
-    HAL_StatusTypeDef err = HAL_OK;
+HAL_StatusTypeDef HAL_IPCC_Init(IPCC_HandleTypeDef *hipcc)
+{
+  HAL_StatusTypeDef err = HAL_OK;
 
-    /* Check the IPCC handle allocation */
-    if (hipcc != NULL) {
-        /* Check the parameters */
-        assert_param(IS_IPCC_ALL_INSTANCE(hipcc->Instance));
+  /* Check the IPCC handle allocation */
+  if (hipcc != NULL)
+  {
+    /* Check the parameters */
+    assert_param(IS_IPCC_ALL_INSTANCE(hipcc->Instance));
 
-        IPCC_CommonTypeDef *currentInstance = IPCC_C1;
+    IPCC_CommonTypeDef *currentInstance = IPCC_C1;
 
-        if (hipcc->State == HAL_IPCC_STATE_RESET) {
-            /* Init the low level hardware : CLOCK, NVIC */
-            HAL_IPCC_MspInit(hipcc);
-        }
-
-        /* Reset all registers of the current cpu to default state */
-        IPCC_Reset_Register(currentInstance);
-
-        /* Activate the interrupts */
-        currentInstance->CR |= (IPCC_CR_RXOIE | IPCC_CR_TXFIE);
-
-        /* Clear callback pointers */
-        IPCC_SetDefaultCallbacks(hipcc);
-
-        /* Reset all callback notification request */
-        hipcc->callbackRequest = 0;
-
-        hipcc->State = HAL_IPCC_STATE_READY;
-    } else {
-        err = HAL_ERROR;
+    if (hipcc->State == HAL_IPCC_STATE_RESET)
+    {
+      /* Init the low level hardware : CLOCK, NVIC */
+      HAL_IPCC_MspInit(hipcc);
     }
 
-    return err;
+    /* Reset all registers of the current cpu to default state */
+    IPCC_Reset_Register(currentInstance);
+
+    /* Activate the interrupts */
+    currentInstance->CR |= (IPCC_CR_RXOIE | IPCC_CR_TXFIE);
+
+    /* Clear callback pointers */
+    IPCC_SetDefaultCallbacks(hipcc);
+
+    /* Reset all callback notification request */
+    hipcc->callbackRequest = 0;
+
+    hipcc->State = HAL_IPCC_STATE_READY;
+  }
+  else
+  {
+    err = HAL_ERROR;
+  }
+
+  return err;
 }
 
 /**
@@ -163,35 +168,39 @@ HAL_StatusTypeDef HAL_IPCC_Init(IPCC_HandleTypeDef *hipcc) {
   * @param  hipcc IPCC handle
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_IPCC_DeInit(IPCC_HandleTypeDef *hipcc) {
-    HAL_StatusTypeDef err = HAL_OK;
+HAL_StatusTypeDef HAL_IPCC_DeInit(IPCC_HandleTypeDef *hipcc)
+{
+  HAL_StatusTypeDef err = HAL_OK;
 
-    /* Check the IPCC handle allocation */
-    if (hipcc != NULL) {
-        assert_param(IS_IPCC_ALL_INSTANCE(hipcc->Instance));
-        IPCC_CommonTypeDef *currentInstance = IPCC_C1;
+  /* Check the IPCC handle allocation */
+  if (hipcc != NULL)
+  {
+    assert_param(IS_IPCC_ALL_INSTANCE(hipcc->Instance));
+    IPCC_CommonTypeDef *currentInstance = IPCC_C1;
 
-        /* Set the state to busy */
-        hipcc->State = HAL_IPCC_STATE_BUSY;
+    /* Set the state to busy */
+    hipcc->State = HAL_IPCC_STATE_BUSY;
 
-        /* Reset all registers of the current cpu to default state */
-        IPCC_Reset_Register(currentInstance);
+    /* Reset all registers of the current cpu to default state */
+    IPCC_Reset_Register(currentInstance);
 
-        /* Clear callback pointers */
-        IPCC_SetDefaultCallbacks(hipcc);
+    /* Clear callback pointers */
+    IPCC_SetDefaultCallbacks(hipcc);
 
-        /* Reset all callback notification request */
-        hipcc->callbackRequest = 0;
+    /* Reset all callback notification request */
+    hipcc->callbackRequest = 0;
 
-        /* DeInit the low level hardware : CLOCK, NVIC */
-        HAL_IPCC_MspDeInit(hipcc);
+    /* DeInit the low level hardware : CLOCK, NVIC */
+    HAL_IPCC_MspDeInit(hipcc);
 
-        hipcc->State = HAL_IPCC_STATE_RESET;
-    } else {
-        err = HAL_ERROR;
-    }
+    hipcc->State = HAL_IPCC_STATE_RESET;
+  }
+  else
+  {
+    err = HAL_ERROR;
+  }
 
-    return err;
+  return err;
 }
 
 /**
@@ -199,11 +208,12 @@ HAL_StatusTypeDef HAL_IPCC_DeInit(IPCC_HandleTypeDef *hipcc) {
   * @param  hipcc IPCC handle
   * @retval None
   */
-__weak void HAL_IPCC_MspInit(IPCC_HandleTypeDef *hipcc) {
-    /* Prevent unused argument(s) compilation warning */
-    UNUSED(hipcc);
+__weak void HAL_IPCC_MspInit(IPCC_HandleTypeDef *hipcc)
+{
+  /* Prevent unused argument(s) compilation warning */
+  UNUSED(hipcc);
 
-    /* NOTE : This function should not be modified. When the callback is needed
+  /* NOTE : This function should not be modified. When the callback is needed
             the HAL_IPCC_MspInit should be implemented in the user file
    */
 }
@@ -213,11 +223,12 @@ __weak void HAL_IPCC_MspInit(IPCC_HandleTypeDef *hipcc) {
   * @param  hipcc IPCC handle
   * @retval None
   */
-__weak void HAL_IPCC_MspDeInit(IPCC_HandleTypeDef *hipcc) {
-    /* Prevent unused argument(s) compilation warning */
-    UNUSED(hipcc);
+__weak void HAL_IPCC_MspDeInit(IPCC_HandleTypeDef *hipcc)
+{
+  /* Prevent unused argument(s) compilation warning */
+  UNUSED(hipcc);
 
-    /* NOTE : This function should not be modified. When the callback is needed
+  /* NOTE : This function should not be modified. When the callback is needed
             the HAL_IPCC_MspDeInit should be implemented in the user file
    */
 }
@@ -290,36 +301,47 @@ __weak void HAL_IPCC_MspDeInit(IPCC_HandleTypeDef *hipcc) {
   * @param  cb Interrupt callback
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_IPCC_ActivateNotification(IPCC_HandleTypeDef *hipcc, uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir, ChannelCb cb) {
-    HAL_StatusTypeDef err = HAL_OK;
+HAL_StatusTypeDef HAL_IPCC_ActivateNotification(IPCC_HandleTypeDef *hipcc, uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir, ChannelCb cb)
+{
+  HAL_StatusTypeDef err = HAL_OK;
 
-    /* Check the IPCC handle allocation */
-    if (hipcc != NULL) {
-        /* Check the parameters */
-        assert_param(IS_IPCC_ALL_INSTANCE(hipcc->Instance));
+  /* Check the IPCC handle allocation */
+  if (hipcc != NULL)
+  {
+    /* Check the parameters */
+    assert_param(IS_IPCC_ALL_INSTANCE(hipcc->Instance));
 
-        /* Check IPCC state */
-        if (hipcc->State == HAL_IPCC_STATE_READY) {
-            /* Set callback and register masking information */
-            if (ChannelDir == IPCC_CHANNEL_DIR_TX) {
-                hipcc->ChannelCallbackTx[ChannelIndex] = cb;
-                hipcc->callbackRequest |= (IPCC_MR_CH1FM_Msk << (ChannelIndex & CHANNEL_INDEX_Msk));
-            } else {
-                hipcc->ChannelCallbackRx[ChannelIndex] = cb;
-                hipcc->callbackRequest |= (IPCC_MR_CH1OM_Msk << (ChannelIndex & CHANNEL_INDEX_Msk));
-            }
+    /* Check IPCC state */
+    if (hipcc->State == HAL_IPCC_STATE_READY)
+    {
+      /* Set callback and register masking information */
+      if (ChannelDir == IPCC_CHANNEL_DIR_TX)
+      {
+        hipcc->ChannelCallbackTx[ChannelIndex] = cb;
+        hipcc->callbackRequest |= (IPCC_MR_CH1FM_Msk << (ChannelIndex & CHANNEL_INDEX_Msk));
+      }
+      else
+      {
+        hipcc->ChannelCallbackRx[ChannelIndex] = cb;
+        hipcc->callbackRequest |= (IPCC_MR_CH1OM_Msk << (ChannelIndex & CHANNEL_INDEX_Msk));
+      }
 
-            /* Unmask only the channels in reception (Transmission channel mask/unmask is done in HAL_IPCC_NotifyCPU) */
-            if (ChannelDir == IPCC_CHANNEL_DIR_RX) {
-                IPCC_UnmaskInterrupt(ChannelIndex, ChannelDir);
-            }
-        } else {
-            err = HAL_ERROR;
-        }
-    } else {
-        err = HAL_ERROR;
+      /* Unmask only the channels in reception (Transmission channel mask/unmask is done in HAL_IPCC_NotifyCPU) */
+      if (ChannelDir == IPCC_CHANNEL_DIR_RX)
+      {
+        IPCC_UnmaskInterrupt(ChannelIndex, ChannelDir);
+      }
     }
-    return err;
+    else
+    {
+      err = HAL_ERROR;
+    }
+  }
+  else
+  {
+    err = HAL_ERROR;
+  }
+  return err;
 }
 
 /**
@@ -336,34 +358,44 @@ HAL_StatusTypeDef HAL_IPCC_ActivateNotification(IPCC_HandleTypeDef *hipcc, uint3
   * @param  ChannelDir Channel direction
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_IPCC_DeActivateNotification(IPCC_HandleTypeDef *hipcc, uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir) {
-    HAL_StatusTypeDef err = HAL_OK;
+HAL_StatusTypeDef HAL_IPCC_DeActivateNotification(IPCC_HandleTypeDef *hipcc, uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir)
+{
+  HAL_StatusTypeDef err = HAL_OK;
 
-    /* Check the IPCC handle allocation */
-    if (hipcc != NULL) {
-        /* Check the parameters */
-        assert_param(IS_IPCC_ALL_INSTANCE(hipcc->Instance));
+  /* Check the IPCC handle allocation */
+  if (hipcc != NULL)
+  {
+    /* Check the parameters */
+    assert_param(IS_IPCC_ALL_INSTANCE(hipcc->Instance));
 
-        /* Check IPCC state */
-        if (hipcc->State == HAL_IPCC_STATE_READY) {
-            /* Set default callback and register masking information */
-            if (ChannelDir == IPCC_CHANNEL_DIR_TX) {
-                hipcc->ChannelCallbackTx[ChannelIndex] = HAL_IPCC_TxCallback;
-                hipcc->callbackRequest &= ~(IPCC_MR_CH1FM_Msk << (ChannelIndex & CHANNEL_INDEX_Msk));
-            } else {
-                hipcc->ChannelCallbackRx[ChannelIndex] = HAL_IPCC_RxCallback;
-                hipcc->callbackRequest &= ~(IPCC_MR_CH1OM_Msk << (ChannelIndex & CHANNEL_INDEX_Msk));
-            }
+    /* Check IPCC state */
+    if (hipcc->State == HAL_IPCC_STATE_READY)
+    {
+      /* Set default callback and register masking information */
+      if (ChannelDir == IPCC_CHANNEL_DIR_TX)
+      {
+        hipcc->ChannelCallbackTx[ChannelIndex] = HAL_IPCC_TxCallback;
+        hipcc->callbackRequest &= ~(IPCC_MR_CH1FM_Msk << (ChannelIndex & CHANNEL_INDEX_Msk));
+      }
+      else
+      {
+        hipcc->ChannelCallbackRx[ChannelIndex] = HAL_IPCC_RxCallback;
+        hipcc->callbackRequest &= ~(IPCC_MR_CH1OM_Msk << (ChannelIndex & CHANNEL_INDEX_Msk));
+      }
 
-            /* Mask the interrupt */
-            IPCC_MaskInterrupt(ChannelIndex, ChannelDir);
-        } else {
-            err = HAL_ERROR;
-        }
-    } else {
-        err = HAL_ERROR;
+      /* Mask the interrupt */
+      IPCC_MaskInterrupt(ChannelIndex, ChannelDir);
     }
-    return err;
+    else
+    {
+      err = HAL_ERROR;
+    }
+  }
+  else
+  {
+    err = HAL_ERROR;
+  }
+  return err;
 }
 
 /**
@@ -380,22 +412,26 @@ HAL_StatusTypeDef HAL_IPCC_DeActivateNotification(IPCC_HandleTypeDef *hipcc, uin
   * @param  ChannelDir Channel direction
   * @retval Channel status
   */
-IPCC_CHANNELStatusTypeDef HAL_IPCC_GetChannelStatus(IPCC_HandleTypeDef const *const hipcc, uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir) {
-    uint32_t channel_state;
-    IPCC_CommonTypeDef *currentInstance = IPCC_C1;
-    IPCC_CommonTypeDef *otherInstance = IPCC_C2;
+IPCC_CHANNELStatusTypeDef HAL_IPCC_GetChannelStatus(IPCC_HandleTypeDef const *const hipcc, uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir)
+{
+  uint32_t channel_state;
+  IPCC_CommonTypeDef *currentInstance = IPCC_C1;
+  IPCC_CommonTypeDef *otherInstance = IPCC_C2;
 
-    /* Check the parameters */
-    assert_param(IS_IPCC_ALL_INSTANCE(hipcc->Instance));
+  /* Check the parameters */
+  assert_param(IS_IPCC_ALL_INSTANCE(hipcc->Instance));
 
-    /* Read corresponding channel depending of the MCU and the direction */
-    if (ChannelDir == IPCC_CHANNEL_DIR_TX) {
-        channel_state = (currentInstance->SR) & (IPCC_SR_CH1F_Msk << (ChannelIndex & CHANNEL_INDEX_Msk));
-    } else {
-        channel_state = (otherInstance->SR) & (IPCC_SR_CH1F_Msk << (ChannelIndex & CHANNEL_INDEX_Msk));
-    }
+  /* Read corresponding channel depending of the MCU and the direction */
+  if (ChannelDir == IPCC_CHANNEL_DIR_TX)
+  {
+    channel_state = (currentInstance->SR) & (IPCC_SR_CH1F_Msk << (ChannelIndex & CHANNEL_INDEX_Msk));
+  }
+  else
+  {
+    channel_state = (otherInstance->SR) & (IPCC_SR_CH1F_Msk << (ChannelIndex & CHANNEL_INDEX_Msk));
+  }
 
-    return (channel_state == 0UL) ? IPCC_CHANNEL_STATUS_FREE : IPCC_CHANNEL_STATUS_OCCUPIED;
+  return (channel_state == 0UL) ? IPCC_CHANNEL_STATUS_FREE : IPCC_CHANNEL_STATUS_OCCUPIED ;
 }
 
 /**
@@ -412,29 +448,34 @@ IPCC_CHANNELStatusTypeDef HAL_IPCC_GetChannelStatus(IPCC_HandleTypeDef const *co
   * @param  ChannelDir Channel direction
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_IPCC_NotifyCPU(IPCC_HandleTypeDef const *const hipcc, uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir) {
-    HAL_StatusTypeDef err = HAL_OK;
-    uint32_t mask;
-    IPCC_CommonTypeDef *currentInstance = IPCC_C1;
+HAL_StatusTypeDef HAL_IPCC_NotifyCPU(IPCC_HandleTypeDef const *const hipcc, uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir)
+{
+  HAL_StatusTypeDef err = HAL_OK;
+  uint32_t mask;
+  IPCC_CommonTypeDef *currentInstance = IPCC_C1;
 
-    /* Check the parameters */
-    assert_param(IS_IPCC_ALL_INSTANCE(hipcc->Instance));
+  /* Check the parameters */
+  assert_param(IS_IPCC_ALL_INSTANCE(hipcc->Instance));
 
-    /* Check if IPCC is initiliased */
-    if (hipcc->State == HAL_IPCC_STATE_READY) {
-        /* For IPCC_CHANNEL_DIR_TX, set the status. For IPCC_CHANNEL_DIR_RX, clear the status */
-        currentInstance->SCR |= ((ChannelDir == IPCC_CHANNEL_DIR_TX) ? IPCC_SCR_CH1S : IPCC_SCR_CH1C) << (ChannelIndex & CHANNEL_INDEX_Msk);
+  /* Check if IPCC is initiliased */
+  if (hipcc->State == HAL_IPCC_STATE_READY)
+  {
+    /* For IPCC_CHANNEL_DIR_TX, set the status. For IPCC_CHANNEL_DIR_RX, clear the status */
+    currentInstance->SCR |= ((ChannelDir == IPCC_CHANNEL_DIR_TX) ? IPCC_SCR_CH1S : IPCC_SCR_CH1C) << (ChannelIndex & CHANNEL_INDEX_Msk) ;
 
-        /* Unmask interrupt if the callback is requested */
-        mask = ((ChannelDir == IPCC_CHANNEL_DIR_TX) ? IPCC_MR_CH1FM_Msk : IPCC_MR_CH1OM_Msk) << (ChannelIndex & CHANNEL_INDEX_Msk);
-        if ((hipcc->callbackRequest & mask) == mask) {
-            IPCC_UnmaskInterrupt(ChannelIndex, ChannelDir);
-        }
-    } else {
-        err = HAL_ERROR;
+    /* Unmask interrupt if the callback is requested */
+    mask = ((ChannelDir == IPCC_CHANNEL_DIR_TX) ? IPCC_MR_CH1FM_Msk : IPCC_MR_CH1OM_Msk) << (ChannelIndex & CHANNEL_INDEX_Msk) ;
+    if ((hipcc->callbackRequest & mask) == mask)
+    {
+      IPCC_UnmaskInterrupt(ChannelIndex, ChannelDir);
     }
+  }
+  else
+  {
+    err = HAL_ERROR;
+  }
 
-    return err;
+  return err;
 }
 
 /**
@@ -450,30 +491,33 @@ HAL_StatusTypeDef HAL_IPCC_NotifyCPU(IPCC_HandleTypeDef const *const hipcc, uint
   * @param  hipcc IPCC handle
   * @retval None
   */
-void HAL_IPCC_TX_IRQHandler(IPCC_HandleTypeDef *const hipcc) {
-    uint32_t irqmask;
-    uint32_t bit_pos;
-    uint32_t ch_count = 0U;
-    IPCC_CommonTypeDef *currentInstance = IPCC_C1;
+void HAL_IPCC_TX_IRQHandler(IPCC_HandleTypeDef *const hipcc)
+{
+  uint32_t irqmask;
+  uint32_t bit_pos;
+  uint32_t ch_count = 0U;
+  IPCC_CommonTypeDef *currentInstance = IPCC_C1;
 
-    /* check the Tx free channels which are not masked */
-    irqmask = ~(currentInstance->MR) & IPCC_ALL_TX_BUF;
-    irqmask = irqmask & ~(currentInstance->SR << IPCC_MR_CH1FM_Pos);
+  /* check the Tx free channels which are not masked */
+  irqmask = ~(currentInstance->MR) & IPCC_ALL_TX_BUF;
+  irqmask = irqmask & ~(currentInstance->SR << IPCC_MR_CH1FM_Pos);
 
-    while (irqmask != 0UL) /* if several bits are set, it loops to serve all of them */
+  while (irqmask != 0UL)  /* if several bits are set, it loops to serve all of them */
+  {
+    bit_pos = 1UL << (IPCC_MR_CH1FM_Pos + (ch_count & CHANNEL_INDEX_Msk));
+
+    if ((irqmask & bit_pos) != 0U)
     {
-        bit_pos = 1UL << (IPCC_MR_CH1FM_Pos + (ch_count & CHANNEL_INDEX_Msk));
-
-        if ((irqmask & bit_pos) != 0U) {
-            /* mask the channel Free interrupt  */
-            currentInstance->MR |= bit_pos;
-            if (hipcc->ChannelCallbackTx[ch_count] != NULL) {
-                hipcc->ChannelCallbackTx[ch_count](hipcc, ch_count, IPCC_CHANNEL_DIR_TX);
-            }
-            irqmask = irqmask & ~(bit_pos);
-        }
-        ch_count++;
+      /* mask the channel Free interrupt  */
+      currentInstance->MR |= bit_pos;
+      if (hipcc->ChannelCallbackTx[ch_count] != NULL)
+      {
+        hipcc->ChannelCallbackTx[ch_count](hipcc, ch_count, IPCC_CHANNEL_DIR_TX);
+      }
+      irqmask =  irqmask & ~(bit_pos);
     }
+    ch_count++;
+  }
 }
 
 /**
@@ -481,31 +525,34 @@ void HAL_IPCC_TX_IRQHandler(IPCC_HandleTypeDef *const hipcc) {
   * @param  hipcc : IPCC handle
   * @retval None
   */
-void HAL_IPCC_RX_IRQHandler(IPCC_HandleTypeDef *const hipcc) {
-    uint32_t irqmask;
-    uint32_t bit_pos;
-    uint32_t ch_count = 0U;
-    IPCC_CommonTypeDef *currentInstance = IPCC_C1;
-    IPCC_CommonTypeDef *otherInstance = IPCC_C2;
+void HAL_IPCC_RX_IRQHandler(IPCC_HandleTypeDef *const hipcc)
+{
+  uint32_t irqmask;
+  uint32_t bit_pos;
+  uint32_t ch_count = 0U;
+  IPCC_CommonTypeDef *currentInstance = IPCC_C1;
+  IPCC_CommonTypeDef *otherInstance = IPCC_C2;
 
-    /* check the Rx occupied channels which are not masked */
-    irqmask = ~(currentInstance->MR) & IPCC_ALL_RX_BUF;
-    irqmask = irqmask & otherInstance->SR;
+  /* check the Rx occupied channels which are not masked */
+  irqmask = ~(currentInstance->MR) & IPCC_ALL_RX_BUF;
+  irqmask = irqmask & otherInstance->SR;
 
-    while (irqmask != 0UL) /* if several bits are set, it loops to serve all of them */
+  while (irqmask != 0UL)  /* if several bits are set, it loops to serve all of them */
+  {
+    bit_pos = 1UL << (ch_count & CHANNEL_INDEX_Msk);
+
+    if ((irqmask & bit_pos) != 0U)
     {
-        bit_pos = 1UL << (ch_count & CHANNEL_INDEX_Msk);
-
-        if ((irqmask & bit_pos) != 0U) {
-            /* mask the channel occupied interrupt */
-            currentInstance->MR |= bit_pos;
-            if (hipcc->ChannelCallbackRx[ch_count] != NULL) {
-                hipcc->ChannelCallbackRx[ch_count](hipcc, ch_count, IPCC_CHANNEL_DIR_RX);
-            }
-            irqmask = irqmask & ~(bit_pos);
-        }
-        ch_count++;
+      /* mask the channel occupied interrupt */
+      currentInstance->MR |= bit_pos;
+      if (hipcc->ChannelCallbackRx[ch_count] != NULL)
+      {
+        hipcc->ChannelCallbackRx[ch_count](hipcc, ch_count, IPCC_CHANNEL_DIR_RX);
+      }
+      irqmask = irqmask & ~(bit_pos);
     }
+    ch_count++;
+  }
 }
 
 /**
@@ -521,13 +568,14 @@ void HAL_IPCC_RX_IRQHandler(IPCC_HandleTypeDef *const hipcc) {
   *            @arg IPCC_CHANNEL_6: IPCC Channel 6
   * @param ChannelDir Channel direction
   */
-__weak void HAL_IPCC_RxCallback(IPCC_HandleTypeDef *hipcc, uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir) {
-    /* Prevent unused argument(s) compilation warning */
-    UNUSED(hipcc);
-    UNUSED(ChannelIndex);
-    UNUSED(ChannelDir);
+__weak void HAL_IPCC_RxCallback(IPCC_HandleTypeDef *hipcc, uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir)
+{
+  /* Prevent unused argument(s) compilation warning */
+  UNUSED(hipcc);
+  UNUSED(ChannelIndex);
+  UNUSED(ChannelDir);
 
-    /* NOTE : This function should not be modified, when the callback is needed,
+  /* NOTE : This function should not be modified, when the callback is needed,
             the HAL_IPCC_RxCallback can be implemented in the user file
    */
 }
@@ -545,13 +593,14 @@ __weak void HAL_IPCC_RxCallback(IPCC_HandleTypeDef *hipcc, uint32_t ChannelIndex
   *            @arg IPCC_CHANNEL_6: IPCC Channel 6
   * @param ChannelDir Channel direction
   */
-__weak void HAL_IPCC_TxCallback(IPCC_HandleTypeDef *hipcc, uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir) {
-    /* Prevent unused argument(s) compilation warning */
-    UNUSED(hipcc);
-    UNUSED(ChannelIndex);
-    UNUSED(ChannelDir);
+__weak void HAL_IPCC_TxCallback(IPCC_HandleTypeDef *hipcc, uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir)
+{
+  /* Prevent unused argument(s) compilation warning */
+  UNUSED(hipcc);
+  UNUSED(ChannelIndex);
+  UNUSED(ChannelDir);
 
-    /* NOTE : This function should not be modified, when the callback is needed,
+  /* NOTE : This function should not be modified, when the callback is needed,
             the HAL_IPCC_TxCallback can be implemented in the user file
    */
 }
@@ -580,8 +629,9 @@ __weak void HAL_IPCC_TxCallback(IPCC_HandleTypeDef *hipcc, uint32_t ChannelIndex
   * @param  hipcc IPCC handle
   * @retval IPCC handle state
   */
-HAL_IPCC_StateTypeDef HAL_IPCC_GetState(IPCC_HandleTypeDef const *const hipcc) {
-    return hipcc->State;
+HAL_IPCC_StateTypeDef HAL_IPCC_GetState(IPCC_HandleTypeDef const *const hipcc)
+{
+  return hipcc->State;
 }
 
 /**
@@ -608,15 +658,19 @@ HAL_IPCC_StateTypeDef HAL_IPCC_GetState(IPCC_HandleTypeDef const *const hipcc) {
   *            @arg IPCC_CHANNEL_6: IPCC Channel 6
   * @param  ChannelDir Channel direction
   */
-void IPCC_MaskInterrupt(uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir) {
-    IPCC_CommonTypeDef *currentInstance = IPCC_C1;
-    if (ChannelDir == IPCC_CHANNEL_DIR_TX) {
-        /* Mask interrupt */
-        currentInstance->MR |= (IPCC_MR_CH1FM_Msk << (ChannelIndex & CHANNEL_INDEX_Msk));
-    } else {
-        /* Mask interrupt */
-        currentInstance->MR |= (IPCC_MR_CH1OM_Msk << (ChannelIndex & CHANNEL_INDEX_Msk));
-    }
+void IPCC_MaskInterrupt(uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir)
+{
+  IPCC_CommonTypeDef *currentInstance = IPCC_C1;
+  if (ChannelDir == IPCC_CHANNEL_DIR_TX)
+  {
+    /* Mask interrupt */
+    currentInstance->MR |= (IPCC_MR_CH1FM_Msk << (ChannelIndex & CHANNEL_INDEX_Msk));
+  }
+  else
+  {
+    /* Mask interrupt */
+    currentInstance->MR |= (IPCC_MR_CH1OM_Msk << (ChannelIndex & CHANNEL_INDEX_Msk));
+  }
 }
 /**
   * @brief  Unmask IPCC interrupts.
@@ -630,43 +684,50 @@ void IPCC_MaskInterrupt(uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir
   *            @arg IPCC_CHANNEL_6: IPCC Channel 6
   * @param  ChannelDir Channel direction
   */
-void IPCC_UnmaskInterrupt(uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir) {
-    IPCC_CommonTypeDef *currentInstance = IPCC_C1;
-    if (ChannelDir == IPCC_CHANNEL_DIR_TX) {
-        /* Unmask interrupt */
-        currentInstance->MR &= ~(IPCC_MR_CH1FM_Msk << (ChannelIndex & CHANNEL_INDEX_Msk));
-    } else {
-        /* Unmask interrupt */
-        currentInstance->MR &= ~(IPCC_MR_CH1OM_Msk << (ChannelIndex & CHANNEL_INDEX_Msk));
-    }
+void IPCC_UnmaskInterrupt(uint32_t ChannelIndex, IPCC_CHANNELDirTypeDef ChannelDir)
+{
+  IPCC_CommonTypeDef *currentInstance = IPCC_C1;
+  if (ChannelDir == IPCC_CHANNEL_DIR_TX)
+  {
+    /* Unmask interrupt */
+    currentInstance->MR &= ~(IPCC_MR_CH1FM_Msk << (ChannelIndex & CHANNEL_INDEX_Msk));
+  }
+  else
+  {
+    /* Unmask interrupt */
+    currentInstance->MR &= ~(IPCC_MR_CH1OM_Msk << (ChannelIndex & CHANNEL_INDEX_Msk));
+  }
 }
 
 /**
   * @brief Reset all callbacks of the handle to NULL.
   * @param  hipcc IPCC handle
   */
-void IPCC_SetDefaultCallbacks(IPCC_HandleTypeDef *hipcc) {
-    uint32_t i;
-    /* Set all callbacks to default */
-    for (i = 0; i < IPCC_CHANNEL_NUMBER; i++) {
-        hipcc->ChannelCallbackRx[i] = HAL_IPCC_RxCallback;
-        hipcc->ChannelCallbackTx[i] = HAL_IPCC_TxCallback;
-    }
+void IPCC_SetDefaultCallbacks(IPCC_HandleTypeDef *hipcc)
+{
+  uint32_t i;
+  /* Set all callbacks to default */
+  for (i = 0; i < IPCC_CHANNEL_NUMBER; i++)
+  {
+    hipcc->ChannelCallbackRx[i] = HAL_IPCC_RxCallback;
+    hipcc->ChannelCallbackTx[i] = HAL_IPCC_TxCallback;
+  }
 }
 
 /**
   * @brief Reset IPCC register to default value for the concerned instance.
   * @param  Instance pointer to register
   */
-void IPCC_Reset_Register(IPCC_CommonTypeDef *Instance) {
-    /* Disable RX and TX interrupts */
-    Instance->CR = 0x00000000U;
+void IPCC_Reset_Register(IPCC_CommonTypeDef *Instance)
+{
+  /* Disable RX and TX interrupts */
+  Instance->CR  = 0x00000000U;
 
-    /* Mask RX and TX interrupts */
-    Instance->MR = (IPCC_ALL_TX_BUF | IPCC_ALL_RX_BUF);
+  /* Mask RX and TX interrupts */
+  Instance->MR  = (IPCC_ALL_TX_BUF | IPCC_ALL_RX_BUF);
 
-    /* Clear RX status */
-    Instance->SCR = IPCC_ALL_RX_BUF;
+  /* Clear RX status */
+  Instance->SCR = IPCC_ALL_RX_BUF;
 }
 
 /**

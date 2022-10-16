@@ -135,8 +135,9 @@ extern "C" {
   * @param  IPCCx IPCC Instance.
   * @retval None
   */
-__STATIC_INLINE void LL_C1_IPCC_EnableIT_TXF(IPCC_TypeDef *IPCCx) {
-    SET_BIT(IPCCx->C1CR, IPCC_C1CR_TXFIE);
+__STATIC_INLINE void LL_C1_IPCC_EnableIT_TXF(IPCC_TypeDef *IPCCx)
+{
+  SET_BIT(IPCCx->C1CR, IPCC_C1CR_TXFIE);
 }
 
 /**
@@ -145,8 +146,9 @@ __STATIC_INLINE void LL_C1_IPCC_EnableIT_TXF(IPCC_TypeDef *IPCCx) {
   * @param  IPCCx IPCC Instance.
   * @retval None
   */
-__STATIC_INLINE void LL_C1_IPCC_DisableIT_TXF(IPCC_TypeDef *IPCCx) {
-    CLEAR_BIT(IPCCx->C1CR, IPCC_C1CR_TXFIE);
+__STATIC_INLINE void LL_C1_IPCC_DisableIT_TXF(IPCC_TypeDef *IPCCx)
+{
+  CLEAR_BIT(IPCCx->C1CR, IPCC_C1CR_TXFIE);
 }
 
 /**
@@ -155,8 +157,9 @@ __STATIC_INLINE void LL_C1_IPCC_DisableIT_TXF(IPCC_TypeDef *IPCCx) {
   * @param  IPCCx IPCC Instance.
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_C1_IPCC_IsEnabledIT_TXF(IPCC_TypeDef const *const IPCCx) {
-    return ((READ_BIT(IPCCx->C1CR, IPCC_C1CR_TXFIE) == (IPCC_C1CR_TXFIE)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_C1_IPCC_IsEnabledIT_TXF(IPCC_TypeDef const *const IPCCx)
+{
+  return ((READ_BIT(IPCCx->C1CR, IPCC_C1CR_TXFIE) == (IPCC_C1CR_TXFIE)) ? 1UL : 0UL);
 }
 
 /**
@@ -165,8 +168,9 @@ __STATIC_INLINE uint32_t LL_C1_IPCC_IsEnabledIT_TXF(IPCC_TypeDef const *const IP
   * @param  IPCCx IPCC Instance.
   * @retval None
   */
-__STATIC_INLINE void LL_C1_IPCC_EnableIT_RXO(IPCC_TypeDef *IPCCx) {
-    SET_BIT(IPCCx->C1CR, IPCC_C1CR_RXOIE);
+__STATIC_INLINE void LL_C1_IPCC_EnableIT_RXO(IPCC_TypeDef *IPCCx)
+{
+  SET_BIT(IPCCx->C1CR, IPCC_C1CR_RXOIE);
 }
 
 /**
@@ -175,8 +179,9 @@ __STATIC_INLINE void LL_C1_IPCC_EnableIT_RXO(IPCC_TypeDef *IPCCx) {
   * @param  IPCCx IPCC Instance.
   * @retval None
   */
-__STATIC_INLINE void LL_C1_IPCC_DisableIT_RXO(IPCC_TypeDef *IPCCx) {
-    CLEAR_BIT(IPCCx->C1CR, IPCC_C1CR_RXOIE);
+__STATIC_INLINE void LL_C1_IPCC_DisableIT_RXO(IPCC_TypeDef *IPCCx)
+{
+  CLEAR_BIT(IPCCx->C1CR, IPCC_C1CR_RXOIE);
 }
 
 /**
@@ -185,8 +190,9 @@ __STATIC_INLINE void LL_C1_IPCC_DisableIT_RXO(IPCC_TypeDef *IPCCx) {
   * @param  IPCCx IPCC Instance.
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_C1_IPCC_IsEnabledIT_RXO(IPCC_TypeDef const *const IPCCx) {
-    return ((READ_BIT(IPCCx->C1CR, IPCC_C1CR_RXOIE) == (IPCC_C1CR_RXOIE)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_C1_IPCC_IsEnabledIT_RXO(IPCC_TypeDef  const *const IPCCx)
+{
+  return ((READ_BIT(IPCCx->C1CR, IPCC_C1CR_RXOIE) == (IPCC_C1CR_RXOIE)) ? 1UL : 0UL);
 }
 
 /**
@@ -195,8 +201,9 @@ __STATIC_INLINE uint32_t LL_C1_IPCC_IsEnabledIT_RXO(IPCC_TypeDef const *const IP
   * @param  IPCCx IPCC Instance.
   * @retval None
   */
-__STATIC_INLINE void LL_C2_IPCC_EnableIT_TXF(IPCC_TypeDef *IPCCx) {
-    SET_BIT(IPCCx->C2CR, IPCC_C2CR_TXFIE);
+__STATIC_INLINE void LL_C2_IPCC_EnableIT_TXF(IPCC_TypeDef *IPCCx)
+{
+  SET_BIT(IPCCx->C2CR, IPCC_C2CR_TXFIE);
 }
 
 /**
@@ -205,8 +212,9 @@ __STATIC_INLINE void LL_C2_IPCC_EnableIT_TXF(IPCC_TypeDef *IPCCx) {
   * @param  IPCCx IPCC Instance.
   * @retval None
   */
-__STATIC_INLINE void LL_C2_IPCC_DisableIT_TXF(IPCC_TypeDef *IPCCx) {
-    CLEAR_BIT(IPCCx->C2CR, IPCC_C2CR_TXFIE);
+__STATIC_INLINE void LL_C2_IPCC_DisableIT_TXF(IPCC_TypeDef *IPCCx)
+{
+  CLEAR_BIT(IPCCx->C2CR, IPCC_C2CR_TXFIE);
 }
 
 /**
@@ -215,8 +223,9 @@ __STATIC_INLINE void LL_C2_IPCC_DisableIT_TXF(IPCC_TypeDef *IPCCx) {
   * @param  IPCCx IPCC Instance.
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_C2_IPCC_IsEnabledIT_TXF(IPCC_TypeDef const *const IPCCx) {
-    return ((READ_BIT(IPCCx->C2CR, IPCC_C2CR_TXFIE) == (IPCC_C2CR_TXFIE)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_C2_IPCC_IsEnabledIT_TXF(IPCC_TypeDef  const *const IPCCx)
+{
+  return ((READ_BIT(IPCCx->C2CR, IPCC_C2CR_TXFIE) == (IPCC_C2CR_TXFIE)) ? 1UL : 0UL);
 }
 
 /**
@@ -225,8 +234,9 @@ __STATIC_INLINE uint32_t LL_C2_IPCC_IsEnabledIT_TXF(IPCC_TypeDef const *const IP
   * @param  IPCCx IPCC Instance.
   * @retval None
   */
-__STATIC_INLINE void LL_C2_IPCC_EnableIT_RXO(IPCC_TypeDef *IPCCx) {
-    SET_BIT(IPCCx->C2CR, IPCC_C2CR_RXOIE);
+__STATIC_INLINE void LL_C2_IPCC_EnableIT_RXO(IPCC_TypeDef *IPCCx)
+{
+  SET_BIT(IPCCx->C2CR, IPCC_C2CR_RXOIE);
 }
 
 /**
@@ -235,8 +245,9 @@ __STATIC_INLINE void LL_C2_IPCC_EnableIT_RXO(IPCC_TypeDef *IPCCx) {
   * @param  IPCCx IPCC Instance.
   * @retval None
   */
-__STATIC_INLINE void LL_C2_IPCC_DisableIT_RXO(IPCC_TypeDef *IPCCx) {
-    CLEAR_BIT(IPCCx->C2CR, IPCC_C2CR_RXOIE);
+__STATIC_INLINE void LL_C2_IPCC_DisableIT_RXO(IPCC_TypeDef *IPCCx)
+{
+  CLEAR_BIT(IPCCx->C2CR, IPCC_C2CR_RXOIE);
 }
 
 /**
@@ -245,8 +256,9 @@ __STATIC_INLINE void LL_C2_IPCC_DisableIT_RXO(IPCC_TypeDef *IPCCx) {
   * @param  IPCCx IPCC Instance.
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_C2_IPCC_IsEnabledIT_RXO(IPCC_TypeDef const *const IPCCx) {
-    return ((READ_BIT(IPCCx->C2CR, IPCC_C2CR_RXOIE) == (IPCC_C2CR_RXOIE)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_C2_IPCC_IsEnabledIT_RXO(IPCC_TypeDef const *const IPCCx)
+{
+  return ((READ_BIT(IPCCx->C2CR, IPCC_C2CR_RXOIE) == (IPCC_C2CR_RXOIE)) ? 1UL : 0UL);
 }
 
 /**
@@ -275,8 +287,9 @@ __STATIC_INLINE uint32_t LL_C2_IPCC_IsEnabledIT_RXO(IPCC_TypeDef const *const IP
   *         @arg @ref LL_IPCC_CHANNEL_6
   * @retval None
   */
-__STATIC_INLINE void LL_C1_IPCC_EnableTransmitChannel(IPCC_TypeDef *IPCCx, uint32_t Channel) {
-    CLEAR_BIT(IPCCx->C1MR, Channel << IPCC_C1MR_CH1FM_Pos);
+__STATIC_INLINE void LL_C1_IPCC_EnableTransmitChannel(IPCC_TypeDef *IPCCx, uint32_t Channel)
+{
+  CLEAR_BIT(IPCCx->C1MR, Channel << IPCC_C1MR_CH1FM_Pos);
 }
 
 /**
@@ -297,8 +310,9 @@ __STATIC_INLINE void LL_C1_IPCC_EnableTransmitChannel(IPCC_TypeDef *IPCCx, uint3
   *         @arg @ref LL_IPCC_CHANNEL_6
   * @retval None
   */
-__STATIC_INLINE void LL_C1_IPCC_DisableTransmitChannel(IPCC_TypeDef *IPCCx, uint32_t Channel) {
-    SET_BIT(IPCCx->C1MR, Channel << IPCC_C1MR_CH1FM_Pos);
+__STATIC_INLINE void LL_C1_IPCC_DisableTransmitChannel(IPCC_TypeDef *IPCCx, uint32_t Channel)
+{
+  SET_BIT(IPCCx->C1MR, Channel << IPCC_C1MR_CH1FM_Pos);
 }
 
 /**
@@ -319,8 +333,9 @@ __STATIC_INLINE void LL_C1_IPCC_DisableTransmitChannel(IPCC_TypeDef *IPCCx, uint
   *         @arg @ref LL_IPCC_CHANNEL_6
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_C1_IPCC_IsEnabledTransmitChannel(IPCC_TypeDef const *const IPCCx, uint32_t Channel) {
-    return ((READ_BIT(IPCCx->C1MR, Channel << IPCC_C1MR_CH1FM_Pos) != (Channel << IPCC_C1MR_CH1FM_Pos)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_C1_IPCC_IsEnabledTransmitChannel(IPCC_TypeDef const *const IPCCx, uint32_t Channel)
+{
+  return ((READ_BIT(IPCCx->C1MR, Channel << IPCC_C1MR_CH1FM_Pos) != (Channel << IPCC_C1MR_CH1FM_Pos)) ? 1UL : 0UL);
 }
 
 /**
@@ -341,8 +356,9 @@ __STATIC_INLINE uint32_t LL_C1_IPCC_IsEnabledTransmitChannel(IPCC_TypeDef const 
   *         @arg @ref LL_IPCC_CHANNEL_6
   * @retval None
   */
-__STATIC_INLINE void LL_C1_IPCC_EnableReceiveChannel(IPCC_TypeDef *IPCCx, uint32_t Channel) {
-    CLEAR_BIT(IPCCx->C1MR, Channel);
+__STATIC_INLINE void LL_C1_IPCC_EnableReceiveChannel(IPCC_TypeDef *IPCCx, uint32_t Channel)
+{
+  CLEAR_BIT(IPCCx->C1MR, Channel);
 }
 
 /**
@@ -363,8 +379,9 @@ __STATIC_INLINE void LL_C1_IPCC_EnableReceiveChannel(IPCC_TypeDef *IPCCx, uint32
   *         @arg @ref LL_IPCC_CHANNEL_6
   * @retval None
   */
-__STATIC_INLINE void LL_C1_IPCC_DisableReceiveChannel(IPCC_TypeDef *IPCCx, uint32_t Channel) {
-    SET_BIT(IPCCx->C1MR, Channel);
+__STATIC_INLINE void LL_C1_IPCC_DisableReceiveChannel(IPCC_TypeDef *IPCCx, uint32_t Channel)
+{
+  SET_BIT(IPCCx->C1MR, Channel);
 }
 
 /**
@@ -385,8 +402,9 @@ __STATIC_INLINE void LL_C1_IPCC_DisableReceiveChannel(IPCC_TypeDef *IPCCx, uint3
   *         @arg @ref LL_IPCC_CHANNEL_6
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_C1_IPCC_IsEnabledReceiveChannel(IPCC_TypeDef const *const IPCCx, uint32_t Channel) {
-    return ((READ_BIT(IPCCx->C1MR, Channel) != (Channel)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_C1_IPCC_IsEnabledReceiveChannel(IPCC_TypeDef const *const IPCCx, uint32_t Channel)
+{
+  return ((READ_BIT(IPCCx->C1MR, Channel) != (Channel)) ? 1UL : 0UL);
 }
 
 /**
@@ -407,8 +425,9 @@ __STATIC_INLINE uint32_t LL_C1_IPCC_IsEnabledReceiveChannel(IPCC_TypeDef const *
   *         @arg @ref LL_IPCC_CHANNEL_6
   * @retval None
   */
-__STATIC_INLINE void LL_C2_IPCC_EnableTransmitChannel(IPCC_TypeDef *IPCCx, uint32_t Channel) {
-    CLEAR_BIT(IPCCx->C2MR, Channel << IPCC_C2MR_CH1FM_Pos);
+__STATIC_INLINE void LL_C2_IPCC_EnableTransmitChannel(IPCC_TypeDef *IPCCx, uint32_t Channel)
+{
+  CLEAR_BIT(IPCCx->C2MR, Channel << IPCC_C2MR_CH1FM_Pos);
 }
 
 /**
@@ -429,8 +448,9 @@ __STATIC_INLINE void LL_C2_IPCC_EnableTransmitChannel(IPCC_TypeDef *IPCCx, uint3
   *         @arg @ref LL_IPCC_CHANNEL_6
   * @retval None
   */
-__STATIC_INLINE void LL_C2_IPCC_DisableTransmitChannel(IPCC_TypeDef *IPCCx, uint32_t Channel) {
-    SET_BIT(IPCCx->C2MR, Channel << (IPCC_C2MR_CH1FM_Pos));
+__STATIC_INLINE void LL_C2_IPCC_DisableTransmitChannel(IPCC_TypeDef *IPCCx, uint32_t Channel)
+{
+  SET_BIT(IPCCx->C2MR, Channel << (IPCC_C2MR_CH1FM_Pos));
 }
 
 /**
@@ -451,8 +471,9 @@ __STATIC_INLINE void LL_C2_IPCC_DisableTransmitChannel(IPCC_TypeDef *IPCCx, uint
   *         @arg @ref LL_IPCC_CHANNEL_6
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_C2_IPCC_IsEnabledTransmitChannel(IPCC_TypeDef const *const IPCCx, uint32_t Channel) {
-    return ((READ_BIT(IPCCx->C2MR, Channel << IPCC_C2MR_CH1FM_Pos) != (Channel << IPCC_C2MR_CH1FM_Pos)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_C2_IPCC_IsEnabledTransmitChannel(IPCC_TypeDef const *const IPCCx, uint32_t Channel)
+{
+  return ((READ_BIT(IPCCx->C2MR, Channel << IPCC_C2MR_CH1FM_Pos) != (Channel << IPCC_C2MR_CH1FM_Pos)) ? 1UL : 0UL);
 }
 
 /**
@@ -473,8 +494,9 @@ __STATIC_INLINE uint32_t LL_C2_IPCC_IsEnabledTransmitChannel(IPCC_TypeDef const 
   *         @arg @ref LL_IPCC_CHANNEL_6
   * @retval None
   */
-__STATIC_INLINE void LL_C2_IPCC_EnableReceiveChannel(IPCC_TypeDef *IPCCx, uint32_t Channel) {
-    CLEAR_BIT(IPCCx->C2MR, Channel);
+__STATIC_INLINE void LL_C2_IPCC_EnableReceiveChannel(IPCC_TypeDef *IPCCx, uint32_t Channel)
+{
+  CLEAR_BIT(IPCCx->C2MR, Channel);
 }
 
 /**
@@ -495,8 +517,9 @@ __STATIC_INLINE void LL_C2_IPCC_EnableReceiveChannel(IPCC_TypeDef *IPCCx, uint32
   *         @arg @ref LL_IPCC_CHANNEL_6
   * @retval None
   */
-__STATIC_INLINE void LL_C2_IPCC_DisableReceiveChannel(IPCC_TypeDef *IPCCx, uint32_t Channel) {
-    SET_BIT(IPCCx->C2MR, Channel);
+__STATIC_INLINE void LL_C2_IPCC_DisableReceiveChannel(IPCC_TypeDef *IPCCx, uint32_t Channel)
+{
+  SET_BIT(IPCCx->C2MR, Channel);
 }
 
 /**
@@ -517,8 +540,9 @@ __STATIC_INLINE void LL_C2_IPCC_DisableReceiveChannel(IPCC_TypeDef *IPCCx, uint3
   *         @arg @ref LL_IPCC_CHANNEL_6
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_C2_IPCC_IsEnabledReceiveChannel(IPCC_TypeDef const *const IPCCx, uint32_t Channel) {
-    return ((READ_BIT(IPCCx->C2MR, Channel) != (Channel)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_C2_IPCC_IsEnabledReceiveChannel(IPCC_TypeDef const *const IPCCx, uint32_t Channel)
+{
+  return ((READ_BIT(IPCCx->C2MR, Channel) != (Channel)) ? 1UL : 0UL);
 }
 
 /**
@@ -548,8 +572,9 @@ __STATIC_INLINE uint32_t LL_C2_IPCC_IsEnabledReceiveChannel(IPCC_TypeDef const *
   *         @arg @ref LL_IPCC_CHANNEL_6
   * @retval None
   */
-__STATIC_INLINE void LL_C1_IPCC_ClearFlag_CHx(IPCC_TypeDef *IPCCx, uint32_t Channel) {
-    WRITE_REG(IPCCx->C1SCR, Channel);
+__STATIC_INLINE void LL_C1_IPCC_ClearFlag_CHx(IPCC_TypeDef *IPCCx, uint32_t Channel)
+{
+  WRITE_REG(IPCCx->C1SCR, Channel);
 }
 
 /**
@@ -571,8 +596,9 @@ __STATIC_INLINE void LL_C1_IPCC_ClearFlag_CHx(IPCC_TypeDef *IPCCx, uint32_t Chan
   *         @arg @ref LL_IPCC_CHANNEL_6
   * @retval None
   */
-__STATIC_INLINE void LL_C1_IPCC_SetFlag_CHx(IPCC_TypeDef *IPCCx, uint32_t Channel) {
-    WRITE_REG(IPCCx->C1SCR, Channel << IPCC_C1SCR_CH1S_Pos);
+__STATIC_INLINE void LL_C1_IPCC_SetFlag_CHx(IPCC_TypeDef *IPCCx, uint32_t Channel)
+{
+  WRITE_REG(IPCCx->C1SCR, Channel << IPCC_C1SCR_CH1S_Pos);
 }
 
 /**
@@ -593,8 +619,9 @@ __STATIC_INLINE void LL_C1_IPCC_SetFlag_CHx(IPCC_TypeDef *IPCCx, uint32_t Channe
   *         @arg @ref LL_IPCC_CHANNEL_6
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_C1_IPCC_IsActiveFlag_CHx(IPCC_TypeDef const *const IPCCx, uint32_t Channel) {
-    return ((READ_BIT(IPCCx->C1TOC2SR, Channel) == (Channel)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_C1_IPCC_IsActiveFlag_CHx(IPCC_TypeDef  const *const IPCCx, uint32_t Channel)
+{
+  return ((READ_BIT(IPCCx->C1TOC2SR, Channel) == (Channel)) ? 1UL : 0UL);
 }
 
 /**
@@ -616,8 +643,9 @@ __STATIC_INLINE uint32_t LL_C1_IPCC_IsActiveFlag_CHx(IPCC_TypeDef const *const I
   *         @arg @ref LL_IPCC_CHANNEL_6
   * @retval None
   */
-__STATIC_INLINE void LL_C2_IPCC_ClearFlag_CHx(IPCC_TypeDef *IPCCx, uint32_t Channel) {
-    WRITE_REG(IPCCx->C2SCR, Channel);
+__STATIC_INLINE void LL_C2_IPCC_ClearFlag_CHx(IPCC_TypeDef *IPCCx, uint32_t Channel)
+{
+  WRITE_REG(IPCCx->C2SCR, Channel);
 }
 
 /**
@@ -639,8 +667,9 @@ __STATIC_INLINE void LL_C2_IPCC_ClearFlag_CHx(IPCC_TypeDef *IPCCx, uint32_t Chan
   *         @arg @ref LL_IPCC_CHANNEL_6
   * @retval None
   */
-__STATIC_INLINE void LL_C2_IPCC_SetFlag_CHx(IPCC_TypeDef *IPCCx, uint32_t Channel) {
-    WRITE_REG(IPCCx->C2SCR, Channel << IPCC_C2SCR_CH1S_Pos);
+__STATIC_INLINE void LL_C2_IPCC_SetFlag_CHx(IPCC_TypeDef *IPCCx, uint32_t Channel)
+{
+  WRITE_REG(IPCCx->C2SCR, Channel << IPCC_C2SCR_CH1S_Pos);
 }
 
 /**
@@ -661,8 +690,9 @@ __STATIC_INLINE void LL_C2_IPCC_SetFlag_CHx(IPCC_TypeDef *IPCCx, uint32_t Channe
   *         @arg @ref LL_IPCC_CHANNEL_6
   * @retval State of bit (1 or 0).
   */
-__STATIC_INLINE uint32_t LL_C2_IPCC_IsActiveFlag_CHx(IPCC_TypeDef const *const IPCCx, uint32_t Channel) {
-    return ((READ_BIT(IPCCx->C2TOC1SR, Channel) == (Channel)) ? 1UL : 0UL);
+__STATIC_INLINE uint32_t LL_C2_IPCC_IsActiveFlag_CHx(IPCC_TypeDef  const *const IPCCx, uint32_t Channel)
+{
+  return ((READ_BIT(IPCCx->C2TOC1SR, Channel) == (Channel)) ? 1UL : 0UL);
 }
 
 /**
@@ -670,10 +700,11 @@ __STATIC_INLINE uint32_t LL_C2_IPCC_IsActiveFlag_CHx(IPCC_TypeDef const *const I
   * @param  IPCCx IPCC Instance.
   * @retval Number of supported channels.
   */
-__STATIC_INLINE uint32_t LL_IPCC_GetChannelNumber(IPCC_TypeDef *IPCCx) {
-    /* Added for compatibility with other STM32 series */
-    (void) (IPCCx); /* To avoid gcc/g++ warnings */
-    return 6U;
+__STATIC_INLINE uint32_t LL_IPCC_GetChannelNumber(IPCC_TypeDef *IPCCx)
+{
+  /* Added for compatibility with other STM32 series */
+  (void)(IPCCx); /* To avoid gcc/g++ warnings */
+  return 6U;
 }
 
 /**

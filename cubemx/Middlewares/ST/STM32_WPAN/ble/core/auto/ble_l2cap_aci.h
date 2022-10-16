@@ -51,11 +51,11 @@
  *        following manner: Timeout Multiplier * 10ms.
  * @return Value indicating success or error code.
  */
-tBleStatus aci_l2cap_connection_parameter_update_req(uint16_t Connection_Handle,
-                                                     uint16_t Conn_Interval_Min,
-                                                     uint16_t Conn_Interval_Max,
-                                                     uint16_t Slave_latency,
-                                                     uint16_t Timeout_Multiplier);
+tBleStatus aci_l2cap_connection_parameter_update_req( uint16_t Connection_Handle,
+                                                      uint16_t Conn_Interval_Min,
+                                                      uint16_t Conn_Interval_Max,
+                                                      uint16_t Slave_latency,
+                                                      uint16_t Timeout_Multiplier );
 
 /**
  * @brief ACI_L2CAP_CONNECTION_PARAMETER_UPDATE_RESP
@@ -101,15 +101,15 @@ tBleStatus aci_l2cap_connection_parameter_update_req(uint16_t Connection_Handle,
  *        - 0x01: Accept
  * @return Value indicating success or error code.
  */
-tBleStatus aci_l2cap_connection_parameter_update_resp(uint16_t Connection_Handle,
-                                                      uint16_t Conn_Interval_Min,
-                                                      uint16_t Conn_Interval_Max,
-                                                      uint16_t Slave_latency,
-                                                      uint16_t Timeout_Multiplier,
-                                                      uint16_t Minimum_CE_Length,
-                                                      uint16_t Maximum_CE_Length,
-                                                      uint8_t Identifier,
-                                                      uint8_t Accept);
+tBleStatus aci_l2cap_connection_parameter_update_resp( uint16_t Connection_Handle,
+                                                       uint16_t Conn_Interval_Min,
+                                                       uint16_t Conn_Interval_Max,
+                                                       uint16_t Slave_latency,
+                                                       uint16_t Timeout_Multiplier,
+                                                       uint16_t Minimum_CE_Length,
+                                                       uint16_t Maximum_CE_Length,
+                                                       uint8_t Identifier,
+                                                       uint8_t Accept );
 
 /**
  * @brief ACI_L2CAP_COC_CONNECT
@@ -140,12 +140,12 @@ tBleStatus aci_l2cap_connection_parameter_update_resp(uint16_t Connection_Handle
  *        - 0 ... 5
  * @return Value indicating success or error code.
  */
-tBleStatus aci_l2cap_coc_connect(uint16_t Connection_Handle,
-                                 uint16_t SPSM,
-                                 uint16_t MTU,
-                                 uint16_t MPS,
-                                 uint16_t Initial_Credits,
-                                 uint8_t Channel_Number);
+tBleStatus aci_l2cap_coc_connect( uint16_t Connection_Handle,
+                                  uint16_t SPSM,
+                                  uint16_t MTU,
+                                  uint16_t MPS,
+                                  uint16_t Initial_Credits,
+                                  uint8_t Channel_Number );
 
 /**
  * @brief ACI_L2CAP_COC_CONNECT_CONFIRM
@@ -180,13 +180,13 @@ tBleStatus aci_l2cap_coc_connect(uint16_t Connection_Handle,
  *        primitive applies.
  * @return Value indicating success or error code.
  */
-tBleStatus aci_l2cap_coc_connect_confirm(uint16_t Connection_Handle,
-                                         uint16_t MTU,
-                                         uint16_t MPS,
-                                         uint16_t Initial_Credits,
-                                         uint16_t Result,
-                                         uint8_t *Channel_Number,
-                                         uint8_t *Channel_Index_List);
+tBleStatus aci_l2cap_coc_connect_confirm( uint16_t Connection_Handle,
+                                          uint16_t MTU,
+                                          uint16_t MPS,
+                                          uint16_t Initial_Credits,
+                                          uint16_t Result,
+                                          uint8_t* Channel_Number,
+                                          uint8_t* Channel_Index_List );
 
 /**
  * @brief ACI_L2CAP_COC_RECONF
@@ -210,11 +210,11 @@ tBleStatus aci_l2cap_coc_connect_confirm(uint16_t Connection_Handle,
  *        applies.
  * @return Value indicating success or error code.
  */
-tBleStatus aci_l2cap_coc_reconf(uint16_t Connection_Handle,
-                                uint16_t MTU,
-                                uint16_t MPS,
-                                uint8_t Channel_Number,
-                                const uint8_t *Channel_Index_List);
+tBleStatus aci_l2cap_coc_reconf( uint16_t Connection_Handle,
+                                 uint16_t MTU,
+                                 uint16_t MPS,
+                                 uint8_t Channel_Number,
+                                 const uint8_t* Channel_Index_List );
 
 /**
  * @brief ACI_L2CAP_COC_RECONF_CONFIRM
@@ -233,8 +233,8 @@ tBleStatus aci_l2cap_coc_reconf(uint16_t Connection_Handle,
  *        - 0x0000 ... 0x000C
  * @return Value indicating success or error code.
  */
-tBleStatus aci_l2cap_coc_reconf_confirm(uint16_t Connection_Handle,
-                                        uint16_t Result);
+tBleStatus aci_l2cap_coc_reconf_confirm( uint16_t Connection_Handle,
+                                         uint16_t Result );
 
 /**
  * @brief ACI_L2CAP_COC_DISCONNECT
@@ -247,7 +247,7 @@ tBleStatus aci_l2cap_coc_reconf_confirm(uint16_t Connection_Handle,
  *        primitive applies.
  * @return Value indicating success or error code.
  */
-tBleStatus aci_l2cap_coc_disconnect(uint8_t Channel_Index);
+tBleStatus aci_l2cap_coc_disconnect( uint8_t Channel_Index );
 
 /**
  * @brief ACI_L2CAP_COC_FLOW_CONTROL
@@ -263,8 +263,8 @@ tBleStatus aci_l2cap_coc_disconnect(uint8_t Channel_Index);
  *        - 1 ... 65535
  * @return Value indicating success or error code.
  */
-tBleStatus aci_l2cap_coc_flow_control(uint8_t Channel_Index,
-                                      uint16_t Credits);
+tBleStatus aci_l2cap_coc_flow_control( uint8_t Channel_Index,
+                                       uint16_t Credits );
 
 /**
  * @brief ACI_L2CAP_COC_TX_DATA
@@ -283,9 +283,9 @@ tBleStatus aci_l2cap_coc_flow_control(uint8_t Channel_Index,
  * @param Data Information data
  * @return Value indicating success or error code.
  */
-tBleStatus aci_l2cap_coc_tx_data(uint8_t Channel_Index,
-                                 uint16_t Length,
-                                 const uint8_t *Data);
+tBleStatus aci_l2cap_coc_tx_data( uint8_t Channel_Index,
+                                  uint16_t Length,
+                                  const uint8_t* Data );
 
 
 #endif /* BLE_L2CAP_ACI_H__ */

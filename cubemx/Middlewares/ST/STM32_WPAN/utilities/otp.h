@@ -26,23 +26,23 @@
 extern "C" {
 #endif
 
-/* Includes ------------------------------------------------------------------*/
+  /* Includes ------------------------------------------------------------------*/
 #include "utilities_common.h"
 
-/* Exported types ------------------------------------------------------------*/
-typedef PACKED_STRUCT {
-    uint8_t bd_address[6];
-    uint8_t hse_tuning;
-    uint8_t id;
-}
-OTP_ID0_t;
+  /* Exported types ------------------------------------------------------------*/
+  typedef  PACKED_STRUCT
+  {
+    uint8_t   bd_address[6];
+    uint8_t   hse_tuning;
+    uint8_t   id;
+  } OTP_ID0_t;
 
-/* Exported constants --------------------------------------------------------*/
-/* External variables --------------------------------------------------------*/
-/* Exported macros -----------------------------------------------------------*/
-/* Exported functions ------------------------------------------------------- */
+  /* Exported constants --------------------------------------------------------*/
+  /* External variables --------------------------------------------------------*/
+  /* Exported macros -----------------------------------------------------------*/
+  /* Exported functions ------------------------------------------------------- */
 
-/**
+  /**
    * @brief This API return the address (64 bits aligned) of the ID parameter in the OTP
    *        It returns the first ID declaration found from the higher address down to the base address
    *        The user shall fill the OTP from the base address to the top of the OTP so that the more recent
@@ -55,7 +55,7 @@ OTP_ID0_t;
    * @param  id: ID of the parameter to read from OTP
    * @retval Address of the ID in the OTP - returns 0 when no ID found
    */
-uint8_t *OTP_Read(uint8_t id);
+  uint8_t * OTP_Read( uint8_t id );
 
 #ifdef __cplusplus
 }
