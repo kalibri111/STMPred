@@ -24,7 +24,7 @@
 #include "ble.h"
 #include "custom_stm.h"
 #include "dbg_trace.h"
-#include "main.h"
+
 #include "stm32_seq.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -74,7 +74,6 @@ static Custom_App_Context_t Custom_App_Context;
 /* USER CODE BEGIN PV */
 uint8_t UpdateCharData[247];
 uint8_t NotifyCharData[247];
-
 uint8_t SecureReadData;
 
 /* USER CODE END PV */
@@ -131,7 +130,6 @@ void Custom_STM_App_Notification(Custom_STM_App_Notification_evt_t *pNotificatio
             /* DataService */
         case CUSTOM_STM_VLT_CHR_READ_EVT: {
             /* USER CODE BEGIN CUSTOM_STM_VLT_CHR_READ_EVT */
-            HAL_GPIO_TogglePin(LD1_GPIO_Port, LD1_Pin);
             Custom_STM_App_Update_Char(CUSTOM_STM_VLT_CHR, (uint8_t *) UpdateCharData);
             /* USER CODE END CUSTOM_STM_VLT_CHR_READ_EVT */
             break;
@@ -146,15 +144,18 @@ void Custom_STM_App_Notification(Custom_STM_App_Notification_evt_t *pNotificatio
 
         case CUSTOM_STM_DBG_A_CHR_NOTIFY_ENABLED_EVT:
             /* USER CODE BEGIN CUSTOM_STM_DBG_A_CHR_NOTIFY_ENABLED_EVT */
-            HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
+            if (UTIL_SEQ_IsPauseTask(1 << CFG_TASK_READ_ALL_MPU_VALUES)) {
+                UTIL_SEQ_ResumeTask(1 << CFG_TASK_READ_ALL_MPU_VALUES);
+            } else {
+                UTIL_SEQ_SetTask(1 << CFG_TASK_READ_ALL_MPU_VALUES, CFG_SCH_PRIO_1);
+            }
             Custom_App_Context.Dbg_a_chr_Notification_Status = 1;
-            Custom_Dbg_a_chr_Send_Notification();
             /* USER CODE END CUSTOM_STM_DBG_A_CHR_NOTIFY_ENABLED_EVT */
             break;
 
         case CUSTOM_STM_DBG_A_CHR_NOTIFY_DISABLED_EVT:
             /* USER CODE BEGIN CUSTOM_STM_DBG_A_CHR_NOTIFY_DISABLED_EVT */
-            HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
+            UTIL_SEQ_PauseTask(1 << CFG_TASK_READ_ALL_MPU_VALUES);
             Custom_App_Context.Dbg_a_chr_Notification_Status = 0;
 
             /* USER CODE END CUSTOM_STM_DBG_A_CHR_NOTIFY_DISABLED_EVT */

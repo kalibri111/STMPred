@@ -31,6 +31,8 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stdint.h"
+#include "custom_task.h"
+//#include "main.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
