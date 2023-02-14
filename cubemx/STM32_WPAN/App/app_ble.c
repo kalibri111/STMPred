@@ -714,11 +714,11 @@ static void Adv_Request(APP_BLE_ConnStatus_t New_Status)
 
     if (ret == BLE_STATUS_SUCCESS)
     {
-        APP_DBG_MSG("Successfully Start Fast Advertising \n" );
+        APP_DBG_MSG("Successfully Start Fast Advertising \n\r" );
     }
     else
     {
-        APP_DBG_MSG("Start Fast Advertising Failed , result: %d \n", ret);
+        APP_DBG_MSG("Start Fast Advertising Failed , result: %d \n\r", ret);
     }
 
   return;

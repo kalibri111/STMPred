@@ -65,7 +65,7 @@ typedef struct {
 static const uint8_t SizeOn_Chr = 1;
 static const uint8_t SizeOf_Chr = 1;
 static const uint8_t SizeVlt_Chr = 3;
-static const uint8_t SizeDbg_A_Chr = 247;
+static const uint8_t SizeDbg_A_Chr = 12;
 /**
  * START of Section BLE_DRIVER_CONTEXT
  */

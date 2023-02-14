@@ -24,7 +24,7 @@
 #include "ble.h"
 #include "custom_stm.h"
 #include "dbg_trace.h"
-
+#include "main.h"
 #include "stm32_seq.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -75,7 +75,7 @@ static Custom_App_Context_t Custom_App_Context;
 uint8_t UpdateCharData[247];
 uint8_t NotifyCharData[247];
 uint8_t SecureReadData;
-
+extern TIM_HandleTypeDef htim2;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -150,11 +150,13 @@ void Custom_STM_App_Notification(Custom_STM_App_Notification_evt_t *pNotificatio
                 UTIL_SEQ_SetTask(1 << CFG_TASK_READ_ALL_MPU_VALUES, CFG_SCH_PRIO_1);
             }
             Custom_App_Context.Dbg_a_chr_Notification_Status = 1;
+            HAL_TIM_Base_Start_IT(&htim2);
             /* USER CODE END CUSTOM_STM_DBG_A_CHR_NOTIFY_ENABLED_EVT */
             break;
 
         case CUSTOM_STM_DBG_A_CHR_NOTIFY_DISABLED_EVT:
             /* USER CODE BEGIN CUSTOM_STM_DBG_A_CHR_NOTIFY_DISABLED_EVT */
+            HAL_TIM_Base_Stop_IT(&htim2);
             UTIL_SEQ_PauseTask(1 << CFG_TASK_READ_ALL_MPU_VALUES);
             Custom_App_Context.Dbg_a_chr_Notification_Status = 0;
 

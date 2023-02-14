@@ -52,6 +52,7 @@ typedef enum
   HAL_UNLOCKED = 0x00,
   HAL_LOCKED   = 0x01
 } HAL_LockTypeDef;
+
 #include "stm32wbxx.h"
 /* Exported macros -----------------------------------------------------------*/
 #ifndef UNUSED

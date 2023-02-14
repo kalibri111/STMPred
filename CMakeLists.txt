@@ -24,7 +24,8 @@ set(CMAKE_C_STANDARD 11)
 #add_link_options(-mfloat-abi=hard -mfpu=fpv4-sp-d16)
 
 #Uncomment for software floating point
-#add_compile_options(-mfloat-abi=soft)
+#add_compile_options(-mfloat-abi=softfp)
+add_compile_options(-msoft-float)
 
 add_compile_options(-mcpu=cortex-m4 -mthumb -mthumb-interwork)
 add_compile_options(-ffunction-sections -fdata-sections -fno-common -fmessage-length=0)
@@ -56,6 +57,8 @@ include_directories(
         cubemx/Drivers/STM32WBxx_HAL_Driver/Inc
         cubemx/Drivers/STM32WBxx_HAL_Driver/Inc/Legacy
         cubemx/Utilities/lpm/tiny_lpm
+        cubemx/Middlewares/ST/ARM/DSP/Inc
+        cubemx/Middlewares/ST/ARM/DSP/Lib
         cubemx/Middlewares/ST/STM32_WPAN
         cubemx/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread
         cubemx/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl
@@ -77,7 +80,16 @@ include_directories(
 
 add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32WB55xx)
 
-file(GLOB_RECURSE SOURCES "cubemx/STM32_WPAN/*.*" "cubemx/Core/*.*" "cubemx/Utilities/*.*" "cubemx/Middlewares/*.*" "cubemx/Drivers/*.*" "interface/mpu5060/*.*")
+file(GLOB_RECURSE SOURCES "cubemx/STM32_WPAN/*.*"
+        "cubemx/Core/*.*"
+        "cubemx/Utilities/*.*"
+        "cubemx/Middlewares/*.*"
+        "cubemx/Middlewares/ST/ARM/DSP/Inc/*.*"
+        "cubemx/Middlewares/ST/ARM/DSP/Lib/*.*"
+        "cubemx/Drivers/*.*"
+        "interface/mpu5060/*.*"
+        "predict/*.*"
+        )
 
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/cubemx/resources/STM32WB55RGVX_FLASH.ld)
 
@@ -86,6 +98,7 @@ add_link_options(-mcpu=cortex-m4 -mthumb -mthumb-interwork)
 add_link_options(-T ${LINKER_SCRIPT})
 
 add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT})
+target_link_libraries(${PROJECT_NAME}.elf "${CMAKE_SOURCE_DIR}/cubemx/Middlewares/ST/ARM/DSP/Lib/libarm_cortexM4l_math.a")
 
 set(HEX_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.hex)
 set(BIN_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.bin)

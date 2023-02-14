@@ -8,6 +8,10 @@
 #include "mpu5060.h"
 #include "stm32_seq.h"
 #include "app_conf.h"
+#include "predict.h"
+
+#define LD2_Pin GPIO_PIN_0
+#define LD2_GPIO_Port GPIOB
 
 void NotifyAxCharMpi(void);
 void UpdateVCountCharMpi(void);

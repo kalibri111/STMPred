@@ -34,6 +34,8 @@ extern "C" {
 #include "app_common.h"
 #include "mpu5060.h"
 #include "custom_task.h"
+#include "retarget_printf.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -46,6 +48,7 @@ extern "C" {
 
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
+
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/
@@ -55,6 +58,7 @@ extern "C" {
 
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
+
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */

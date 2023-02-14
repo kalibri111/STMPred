@@ -2,8 +2,15 @@
 // Created by Иван Лескин on 20/10/2022.
 //
 #include "custom_task.h"
-#define MPU_DOUBLE sizeof(double)
-I2C_HandleTypeDef hi2c;
+#define TRANSFER_DATA_SIZE sizeof(float)
+I2C_HandleTypeDef hi2c1;
+uint8_t charCounter = 0;
+
+double MPU_x[BATCH_SIZE];
+double MPU_y[BATCH_SIZE];
+double MPU_z[BATCH_SIZE];
+
+
 MPU6050_t MPU_Data = {
         1,
         1,
@@ -26,17 +33,30 @@ static uint8_t UpdateCharData[247];
 static uint8_t NotifyCharData[247] = {0};
 
 void NotifyAxCharMpi(void) {
-    MPU6050_Read_All(&hi2c, &MPU_Data);
+    MPU6050_Read_All(&hi2c1, &MPU_Data);
     // copy data
-    memcpy(NotifyCharData               , &(MPU_Data.Ax), MPU_DOUBLE);
-    memcpy(NotifyCharData + MPU_DOUBLE  , &(MPU_Data.Ay), MPU_DOUBLE);
-    memcpy(NotifyCharData + 2*MPU_DOUBLE, &(MPU_Data.Az), MPU_DOUBLE);
+    float x = (float)(MPU_Data.Ax);
+    float y = (float)(MPU_Data.Ay);
+    float z = (float)(MPU_Data.Az);
+
+    MPU_x[charCounter] = x;
+    MPU_y[charCounter] = y;
+    MPU_z[charCounter] = z;
+
+    memcpy(NotifyCharData                 , &(x), TRANSFER_DATA_SIZE);
+    memcpy(NotifyCharData + TRANSFER_DATA_SIZE    , &(y), TRANSFER_DATA_SIZE);
+    memcpy(NotifyCharData + 2 * TRANSFER_DATA_SIZE, &(z), TRANSFER_DATA_SIZE);
 
     Custom_STM_App_Update_Char(CUSTOM_STM_DBG_A_CHR, (uint8_t *) NotifyCharData);
-
-    UTIL_SEQ_SetTask(1 << CFG_TASK_READ_ALL_MPU_VALUES, CFG_SCH_PRIO_1);
 }
 
 void UpdateVCountCharMpi(void) {
-
+    if (charCounter < BATCH_SIZE) {
+        NotifyAxCharMpi();
+        charCounter += 1;
+    } else {
+        charCounter = 0;
+        predict(MPU_x, MPU_y, MPU_z, rbf_kernel);
+        HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+    }
 }
