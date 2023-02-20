@@ -409,7 +409,7 @@ SVCCTL_UserEvtFlowStatus_t SVCCTL_App_Notification( void *pckt )
       switch (meta_evt->subevent)
       {
         case HCI_LE_CONNECTION_UPDATE_COMPLETE_SUBEVT_CODE:
-          APP_DBG_MSG("\r\n\r** CONNECTION UPDATE EVENT WITH CLIENT \n");
+          APP_DBG_MSG("\r\n\r** CONNECTION UPDATE EVENT WITH CLIENT \n\r");
 
           /* USER CODE BEGIN EVT_LE_CONN_UPDATE_COMPLETE */
 

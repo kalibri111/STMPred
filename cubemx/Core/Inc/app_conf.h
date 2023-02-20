@@ -621,7 +621,7 @@ typedef enum
 #define BATCH_SIZE 100
 #define TRAIN_SIZE 100
 #define GAMMA 2.3
-#define PRINT_LOG
+//#define PRINT_LOG
 
 #endif /*APP_CONF_H */
 

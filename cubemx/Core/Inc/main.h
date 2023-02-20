@@ -35,6 +35,7 @@ extern "C" {
 #include "mpu5060.h"
 #include "custom_task.h"
 #include "retarget_printf.h"
+#include "errno.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */

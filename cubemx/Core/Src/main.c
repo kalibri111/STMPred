@@ -501,7 +501,7 @@ static void MX_TIM2_Init(void) {
   */
 void Error_Handler(void) {
     /* USER CODE BEGIN Error_Handler_Debug */
-    /* User can add his own implementation to report the HAL error return state */
+    printf("FATAL: ERROR %d", errno);
     __disable_irq();
     while (1) {
     }

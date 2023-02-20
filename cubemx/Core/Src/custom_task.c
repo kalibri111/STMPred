@@ -56,7 +56,9 @@ void UpdateVCountCharMpi(void) {
         charCounter += 1;
     } else {
         charCounter = 0;
-        predict(MPU_x, MPU_y, MPU_z, rbf_kernel);
+        printf("computing predict...\n\r");
+        int8_t p_res = predict(MPU_x, MPU_y, MPU_z, rbf_kernel);
+        printf("predict result %d!\n\r", p_res);
         HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
     }
 }

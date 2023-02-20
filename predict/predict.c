@@ -142,7 +142,7 @@ void statistics(SVMDataUnit_type* to_fill, double* x, double* y, double* z) {
 }
 
 double decision_function_(SVMDataUnit_type* measure, void* kernel_fn(SVMDataUnit_type*, SVMDataUnit_type*, size_t, double)) {
-    float32_t decision;
+    float32_t decision = 1;
     kernel_fn(measure, x_trained, TRAIN_SIZE, GAMMA);
 
     // kernel * y * lambdas scalar

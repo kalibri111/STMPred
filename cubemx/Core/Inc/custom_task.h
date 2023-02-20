@@ -9,6 +9,8 @@
 #include "stm32_seq.h"
 #include "app_conf.h"
 #include "predict.h"
+#include "retarget_printf.h"
+#include "app_common.h"
 
 #define LD2_Pin GPIO_PIN_0
 #define LD2_GPIO_Port GPIOB
