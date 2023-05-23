@@ -36,7 +36,7 @@ extern "C" {
 #include "custom_task.h"
 #include "retarget_printf.h"
 #include "errno.h"
-
+#include "dbg_trace.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 

@@ -27,7 +27,24 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN TD */
-
+#define B1_Pin GPIO_PIN_4
+#define B1_GPIO_Port GPIOC
+#define LD2_Pin GPIO_PIN_0
+#define LD2_GPIO_Port GPIOB
+#define LD3_Pin GPIO_PIN_1
+#define LD3_GPIO_Port GPIOB
+#define JTMS_Pin GPIO_PIN_13
+#define JTMS_GPIO_Port GPIOA
+#define JTCK_Pin GPIO_PIN_14
+#define JTCK_GPIO_Port GPIOA
+#define B2_Pin GPIO_PIN_0
+#define B2_GPIO_Port GPIOD
+#define B3_Pin GPIO_PIN_1
+#define B3_GPIO_Port GPIOD
+#define JTDO_Pin GPIO_PIN_3
+#define JTDO_GPIO_Port GPIOB
+#define LD1_Pin GPIO_PIN_5
+#define LD1_GPIO_Port GPIOB
 /* USER CODE END TD */
 
 /* Private define ------------------------------------------------------------*/
@@ -86,11 +103,12 @@ void NMI_Handler(void)
 void HardFault_Handler(void)
 {
   /* USER CODE BEGIN HardFault_IRQn 0 */
-
+    HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
   /* USER CODE END HardFault_IRQn 0 */
   while (1)
   {
     /* USER CODE BEGIN W1_HardFault_IRQn 0 */
+
     /* USER CODE END W1_HardFault_IRQn 0 */
   }
 }
@@ -131,7 +149,6 @@ void BusFault_Handler(void)
 void UsageFault_Handler(void)
 {
   /* USER CODE BEGIN UsageFault_IRQn 0 */
-
   /* USER CODE END UsageFault_IRQn 0 */
   while (1)
   {

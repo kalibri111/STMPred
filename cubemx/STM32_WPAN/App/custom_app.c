@@ -144,6 +144,10 @@ void Custom_STM_App_Notification(Custom_STM_App_Notification_evt_t *pNotificatio
 
         case CUSTOM_STM_DBG_A_CHR_NOTIFY_ENABLED_EVT:
             /* USER CODE BEGIN CUSTOM_STM_DBG_A_CHR_NOTIFY_ENABLED_EVT */
+#ifdef JSON_LOG
+            printf("[\n\r");
+#endif
+
             if (UTIL_SEQ_IsPauseTask(1 << CFG_TASK_READ_ALL_MPU_VALUES)) {
                 UTIL_SEQ_ResumeTask(1 << CFG_TASK_READ_ALL_MPU_VALUES);
             } else {
@@ -159,7 +163,9 @@ void Custom_STM_App_Notification(Custom_STM_App_Notification_evt_t *pNotificatio
             HAL_TIM_Base_Stop_IT(&htim2);
             UTIL_SEQ_PauseTask(1 << CFG_TASK_READ_ALL_MPU_VALUES);
             Custom_App_Context.Dbg_a_chr_Notification_Status = 0;
-
+#ifdef JSON_LOG
+            printf("]\n\r");
+#endif
             /* USER CODE END CUSTOM_STM_DBG_A_CHR_NOTIFY_DISABLED_EVT */
             break;
 

@@ -476,7 +476,7 @@ typedef enum
 /**
  * Enable or Disable traces in application
  */
-#define CFG_DEBUG_APP_TRACE     1
+#define CFG_DEBUG_APP_TRACE     0
 
 #if (CFG_DEBUG_APP_TRACE != 0)
 #define APP_DBG_MSG                 PRINT_MESG_DBG
@@ -621,8 +621,9 @@ typedef enum
 #define BATCH_SIZE 100
 #define TRAIN_SIZE 100
 #define GAMMA 2.3
-//#define PRINT_LOG
-
+#define PRINT_LOG
+//#define SIGNAL_LOG
+#define JSON_LOG
 #endif /*APP_CONF_H */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

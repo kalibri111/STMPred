@@ -8,20 +8,20 @@
  * For vector-based data
  */
 typedef struct {
-    double z_mean;
-    double y_mean;
+    float32_t z_mean;
+    float32_t y_mean;
 
-    double z_energy;
-    double y_energy;
-    double x_energy;
+    float32_t z_energy;
+    float32_t y_energy;
+    float32_t x_energy;
 
-    double sma;
+    float32_t sma;
 
-    double z_min;
+    float32_t z_min;
 
-    double x_mean_pos1;
-    double y_min_pos1;
-    double x_min_pos1;
+    float32_t x_mean_pos1;
+    float32_t y_min_pos1;
+    float32_t x_min_pos1;
 
 } SVMDataUnit_type;
 #endif //STMPRED_SVMDATAUNIT_H

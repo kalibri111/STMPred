@@ -3,6 +3,8 @@
 //
 
 #include "predict.h"
+#include "retarget_printf.h"
+#include "app_common.h"
 #include "math.h"
 
 
@@ -28,7 +30,7 @@ double l2distsq(SVMDataUnit_type* first, SVMDataUnit_type* second, int32_t el_si
 
 
 double rbf_kernel_(SVMDataUnit_type* x1, SVMDataUnit_type* x2, double gamma) {
-    return exp(-gamma * l2distsq(x1, x2, sizeof(double)));
+    return exp(gamma * l2distsq(x1, x2, sizeof(double)));
 }
 
 void rbf_kernel(SVMDataUnit_type* input, SVMDataUnit_type* trained, size_t trained_size, double gamma) {
@@ -37,7 +39,7 @@ void rbf_kernel(SVMDataUnit_type* input, SVMDataUnit_type* trained, size_t train
     }
 }
 
-void transform_(double* v, const double* std, const double* mean) {
+void transform_(float32_t * v, const float32_t * std, const float32_t * mean) {
     *v -= * mean;
     *v /= * std;
 }
@@ -52,11 +54,9 @@ void transform(SVMDataUnit_type* x) {
     transform_(&(x->y_mean), &std_trained_y_mean, &mean_trained_y_mean);
     transform_(&(x->z_energy), &std_trained_z_energy, &mean_trained_z_energy);
     transform_(&(x->y_energy), &std_trained_y_energy, &mean_trained_y_energy);
-    transform_(&(x->x_energy), &std_trained_x_energy, &mean_trained_x_energy);
     transform_(&(x->sma), &std_trained_sma, &mean_trained_sma);
     transform_(&(x->x_mean_pos1), &std_trained_x_mean_pos1, &mean_trained_x_mean_pos1);
     transform_(&(x->y_min_pos1), &std_trained_y_min_pos1, &mean_trained_y_min_pos1);
-    transform_(&(x->x_min_pos1), &std_trained_x_min_pos1, &mean_trained_x_min_pos1);
 
 }
 
@@ -84,88 +84,126 @@ void vector_sqrt(const float32_t* src, float32_t* result) {
     }
 }
 
-void statistics(SVMDataUnit_type* to_fill, double* x, double* y, double* z) {
+void statistics(SVMDataUnit_type* to_fill, float32_t * x, float32_t * y, float32_t * z) {
     uint32_t min_idx;  // not used
     float32_t x_squared[BATCH_SIZE];
     float32_t y_squared[BATCH_SIZE];
     float32_t z_squared[BATCH_SIZE];
 
-    arm_mean_f32(
-            (float32_t *) y,
-            BATCH_SIZE,
-            (float32_t *) &(to_fill->y_mean)
-            );  // y_mean
+//    double buf[3] = {1, 2, 3};
+//    float32_t res = 0;
+//
+//    arm_mean_f32(
+//            &buf,
+//            3,
+//            &res
+//    );  // y_mean
+//
+//    printf("experiment: %f\n\r", res);
 
     arm_mean_f32(
-            (float32_t *) z,
+             y,
+            BATCH_SIZE,
+            &(to_fill->y_mean)
+            );  // y_mean
+
+    double sumy = 0;
+    for (int i = 0; i < BATCH_SIZE; ++i) {
+        sumy += y[i];
+    }
+
+
+    arm_mean_f32(
+            z,
             BATCH_SIZE,
             (float32_t *) &(to_fill->z_mean)
             );  // z_mean
 
     arm_min_f32(
-            (float32_t *) z,
+            z,
             BATCH_SIZE,
             (float32_t *) &(to_fill->z_min),
             &min_idx
             );  // z_min
+
     // z_energy (mean of squared)
     arm_power_f32(
-            (float32_t *) z,
+            z,
             BATCH_SIZE,
             (float32_t *) &(to_fill->z_energy)
             );
     to_fill->z_energy /= BATCH_SIZE;
     // y energy
     arm_power_f32(
-            (float32_t *) y,
+            y,
             BATCH_SIZE,
             (float32_t *) &(to_fill->y_energy)
     );
     to_fill->y_energy /= BATCH_SIZE;
+
     // x energy
     arm_power_f32(
-            (float32_t *) x,
+            x,
             BATCH_SIZE,
             (float32_t *) &(to_fill->x_energy)
     );
     to_fill->x_energy /= BATCH_SIZE;
-    // sma
-    vector_squared((float32_t *) x, x_squared);
-    vector_squared((float32_t *) y, y_squared);
-    vector_squared((float32_t *) z, z_squared);
-    vector_add(x_squared, y_squared, (float32_t *) &(to_fill->sma));
-    vector_add((float32_t *) &(to_fill->sma), z_squared, (float32_t *) &(to_fill->sma));
-    vector_sqrt((float32_t *) &(to_fill->sma), (float32_t *) &(to_fill->sma));
+
+#ifndef SIGNAL_LOG
+    printf("y_mean: %f\n\r", to_fill->y_mean);
+    printf("z_mean: %f\n\r", to_fill->z_mean);
+    printf("z_min: %f\n\r", to_fill->z_min);
+    printf("z_energy: %f\n\r", to_fill->z_energy);
+    printf("y_energy: %f\n\r", to_fill->y_energy);
+    printf("x_energy: %f\n\r", to_fill->x_energy);
+#endif
+    // -sma-
+    float32_t sma_buff[BATCH_SIZE];
+    vector_squared(x, x_squared);
+    vector_squared( y, y_squared);
+    vector_squared(z, z_squared);
+    vector_add(x_squared, y_squared, &sma_buff);
+    vector_add(&sma_buff, z_squared, &sma_buff);
+    vector_sqrt(&sma_buff, &sma_buff);
+    arm_mean_f32(&sma_buff, BATCH_SIZE, &(to_fill->sma));
+    // ----
+
     to_fill->x_min_pos1 = x_min_pos1;
     to_fill->y_min_pos1 = y_min_pos1;
     to_fill->x_mean_pos1 = x_mean_pos1;
 }
 
-double decision_function_(SVMDataUnit_type* measure, void* kernel_fn(SVMDataUnit_type*, SVMDataUnit_type*, size_t, double)) {
+float32_t decision_function_(SVMDataUnit_type* measure/*, void* kernel_fn(SVMDataUnit_type*, SVMDataUnit_type*, size_t, double)*/) {
     float32_t decision = 1;
-    kernel_fn(measure, x_trained, TRAIN_SIZE, GAMMA);
+//    kernel_fn(measure, x_trained, TRAIN_SIZE, GAMMA);
+//    rbf_kernel(measure, x_trained, TRAIN_SIZE, GAMMA);
 
     // kernel * y * lambdas scalar
     for (int i = 0; i < TRAIN_SIZE; ++i) {
-        kernel_matrix[i] *= y_trained[i];
-        kernel_matrix[i] *= lambda_trained[i];
+        kernel_matrix[i] *= weight_trained[i];
     }
 
     // sum -> one elements
     arm_mean_f32(kernel_matrix, TRAIN_SIZE, &decision);
     decision *= TRAIN_SIZE;
-    decision += b_trained;
+
+    // TODO: remove this little helping
+    if (measure->z_mean > -0.8) {
+        return 1;
+    } else {
+        return 0;
+    }
 
     return decision;
 }
 
-int8_t predict(double* x, double* y, double* z, void* kernel_fn) {
+float32_t predict(float32_t * x, float32_t * y, float32_t * z/*, void* kernel_fn*/) {
     // packing data
     SVMDataUnit_type measure;
     statistics(&measure, x, y, z);
 
-    transform(&measure);
-    int8_t p = (int8_t) decision_function_(&measure, kernel_fn);
+//    transform(&measure);
+    float32_t p = decision_function_(&measure/*, kernel_fn*/);
 
     p = p > 0;
     p += 1;

@@ -125,6 +125,7 @@ int main(void) {
     /* Init code for STM32_WPAN */
     APPE_Init();
     RetargetInit(&huart1);
+    APP_DBG_MSG("\n\rINITIALIZATION DONE\n\r");
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
     while (1) {

@@ -14,22 +14,11 @@
 #define SVM_METRICS_CNT 10
 
 /**
- * For coordinate-wise data
- */
-static double z_mean   [BATCH_SIZE];
-static double y_mean   [BATCH_SIZE];
-static double z_energy [BATCH_SIZE];
-static double y_energy [BATCH_SIZE];
-static double x_energy [BATCH_SIZE];
-static double sma      [BATCH_SIZE];
-static double z_min    [BATCH_SIZE];
-
-/**
  * Calibrating data in sit position
  */
-static double x_mean_pos1;
-static double y_min_pos1;
-static double x_min_pos1;
+static float32_t x_mean_pos1 = 0.7833778321167881;
+static float32_t y_min_pos1 = -0.13623;
+static float32_t x_min_pos1 = 0.773438;
 
 /**
  * Buffer for kernel
@@ -43,7 +32,7 @@ static float32_t kernel_matrix[TRAIN_SIZE];
  * @param kernel_fn pointer to kernel function
  * @return
  */
-int8_t predict(double* x, double* y, double* z, void* kernel_fn);
+float32_t predict(float32_t * x, float32_t * y, float32_t * z/*, void* kernel_fn*/);
 
 /**
  * Rbf kernel function exp(-gamma * || x - y ||**2)
